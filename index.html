@@ -416,46 +416,63 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
   .pdf-item .price{font-family:var(--font-display);font-weight:700;color:var(--primary-deep);font-size:11.5pt;margin-top:5px}
 }
 
-/* ═══════ Edan F12 Fetal Monitor Simulator ═══════ */
-#fm-sim{position:fixed;inset:0;z-index:85;display:none;align-items:center;justify-content:center;padding:10px;background:rgba(0,8,3,.92)}
+/* ═══════ Edan F12 Fetal Monitor — v3 Realistic ═══════ */
+#fm-sim{position:fixed;inset:0;z-index:85;display:none;align-items:center;justify-content:center;padding:8px;background:rgba(0,0,0,.94)}
 #fm-sim.open{display:flex}
-.fm-panel{background:#030806;border-radius:14px;width:100%;max-width:1100px;height:min(96vh,680px);overflow:hidden;display:flex;flex-direction:column;box-shadow:0 0 100px rgba(6,200,80,.1),0 40px 100px rgba(0,0,0,.85);border:1.5px solid #0b2a14}
-.fm-hdr{display:flex;align-items:center;gap:12px;padding:0 14px;height:50px;background:#020604;border-bottom:1px solid #091e0c;flex:0 0 auto}
-.fm-brand{font-family:var(--font-display);color:#0ec44c;font-weight:800;font-size:1.1rem;letter-spacing:.05em}
-.fm-model-badge{font-family:var(--font-mono);color:#5ee890;font-size:.76rem;background:#071a0e;border:1px solid #0c3018;padding:3px 9px;border-radius:5px;letter-spacing:.14em}
-.fm-live-dot{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:.6rem;letter-spacing:.14em;color:#0ec44c;font-weight:600}
-.fm-live-dot::before{content:"";width:7px;height:7px;border-radius:50%;background:#0ec44c;animation:pulse 1.2s ease-in-out infinite}
-.fm-alarm-banner{font-family:var(--font-mono);font-size:.72rem;color:#ff5050;background:#1e0808;border:1.5px solid #6a1010;padding:4px 12px;border-radius:6px;display:none;animation:fm-ab .5s ease infinite alternate;letter-spacing:.06em}
+/* Device chassis */
+.fm-panel{background:#1c1e1c;border-radius:14px;width:100%;max-width:1160px;height:min(96vh,710px);overflow:hidden;display:flex;flex-direction:column;box-shadow:0 0 0 3px #2a2c2a,0 0 0 5px #141614,0 50px 140px rgba(0,0,0,.95);border:1px solid #383a38}
+/* Header */
+.fm-hdr{display:flex;align-items:center;gap:10px;padding:0 16px;height:48px;background:linear-gradient(180deg,#1a1c1a,#0f110f);border-bottom:2px solid #080a08;flex:0 0 auto}
+.fm-brand{font-family:var(--font-display);color:#fff;font-weight:800;font-size:1.08rem;letter-spacing:.12em}
+.fm-model-badge{font-family:var(--font-mono);color:#00cc55;font-size:.7rem;background:#071a0e;border:1px solid #0d3a1a;padding:2px 9px;border-radius:4px;letter-spacing:.18em}
+.fm-rec-dot{display:inline-flex;align-items:center;gap:5px;font-family:var(--font-mono);font-size:.62rem;color:#ff4444;font-weight:700;letter-spacing:.1em}
+.fm-rec-dot::before{content:"";width:8px;height:8px;border-radius:50%;background:#ff4444;animation:fm-rec .85s ease-in-out infinite alternate}
+@keyframes fm-rec{from{opacity:1}to{opacity:.15}}
+.fm-alarm-banner{font-family:var(--font-mono);font-size:.72rem;color:#ff5050;background:#200808;border:1.5px solid #6a1010;padding:4px 13px;border-radius:6px;display:none;animation:fm-ab .5s ease infinite alternate;letter-spacing:.06em}
 .fm-alarm-banner.show{display:block}
-@keyframes fm-ab{from{opacity:1;border-color:#f03030}to{opacity:.35;border-color:#400808}}
-.fm-clock-disp{font-family:var(--font-mono);font-size:.8rem;color:#3a6848;letter-spacing:.16em;margin-left:auto}
-.fm-close-btn{background:#0d1c10;border:1px solid #0c2a16;color:#4de880;width:34px;height:34px;border-radius:7px;font-size:1rem;display:grid;place-items:center;flex:0 0 auto;cursor:pointer}
-.fm-close-btn:hover{background:#0ec44c;color:#000;border-color:#0ec44c}
+@keyframes fm-ab{from{opacity:1;border-color:#f03030}to{opacity:.3;border-color:#380808}}
+.fm-clock-disp{font-family:var(--font-mono);font-size:.9rem;color:#7a9a7a;letter-spacing:.2em;margin-left:auto}
+.fm-close-btn{background:#252825;border:1px solid #3c3e3c;color:#889a88;width:32px;height:32px;border-radius:6px;font-size:.95rem;display:grid;place-items:center;flex:0 0 auto;cursor:pointer;transition:.15s}
+.fm-close-btn:hover{background:#cc2222;color:#fff;border-color:#cc2222}
+/* Patient bar */
+.fm-pt-bar{display:flex;flex-wrap:wrap;gap:3px 14px;align-items:center;padding:4px 16px;background:#0d0f0d;border-bottom:1px solid #1c1e1c;font-size:.67rem;color:#617a62;flex:0 0 auto}
+.fm-pt-bar b{color:#aecaae;font-weight:600}
+.fm-pt-sep{color:#2a3a2a;font-size:.6rem}
+.fm-rec-time{margin-left:auto;font-family:var(--font-mono);font-size:.64rem;color:#30aa55;letter-spacing:.14em}
+/* Body */
 .fm-body{flex:1;min-height:0;display:flex;overflow:hidden}
-.fm-traces{flex:1;min-width:0;display:flex;flex-direction:column;background:#040c06;border-right:1px solid #091e0c}
-.fm-trace-row{flex:1;min-height:0;display:flex;align-items:stretch;border-bottom:1px solid #091e0c}
-.fm-trace-row:last-child{border-bottom:none}
-.fm-lbl{width:46px;flex:0 0 auto;display:flex;flex-direction:column;padding:5px 3px;border-right:1px solid #091e0c;background:#030806}
-.fm-lbl-name{font-family:var(--font-mono);font-size:.58rem;font-weight:700;letter-spacing:.08em;text-align:center}
-.fm-lbl-scale{flex:1;display:flex;flex-direction:column;justify-content:space-between;padding:2px 0;font-family:var(--font-mono);font-size:.48rem;color:#193528;text-align:center;line-height:1}
-.fm-cv-wrap{flex:1;min-width:0;position:relative;overflow:hidden}
-.fm-cv-wrap canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-.fm-params{width:160px;flex:0 0 auto;display:flex;flex-direction:column;gap:6px;padding:8px 7px;background:#030806;overflow-y:auto}
-.fm-prm{border-radius:7px;padding:6px 9px;border:1px solid}
-.fm-prm .fm-pv{font-family:var(--font-display);font-weight:800;font-size:1.85rem;line-height:1;letter-spacing:-.02em}
-.fm-prm .fm-pl{font-family:var(--font-mono);font-size:.56rem;letter-spacing:.1em;margin-top:2px;opacity:.65}
-.fm-prm.p-fhr1{border-color:#0a3616;background:#050e07}.fm-prm.p-fhr1 .fm-pv,.fm-prm.p-fhr1 .fm-pl{color:#18f06a}
-.fm-prm.p-fhr2{border-color:#2a1c00;background:#090700}.fm-prm.p-fhr2 .fm-pv,.fm-prm.p-fhr2 .fm-pl{color:#f5c518}
-.fm-prm.p-toco{border-color:#001c2a;background:#020809}.fm-prm.p-toco .fm-pv,.fm-prm.p-toco .fm-pl{color:#18c0f0}
-.fm-prm.p-mhr{border-color:#2a0808;background:#0b0303}.fm-prm.p-mhr .fm-pv,.fm-prm.p-mhr .fm-pl{color:#f05050}
-.fm-prm.p-spo2{border-color:#001620;background:#020608}.fm-prm.p-spo2 .fm-pv,.fm-prm.p-spo2 .fm-pl{color:#10d0f8}
-.fm-prm.p-temp{border-color:#1a1400;background:#070600}.fm-prm.p-temp .fm-pv,.fm-prm.p-temp .fm-pl{color:#d4c820}
-.fm-ftr{display:flex;gap:8px;align-items:center;padding:8px 12px;background:#020604;border-top:1px solid #091e0c;flex:0 0 auto;flex-wrap:wrap}
-.fm-speed-info{font-family:var(--font-mono);font-size:.58rem;color:#1e3e28;margin-left:auto;letter-spacing:.06em}
-@media(max-width:640px){.fm-params{width:110px}.fm-prm .fm-pv{font-size:1.3rem}.fm-lbl{width:38px}.fm-speed-info{display:none}}
-@media(max-width:420px){.fm-params{display:none}}
-.fm-patient-bar{display:flex;flex-wrap:wrap;gap:5px 18px;align-items:center;padding:6px 14px;background:#061009;border-bottom:1px solid #0a1c0d;font-size:.7rem;color:#5a7a66;flex:0 0 auto}
-.fm-patient-bar b{color:#9fd8b2;font-weight:600}
+/* CTG paper section */
+.fm-ctg{flex:1;min-width:0;display:flex;flex-direction:column;background:#f4f0e2;overflow:hidden}
+.fm-ctg-zone{display:flex;position:relative;overflow:hidden}
+.fm-ctg-zone.fhr1z{flex:5;border-bottom:2px solid #c8a070}
+.fm-ctg-zone.tocoz{flex:2;border-bottom:none}
+.fm-axis{width:36px;flex:0 0 auto;background:#ede9da;border-right:1.5px solid #c0a878;display:flex;flex-direction:column;justify-content:space-between;padding:2px 3px 2px 0;font-family:var(--font-mono);font-size:.46rem;color:#8a6a44;text-align:right;line-height:1}
+.fm-axis .fm-ax-major{font-weight:700;font-size:.52rem;color:#6a4a28}
+.fm-cv-outer{flex:1;min-width:0;position:relative;overflow:hidden}
+.fm-cv-outer canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+/* Digital param panel */
+.fm-digi{width:180px;flex:0 0 auto;display:flex;flex-direction:column;background:#0a0c0a;border-left:2px solid #141814}
+.fm-drow{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:5px 8px;border-bottom:1px solid #161a16;position:relative;text-align:center;overflow:hidden}
+.fm-drow:last-child{border-bottom:none;flex:0 0 auto;padding:8px}
+/* LED-style numeric display */
+.fm-num{font-family:var(--font-display);font-weight:800;font-size:2.55rem;line-height:1;letter-spacing:-.03em}
+.fm-pname{font-family:var(--font-mono);font-size:.56rem;letter-spacing:.1em;margin-top:2px;opacity:.7}
+.fm-trend{position:absolute;top:5px;right:9px;font-size:.78rem;opacity:.8}
+/* Per-parameter colours with subtle glow */
+.fm-drow.d-fhr1{background:#050e07}.fm-drow.d-fhr1 .fm-num{color:#22ee66;text-shadow:0 0 24px rgba(34,238,102,.4)}.fm-drow.d-fhr1 .fm-pname,.fm-drow.d-fhr1 .fm-trend{color:#22ee66}
+.fm-drow.d-fhr2{background:#070900}.fm-drow.d-fhr2 .fm-num{color:#ffcc00;text-shadow:0 0 22px rgba(255,200,0,.35)}.fm-drow.d-fhr2 .fm-pname,.fm-drow.d-fhr2 .fm-trend{color:#ffcc00}
+.fm-drow.d-toco{background:#05080e}.fm-drow.d-toco .fm-num{color:#28c8f8;text-shadow:0 0 22px rgba(40,200,248,.3)}.fm-drow.d-toco .fm-pname{color:#28c8f8}
+.fm-drow.d-mhr{background:#0c0505}.fm-drow.d-mhr .fm-num{color:#ff6868;text-shadow:0 0 20px rgba(255,90,90,.3)}.fm-drow.d-mhr .fm-pname{color:#ff6868}
+.fm-drow.d-spo2{background:#04080c}.fm-drow.d-spo2 .fm-num{color:#20e0f8;text-shadow:0 0 20px rgba(32,220,248,.3)}.fm-drow.d-spo2 .fm-pname{color:#20e0f8}
+.fm-drow.d-temp{background:#080700}.fm-drow.d-temp .fm-num{color:#e8d025;text-shadow:0 0 18px rgba(230,208,38,.3)}.fm-drow.d-temp .fm-pname{color:#e8d025}
+.fm-drow.d-btn{background:#0a0c0a;flex:0 0 auto;border-bottom:none}
+/* Footer */
+.fm-ftr{display:flex;gap:8px;align-items:center;padding:8px 14px;background:linear-gradient(180deg,#111311,#0c0e0c);border-top:2px solid #080a08;flex:0 0 auto;flex-wrap:wrap}
+.fm-speed-info{font-family:var(--font-mono);font-size:.58rem;color:#283a28;margin-left:auto;letter-spacing:.06em}
+/* Responsive */
+@media(max-width:720px){.fm-digi{width:136px}.fm-num{font-size:1.9rem}.fm-axis{width:28px}}
+@media(max-width:500px){.fm-digi{width:110px}.fm-num{font-size:1.55rem}.fm-pt-sep{display:none}.fm-speed-info{display:none}}
+@media(max-width:380px){.fm-digi{display:none}}
 
 /* ═══════ MFM-CNS → HOSxP Integration Workflow ═══════ */
 #flow-sim{position:fixed;inset:0;z-index:95;display:none;align-items:center;justify-content:center;padding:10px;background:rgba(0,6,3,.86);backdrop-filter:blur(3px)}
@@ -739,49 +756,91 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
     <div class="fm-hdr">
       <span class="fm-brand">EDAN</span>
       <span class="fm-model-badge">F12</span>
-      <span class="fm-live-dot">LIVE MONITOR</span>
+      <span class="fm-rec-dot" id="fm-rec-badge">REC</span>
       <div class="fm-alarm-banner" id="fm-alarm">⚠ ALARM</div>
       <span class="fm-clock-disp" id="fm-clock">--:--:--</span>
       <button class="fm-close-btn" onclick="closeFM()" aria-label="ปิด">✕</button>
     </div>
-    <div class="fm-patient-bar">
+    <div class="fm-pt-bar">
       <span>HN <b>00 12 345</b></span>
-      <span><b>นางสาว สมหญิง ใจดี</b> · อายุ 28 ปี</span>
-      <span>GA 38⁺² สัปดาห์ · G2 P1 A0</span>
-      <span>เตียง <b>LR-03</b> · พญ. วิภาวดี รักษาดี</span>
+      <span class="fm-pt-sep">│</span>
+      <span><b>นางสาว สมหญิง ใจดี</b></span>
+      <span class="fm-pt-sep">│</span>
+      <span>อายุ <b>28</b> ปี</span>
+      <span class="fm-pt-sep">│</span>
+      <span>GA <b>38⁺² สัปดาห์</b></span>
+      <span class="fm-pt-sep">│</span>
+      <span>G2 P1 A0</span>
+      <span class="fm-pt-sep">│</span>
+      <span>เตียง <b>LR-03</b></span>
+      <span class="fm-pt-sep">│</span>
+      <span>พญ. วิภาวดี รักษาดี</span>
+      <span class="fm-rec-time" id="fm-rectime">REC 00:00:00</span>
     </div>
     <div class="fm-body">
-      <div class="fm-traces">
-        <div class="fm-trace-row" style="flex:2.5">
-          <div class="fm-lbl">
-            <span class="fm-lbl-name" style="color:#18f06a">FHR1</span>
-            <div class="fm-lbl-scale"><span>210</span><span>180</span><span>150</span><span>120</span><span>90</span><span>50</span></div>
+      <div class="fm-ctg">
+        <div class="fm-ctg-zone fhr1z">
+          <div class="fm-axis">
+            <span class="fm-ax-major">210</span>
+            <span>200</span><span>190</span>
+            <span class="fm-ax-major">180</span>
+            <span>170</span><span>160</span>
+            <span class="fm-ax-major">150</span>
+            <span>140</span><span>130</span>
+            <span class="fm-ax-major">120</span>
+            <span>110</span><span>100</span>
+            <span class="fm-ax-major">90</span>
+            <span>80</span><span>70</span>
+            <span class="fm-ax-major">60</span>
+            <span>50</span>
           </div>
-          <div class="fm-cv-wrap"><canvas id="fm-cv1"></canvas></div>
+          <div class="fm-cv-outer">
+            <canvas id="fm-cv1"></canvas>
+          </div>
         </div>
-        <div class="fm-trace-row" style="flex:2.5">
-          <div class="fm-lbl">
-            <span class="fm-lbl-name" style="color:#f5c518">FHR2</span>
-            <div class="fm-lbl-scale"><span>210</span><span>180</span><span>150</span><span>120</span><span>90</span><span>50</span></div>
+        <div class="fm-ctg-zone tocoz">
+          <div class="fm-axis">
+            <span class="fm-ax-major">100</span>
+            <span>75</span>
+            <span class="fm-ax-major">50</span>
+            <span>25</span>
+            <span class="fm-ax-major">0</span>
           </div>
-          <div class="fm-cv-wrap"><canvas id="fm-cv2"></canvas></div>
-        </div>
-        <div class="fm-trace-row" style="flex:1.5">
-          <div class="fm-lbl">
-            <span class="fm-lbl-name" style="color:#18c0f0">TOCO</span>
-            <div class="fm-lbl-scale"><span>100</span><span>75</span><span>50</span><span>25</span><span>0</span></div>
+          <div class="fm-cv-outer">
+            <canvas id="fm-cv3"></canvas>
           </div>
-          <div class="fm-cv-wrap"><canvas id="fm-cv3"></canvas></div>
         </div>
       </div>
-      <div class="fm-params">
-        <div class="fm-prm p-fhr1"><div class="fm-pv" id="fm-v1">---</div><div class="fm-pl">FHR1  bpm</div></div>
-        <div class="fm-prm p-fhr2"><div class="fm-pv" id="fm-v2">---</div><div class="fm-pl">FHR2  bpm</div></div>
-        <div class="fm-prm p-toco"><div class="fm-pv" id="fm-v3">--</div><div class="fm-pl">TOCO  ua</div></div>
-        <div class="fm-prm p-mhr"><div class="fm-pv" id="fm-v4">--</div><div class="fm-pl">MHR  bpm</div></div>
-        <div class="fm-prm p-spo2"><div class="fm-pv" id="fm-v5">--</div><div class="fm-pl">SpO2  %</div></div>
-        <div class="fm-prm p-temp"><div class="fm-pv" id="fm-v6">--.-</div><div class="fm-pl">TEMP  °C</div></div>
-        <a class="btn btn-primary btn-block btn-sm" href="#contact" onclick="closeFM()" style="margin-top:auto;border-radius:9px;font-size:.8rem;justify-content:center">ขอใบเสนอราคา</a>
+      <div class="fm-digi">
+        <div class="fm-drow d-fhr1">
+          <span class="fm-trend" id="fm-trend1">→</span>
+          <div class="fm-num" id="fm-v1">---</div>
+          <div class="fm-pname">FHR1  bpm</div>
+        </div>
+        <div class="fm-drow d-fhr2">
+          <span class="fm-trend" id="fm-trend2">→</span>
+          <div class="fm-num" id="fm-v2">---</div>
+          <div class="fm-pname">FHR2  bpm</div>
+        </div>
+        <div class="fm-drow d-toco">
+          <div class="fm-num" id="fm-v3">--</div>
+          <div class="fm-pname">TOCO  ua</div>
+        </div>
+        <div class="fm-drow d-mhr">
+          <div class="fm-num" id="fm-v4">--</div>
+          <div class="fm-pname">MHR  bpm</div>
+        </div>
+        <div class="fm-drow d-spo2">
+          <div class="fm-num" id="fm-v5">--</div>
+          <div class="fm-pname">SpO₂  %</div>
+        </div>
+        <div class="fm-drow d-temp">
+          <div class="fm-num" id="fm-v6">--.-</div>
+          <div class="fm-pname">TEMP  °C</div>
+        </div>
+        <div class="fm-drow d-btn">
+          <a class="btn btn-primary btn-block btn-sm" href="#contact" onclick="closeFM()" style="width:100%;border-radius:9px;font-size:.72rem;justify-content:center">ขอใบเสนอราคา</a>
+        </div>
       </div>
     </div>
     <div class="fm-ftr">
@@ -1301,81 +1360,85 @@ function closeWorkflow(){ document.getElementById('flow-sim').classList.remove('
 
 const FM=(()=>{
   let running=false,lastTs=0,animId=null,simT=0,dataAcc=0;
-  let ctx1=null,ctx2=null,ctx3=null,bufLen=600;
+  let ctx1=null,ctx3=null,bufLen=700,dpr=1;
   let buf1=[],buf2=[],buf3=[];
   let mhr=78,spo2=98,temp=36.8;
   let nextAccel=30,nextDecel=180,nextCont=45;
   let accel1=null,accel2=null,decel1=null,contractions=[];
   let alarmActive=false,alarmTo=null;
   let statAccel=0,statDecel=0,statCont=0;
-  const RATE=2.5; // px/sec — equivalent to ~3 cm/min on screen
+  let recStartTime=null,recElapsed=0;
+  let ou1=0,ou2=0,tocoBase=10;
+  const RATE=2.5;
 
-  function sn(t,s){
-    // pseudo-noise: sum of incommensurable sinusoids
-    return Math.sin(t*1.31+s)*0.42+Math.sin(t*2.73+s*1.3)*0.28+Math.sin(t*5.17+s*0.7)*0.18+Math.sin(t*8.41+s*2.1)*0.12;
+  function randn(){
+    let u,v;do{u=Math.random();v=Math.random();}while(u===0);
+    return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);
   }
 
-  function genFHR1(t){
-    // Long-term variability (LTV): 2-6 cycles/min
-    const ltv=7.5*Math.sin(0.05*6.283*t)+4*Math.sin(0.09*6.283*t+1.2)+3*Math.sin(0.16*6.283*t+2.5)+2*Math.sin(0.07*6.283*t+3.8);
-    // Short-term variability (STV)
-    const stv=2.5*sn(t*0.7,0)+1.5*sn(t*1.4,1.7);
-    let v=140+ltv+stv;
-    if(accel1){const dt=t-accel1.pt,s=accel1.s;v+=accel1.m*Math.exp(-(dt*dt)/(2*s*s));}
-    if(decel1){const dt=t-decel1.pt,s=decel1.s;v-=decel1.m*Math.exp(-(dt*dt)/(2*s*s));}
+  function ouStep(x,mu,theta,sigma,dt){
+    return x+theta*(mu-x)*dt+sigma*Math.sqrt(Math.max(0,dt))*randn();
+  }
+
+  function ltvFHR1(t){
+    return 7.5*Math.sin(0.05*6.283*t)+4*Math.sin(0.09*6.283*t+1.2)+
+           3*Math.sin(0.16*6.283*t+2.5)+2*Math.sin(0.07*6.283*t+3.8);
+  }
+
+  function ltvFHR2(t){
+    return 6*Math.sin(0.046*6.283*t+1.5)+3.5*Math.sin(0.085*6.283*t+0.8)+
+           2.5*Math.sin(0.14*6.283*t+3.1)+2*Math.sin(0.065*6.283*t+4.2);
+  }
+
+  function stepFHR1(t,dt){
+    ou1=ouStep(ou1,0,3.5,2.8,dt);
+    let v=140+ltvFHR1(t)+ou1;
+    if(accel1){const d=t-accel1.pt,s=accel1.s;v+=accel1.m*Math.exp(-(d*d)/(2*s*s));}
+    if(decel1){const d=t-decel1.pt,s=decel1.s;v-=decel1.m*Math.exp(-(d*d)/(2*s*s));}
     return Math.max(50,Math.min(210,v));
   }
 
-  function genFHR2(t){
-    const ltv=6*Math.sin(0.046*6.283*t+1.5)+3.5*Math.sin(0.085*6.283*t+0.8)+2.5*Math.sin(0.14*6.283*t+3.1)+2*Math.sin(0.065*6.283*t+4.2);
-    const stv=2*sn(t*0.65,3)+1.2*sn(t*1.3,4.8);
-    let v=138+ltv+stv;
-    if(accel2){const dt=t-accel2.pt,s=accel2.s;v+=accel2.m*Math.exp(-(dt*dt)/(2*s*s));}
+  function stepFHR2(t,dt){
+    ou2=ouStep(ou2,0,3.2,2.5,dt);
+    let v=138+ltvFHR2(t)+ou2;
+    if(accel2){const d=t-accel2.pt,s=accel2.s;v+=accel2.m*Math.exp(-(d*d)/(2*s*s));}
     return Math.max(50,Math.min(210,v));
   }
 
-  function genTOCO(t){
-    let v=10+2*Math.sin(0.03*6.283*t);
-    for(const c of contractions){const dt=t-c.pt,s=c.s;v+=c.m*Math.exp(-(dt*dt)/(2*s*s));}
+  function stepTOCO(t,dt){
+    tocoBase=ouStep(tocoBase,10,1.0,0.8,dt);
+    let v=tocoBase;
+    for(const c of contractions){const d=t-c.pt,s=c.s;v+=c.m*Math.exp(-(d*d)/(2*s*s));}
     return Math.max(0,Math.min(100,v));
   }
 
   function updateEvents(t){
-    // FHR1 Acceleration
     if(!accel1&&t>=nextAccel){
       const dur=22+Math.random()*26;
       accel1={pt:t+dur/2,s:dur/2.8,m:22+Math.random()*26,et:t+dur};
-      if(Math.random()<0.4) accel2={pt:t+dur/2+6,s:dur/2.6,m:14+Math.random()*14,et:t+dur+6};
-      statAccel++;
-      nextAccel=t+dur+90+Math.random()*130;
+      if(Math.random()<0.4)accel2={pt:t+dur/2+6,s:dur/2.6,m:14+Math.random()*14,et:t+dur+6};
+      statAccel++;nextAccel=t+dur+90+Math.random()*130;
     }
     if(accel1&&t>accel1.et)accel1=null;
     if(accel2&&t>accel2.et)accel2=null;
-    // FHR1 Deceleration
     if(!decel1&&t>=nextDecel){
       const dur=22+Math.random()*30;
       decel1={pt:t+dur/2,s:dur/2.5,m:16+Math.random()*24,et:t+dur};
-      statDecel++;
-      nextDecel=t+dur+160+Math.random()*200;
+      statDecel++;nextDecel=t+dur+160+Math.random()*200;
     }
     if(decel1&&t>decel1.et)decel1=null;
-    // TOCO contractions
     if(t>=nextCont){
       const dur=62+Math.random()*34;
       contractions.push({pt:t+dur/2,s:dur/3.2,m:44+Math.random()*40,et:t+dur});
-      statCont++;
-      nextCont=t+dur+100+Math.random()*120;
+      statCont++;nextCont=t+dur+100+Math.random()*120;
     }
     contractions=contractions.filter(c=>t<=c.et+5);
-    // Maternal params
     mhr=78+4*Math.sin(0.006*6.283*t);
     if(contractions.some(c=>t>=c.pt-c.s&&t<=c.pt+c.s))mhr+=5;
     spo2=Math.max(95,Math.min(100,Math.round(98+Math.sin(0.011*6.283*t))));
-    // Alarm
     const v1=buf1.length?buf1[buf1.length-1]:140;
     if(!alarmActive&&(v1<108||v1>168)){
-      const msg=v1<108?'⚠ FHR1 BRADYCARDIA — '+Math.round(v1)+' bpm':'⚠ FHR1 TACHYCARDIA — '+Math.round(v1)+' bpm';
-      showAlarm(msg);
+      showAlarm(v1<108?'⚠ FHR1 BRADYCARDIA — '+Math.round(v1)+' bpm':'⚠ FHR1 TACHYCARDIA — '+Math.round(v1)+' bpm');
     }
   }
 
@@ -1387,53 +1450,94 @@ const FM=(()=>{
     alarmTo=setTimeout(()=>{alarmActive=false;const e=document.getElementById('fm-alarm');if(e)e.classList.remove('show');},7000);
   }
 
-  function drawTrace(ctx,data,minV,maxV,color,gridVals){
-    if(!ctx)return;
-    const w=ctx.canvas.width,h=ctx.canvas.height;
-    if(!w||!h)return;
-    // Background
-    ctx.fillStyle='#040c06';ctx.fillRect(0,0,w,h);
-    // Horizontal grid
-    ctx.strokeStyle='#0b2010';ctx.lineWidth=0.6;
-    for(const v of gridVals){
-      const y=h-((v-minV)/(maxV-minV))*h;
-      if(y<0||y>h)continue;
-      ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke();
+  function drawCTGPaper(ctx,W,H){
+    // Cream paper base
+    ctx.fillStyle='#FFFEF5';ctx.fillRect(0,0,W,H);
+    // Minor pink grid lines
+    ctx.strokeStyle='rgba(210,140,140,0.3)';ctx.lineWidth=0.5*dpr;
+    const mY=H/32,mX=RATE*10;
+    for(let y=0;y<=H;y+=mY){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+    for(let x=0;x<=W;x+=mX){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+    // Major red grid lines
+    ctx.strokeStyle='rgba(185,75,75,0.5)';ctx.lineWidth=1*dpr;
+    for(let y=0;y<=H;y+=mY*4){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+    for(let x=0;x<=W;x+=mX*3){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+  }
+
+  function drawFHRCanvas(){
+    if(!ctx1)return;
+    const W=ctx1.canvas.width/dpr,H=ctx1.canvas.height/dpr;
+    drawCTGPaper(ctx1,W,H);
+    if(buf1.length<2)return;
+    const step=W/bufLen,startI=Math.max(0,bufLen-buf1.length);
+    // FHR2 — amber behind
+    if(buf2.length>=2){
+      ctx1.strokeStyle='rgba(195,130,0,0.7)';ctx1.lineWidth=1.5*dpr;ctx1.lineJoin='round';
+      ctx1.beginPath();let s2=false;
+      for(let i=0;i<buf2.length;i++){
+        const x=(startI+i)*step,y=Math.max(1,Math.min(H-1,H-((buf2[i]-50)/160)*H));
+        if(!s2){ctx1.moveTo(x,y);s2=true;}else ctx1.lineTo(x,y);
+      }
+      ctx1.stroke();
     }
-    // Vertical time grid (every ~60s worth of pixels)
-    const gs=Math.round(60*RATE);
-    const off=(simT*RATE)%gs;
-    ctx.strokeStyle='#091808';ctx.lineWidth=0.5;
-    for(let x=(gs-off)%gs;x<w;x+=gs){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,h);ctx.stroke();}
-    // Trace line
-    if(data.length<2)return;
-    const step=w/bufLen;
-    const startI=Math.max(0,bufLen-data.length);
-    ctx.strokeStyle=color;ctx.lineWidth=1.7;ctx.lineJoin='round';ctx.beginPath();
-    let started=false;
-    for(let i=0;i<data.length;i++){
-      const x=(startI+i)*step;
-      const y=Math.max(1,Math.min(h-1,h-((data[i]-minV)/(maxV-minV))*h));
-      if(!started){ctx.moveTo(x,y);started=true;}else ctx.lineTo(x,y);
+    // FHR1 — dark green on top
+    ctx1.strokeStyle='#1a6830';ctx1.lineWidth=2*dpr;ctx1.lineJoin='round';
+    ctx1.beginPath();let s1=false;
+    for(let i=0;i<buf1.length;i++){
+      const x=(startI+i)*step,y=Math.max(1,Math.min(H-1,H-((buf1[i]-50)/160)*H));
+      if(!s1){ctx1.moveTo(x,y);s1=true;}else ctx1.lineTo(x,y);
     }
-    ctx.stroke();
-    // Cursor
-    if(data.length>=bufLen){
-      ctx.strokeStyle='rgba(255,255,255,.06)';ctx.lineWidth=1;
-      ctx.beginPath();ctx.moveTo(w-1,0);ctx.lineTo(w-1,h);ctx.stroke();
+    ctx1.stroke();
+    if(buf1.length>=bufLen){
+      ctx1.strokeStyle='rgba(0,0,0,0.1)';ctx1.lineWidth=1*dpr;
+      ctx1.beginPath();ctx1.moveTo(W-1,0);ctx1.lineTo(W-1,H);ctx1.stroke();
     }
   }
 
-  function drawAll(){
-    drawTrace(ctx1,buf1,50,210,'#18f06a',[210,180,150,120,90,50]);
-    drawTrace(ctx2,buf2,50,210,'#f5c518',[210,180,150,120,90,50]);
-    drawTrace(ctx3,buf3,0,100,'#18c0f0',[100,75,50,25,0]);
+  function drawTOCOCanvas(){
+    if(!ctx3)return;
+    const W=ctx3.canvas.width/dpr,H=ctx3.canvas.height/dpr;
+    drawCTGPaper(ctx3,W,H);
+    if(buf3.length<2)return;
+    const step=W/bufLen,startI=Math.max(0,bufLen-buf3.length);
+    // TOCO fill
+    ctx3.fillStyle='rgba(14,100,180,0.12)';
+    ctx3.beginPath();let s3=false;
+    for(let i=0;i<buf3.length;i++){
+      const x=(startI+i)*step,y=Math.max(1,Math.min(H-1,H-(buf3[i]/100)*H));
+      if(!s3){ctx3.moveTo(x,H);ctx3.lineTo(x,y);s3=true;}else ctx3.lineTo(x,y);
+    }
+    ctx3.lineTo((startI+buf3.length-1)*step,H);ctx3.closePath();ctx3.fill();
+    // TOCO stroke
+    ctx3.strokeStyle='#1060a0';ctx3.lineWidth=2*dpr;ctx3.lineJoin='round';
+    ctx3.beginPath();s3=false;
+    for(let i=0;i<buf3.length;i++){
+      const x=(startI+i)*step,y=Math.max(1,Math.min(H-1,H-(buf3[i]/100)*H));
+      if(!s3){ctx3.moveTo(x,y);s3=true;}else ctx3.lineTo(x,y);
+    }
+    ctx3.stroke();
   }
 
   function updParams(v1,v2,v3){
     const se=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
     se('fm-v1',Math.round(v1));se('fm-v2',Math.round(v2));se('fm-v3',Math.round(v3));
     se('fm-v4',Math.round(mhr));se('fm-v5',spo2);se('fm-v6',temp.toFixed(1));
+    if(buf1.length>5){
+      const d=buf1[buf1.length-1]-buf1[buf1.length-5];
+      const el=document.getElementById('fm-trend1');if(el)el.textContent=d>1.5?'↑':d<-1.5?'↓':'→';
+    }
+    if(buf2.length>5){
+      const d=buf2[buf2.length-1]-buf2[buf2.length-5];
+      const el=document.getElementById('fm-trend2');if(el)el.textContent=d>1.5?'↑':d<-1.5?'↓':'→';
+    }
+  }
+
+  function updRecTime(){
+    if(!running||!recStartTime)return;
+    recElapsed=Math.floor((Date.now()-recStartTime)/1000);
+    const h=Math.floor(recElapsed/3600),m=Math.floor((recElapsed%3600)/60),s=recElapsed%60;
+    const el=document.getElementById('fm-rectime');
+    if(el)el.textContent='REC '+[h,m,s].map(n=>String(n).padStart(2,'0')).join(':');
   }
 
   function tick(ts){
@@ -1441,32 +1545,43 @@ const FM=(()=>{
     const dt=Math.min(0.1,(ts-lastTs)/1000);
     lastTs=ts;simT+=dt;
     updateEvents(simT);
-    // Generate data at RATE px/sec
     dataAcc+=RATE*dt;
     const n=Math.floor(dataAcc);dataAcc-=n;
+    const stepDt=1/RATE;
     for(let i=0;i<n;i++){
-      const t=simT-(n-i)/RATE;
-      buf1.push(genFHR1(t));buf2.push(genFHR2(t));buf3.push(genTOCO(t));
+      const t=simT-(n-i)*stepDt;
+      buf1.push(stepFHR1(t,stepDt));buf2.push(stepFHR2(t,stepDt));buf3.push(stepTOCO(t,stepDt));
     }
     if(buf1.length>bufLen){buf1=buf1.slice(-bufLen);buf2=buf2.slice(-bufLen);buf3=buf3.slice(-bufLen);}
-    drawAll();
+    drawFHRCanvas();drawTOCOCanvas();
     if(buf1.length)updParams(buf1[buf1.length-1],buf2[buf2.length-1],buf3[buf3.length-1]);
-    // Clock
+    updRecTime();
     const now=new Date(),clk=document.getElementById('fm-clock');
     if(clk)clk.textContent=[now.getHours(),now.getMinutes(),now.getSeconds()].map(n=>String(n).padStart(2,'0')).join(':');
     animId=requestAnimationFrame(tick);
   }
 
   function initCanvases(){
-    const c1=document.getElementById('fm-cv1');
-    const c2=document.getElementById('fm-cv2');
-    const c3=document.getElementById('fm-cv3');
-    if(!c1)return false;
-    const w=c1.parentElement.offsetWidth||600;
-    [c1,c2,c3].forEach(c=>{c.width=c.parentElement.offsetWidth||w;c.height=c.parentElement.offsetHeight||160;});
-    ctx1=c1.getContext('2d');ctx2=c2.getContext('2d');ctx3=c3.getContext('2d');
-    bufLen=w;
+    const c1=document.getElementById('fm-cv1'),c3=document.getElementById('fm-cv3');
+    if(!c1||!c3)return false;
+    dpr=window.devicePixelRatio||1;
+    [c1,c3].forEach(c=>{
+      const w=c.parentElement.offsetWidth||700,h=c.parentElement.offsetHeight||200;
+      c.width=Math.round(w*dpr);c.height=Math.round(h*dpr);
+      c.style.width=w+'px';c.style.height=h+'px';
+    });
+    ctx1=c1.getContext('2d');ctx3=c3.getContext('2d');
+    bufLen=Math.round(c1.parentElement.offsetWidth||700);
     return true;
+  }
+
+  function prefill(){
+    ou1=0;ou2=0;tocoBase=10;
+    const dt=1/RATE;
+    for(let i=0;i<bufLen;i++){
+      const t=-(bufLen-i)*dt;
+      buf1.push(stepFHR1(t,dt));buf2.push(stepFHR2(t,dt));buf3.push(stepTOCO(t,dt));
+    }
   }
 
   return {
@@ -1477,15 +1592,13 @@ const FM=(()=>{
       accel1=null;accel2=null;decel1=null;
       nextAccel=30;nextDecel=180;nextCont=45;
       alarmActive=false;statAccel=0;statDecel=0;statCont=0;
+      recStartTime=null;recElapsed=0;ou1=0;ou2=0;tocoBase=10;
       const alarmEl=document.getElementById('fm-alarm');if(alarmEl)alarmEl.classList.remove('show');
+      const rtEl=document.getElementById('fm-rectime');if(rtEl)rtEl.textContent='REC 00:00:00';
       setTimeout(()=>{
         if(!initCanvases())return;
-        // Pre-fill with historical data for immediate visual
-        for(let i=0;i<bufLen;i++){
-          const t=-(bufLen-i)/RATE;
-          buf1.push(genFHR1(t));buf2.push(genFHR2(t));buf3.push(genTOCO(t));
-        }
-        drawAll();
+        prefill();
+        drawFHRCanvas();drawTOCOCanvas();
         updParams(buf1[buf1.length-1]||140,buf2[buf2.length-1]||138,buf3[buf3.length-1]||10);
         const now=new Date(),clk=document.getElementById('fm-clock');
         if(clk)clk.textContent=[now.getHours(),now.getMinutes(),now.getSeconds()].map(n=>String(n).padStart(2,'0')).join(':');
@@ -1493,14 +1606,13 @@ const FM=(()=>{
       },80);
     },
     start(){
-      if(running)return;
-      running=true;lastTs=performance.now();
+      if(running)return;running=true;lastTs=performance.now();
+      recStartTime=Date.now()-recElapsed*1000;
       const btn=document.getElementById('fm-playbtn');if(btn)btn.textContent='⏸ หยุดชั่วคราว';
       animId=requestAnimationFrame(tick);
     },
     stop(){
-      running=false;
-      if(animId){cancelAnimationFrame(animId);animId=null;}
+      running=false;if(animId){cancelAnimationFrame(animId);animId=null;}
       const btn=document.getElementById('fm-playbtn');if(btn)btn.textContent='▶ เริ่มจำลอง';
     },
     toggle(){if(running)this.stop();else this.start();},
@@ -1508,8 +1620,9 @@ const FM=(()=>{
     testAlarm(){showAlarm('⚠ ALARM TEST — FHR: 88 bpm BRADYCARDIA');},
     getSession(){
       const data=buf1.length?buf1:[140];
-      const baseline=Math.round(data.reduce((a,b)=>a+b,0)/data.length);
-      const mn=Math.round(Math.min.apply(null,data)),mx=Math.round(Math.max.apply(null,data));
+      let sum=0,mn=data[0],mx=data[0];
+      for(const v of data){sum+=v;if(v<mn)mn=v;if(v>mx)mx=v;}
+      const baseline=Math.round(sum/data.length);
       const variability=Math.max(3,Math.min(25,Math.round((mx-mn)/4)));
       const dur=Math.max(30,Math.round(simT||(bufLen/RATE)));
       let category='Category I',interp='ปกติ (Reassuring) — ไม่พบภาวะที่ต้องเฝ้าระวัง';
@@ -1518,7 +1631,7 @@ const FM=(()=>{
       else if(statDecel>=3||variability<5){category='Category II';interp='น่าสงสัย (Suspicious) — ควรเฝ้าระวังต่อเนื่อง';}
       else if(statAccel>0){category='Category I';interp='ปกติ (Reassuring) — พบ acceleration และ variability ดี';}
       return {durationSec:dur,baseline,variability,accel:statAccel,decel:statDecel,cont:statCont,
-        fhrMin:mn,fhrMax:mx,category,interp,buf1:buf1.slice(),buf3:buf3.slice()};
+        fhrMin:Math.round(mn),fhrMax:Math.round(mx),category,interp,buf1:buf1.slice(),buf3:buf3.slice()};
     }
   };
 })();
