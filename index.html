@@ -12,7 +12,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230E9E6E'/%3E%3Cpath d='M32 17v30M17 32h30' stroke='white' stroke-width='9' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700;800&family=Sarabun:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700&family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 
 <!-- ════════ ข้อมูลเว็บไซต์ (แก้ผ่านระบบแอดมินได้) ════════ -->
 <script id="site-data" type="application/json">
@@ -79,7 +79,7 @@
   --secondary:#0EA5BC;
   --c-blue:#0EA5BC; --c-amber:#F2A33C; --c-violet:#5B8DEF;
   --grad:linear-gradient(135deg,#10A86E,#0EA5BC);
-  --font-display:'Prompt',sans-serif; --font-body:'Sarabun',sans-serif; --font-mono:'IBM Plex Mono',monospace;
+  --font-display:'Anuphan',sans-serif; --font-body:'IBM Plex Sans Thai',sans-serif; --font-mono:'IBM Plex Mono',monospace;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -139,7 +139,7 @@ header.site.scrolled::after{background:color-mix(in srgb,var(--surface) 88%,tran
 .badge-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
 .tbadge{display:inline-flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow-sm);border-radius:999px;padding:6px 14px;font-size:.8rem;font-weight:600;color:var(--ink-soft)}
 .tbadge .d{width:7px;height:7px;border-radius:50%;background:var(--grad)}
-.hero h1{font-size:clamp(2.2rem,5vw,3.6rem);font-weight:800;line-height:1.14;color:var(--primary-deep)}
+.hero h1{font-size:clamp(2.2rem,5vw,3.6rem);font-weight:700;line-height:1.14;color:var(--primary-deep)}
 .hero h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero p.lead{margin:22px 0 34px;font-size:1.12rem;color:var(--ink-soft);max-width:34rem}
 .hero-actions{display:flex;gap:14px;flex-wrap:wrap}
@@ -155,7 +155,7 @@ header.site.scrolled::after{background:color-mix(in srgb,var(--surface) 88%,tran
 @media (prefers-reduced-motion:reduce){.dash-head .live::before{animation:none}}
 .dash-tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px;position:relative}
 .tile{border-radius:14px;padding:14px 16px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow-sm)}
-.tile .tv{font-family:var(--font-display);font-weight:800;font-size:1.45rem;line-height:1.15;color:var(--primary)}
+.tile .tv{font-family:var(--font-display);font-weight:700;font-size:1.45rem;line-height:1.15;color:var(--primary)}
 .tile .tl{font-size:.78rem;color:var(--ink-soft);margin-top:2px}
 .tile.hl{background:var(--grad);border:none}
 .tile.hl .tv{color:#fff}
@@ -182,7 +182,7 @@ header.site.scrolled::after{background:color-mix(in srgb,var(--surface) 88%,tran
 .stats::before{content:"";position:absolute;inset:0;opacity:.5;background:radial-gradient(40% 80% at 85% 50%,color-mix(in srgb,var(--accent) 30%,transparent),transparent 70%)}
 .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:54px 0;position:relative}
 .stat{text-align:center;color:#fff}
-.stat .n{font-family:var(--font-display);font-weight:800;font-size:clamp(1.9rem,3.4vw,2.7rem);background:linear-gradient(180deg,#fff,#A7F3D0);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .n{font-family:var(--font-display);font-weight:700;font-size:clamp(1.9rem,3.4vw,2.7rem);background:linear-gradient(180deg,#fff,#A7F3D0);-webkit-background-clip:text;background-clip:text;color:transparent}
 .stat .l{color:#B6D8C5;font-size:.94rem;margin-top:4px}
 
 /* ───── หมวดหมู่ ───── */
@@ -230,7 +230,7 @@ header.site.scrolled::after{background:color-mix(in srgb,var(--surface) 88%,tran
 .svc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:24px}
 .svc{position:relative;background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:var(--radius);padding:28px;overflow:hidden;box-shadow:var(--shadow-sm);transition:.25s}
 .svc:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
-.svc .num{position:absolute;top:14px;right:20px;font-family:var(--font-display);font-weight:800;font-size:2.6rem;color:var(--mint);line-height:1}
+.svc .num{position:absolute;top:14px;right:20px;font-family:var(--font-display);font-weight:700;font-size:2.6rem;color:var(--mint);line-height:1}
 .svc .ic{width:54px;height:54px;border-radius:15px;background:var(--grad);display:grid;place-items:center;color:#fff;margin-bottom:16px;box-shadow:0 8px 18px color-mix(in srgb,var(--primary) 30%,transparent)}
 .svc:nth-child(4n+2) .ic{background:linear-gradient(135deg,var(--c-blue),#5BD3E6);box-shadow:0 8px 18px color-mix(in srgb,var(--c-blue) 28%,transparent)}
 .svc:nth-child(4n+3) .ic{background:linear-gradient(135deg,var(--c-amber),#F8C173);box-shadow:0 8px 18px color-mix(in srgb,var(--c-amber) 28%,transparent)}
@@ -296,7 +296,7 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
 .detail ul{list-style:none;margin-bottom:22px}
 .detail li{padding:9px 0;border-top:1px dashed var(--line);font-size:.92rem;display:flex;gap:10px}
 .detail li::before{content:"▸";color:var(--accent)}
-.detail .price{font-family:var(--font-display);font-size:1.35rem;font-weight:800;color:var(--primary-deep);margin-bottom:20px}
+.detail .price{font-family:var(--font-display);font-size:1.35rem;font-weight:700;color:var(--primary-deep);margin-bottom:20px}
 
 /* ───── ระบบแอดมิน ───── */
 .admin-overlay{position:fixed;inset:0;z-index:100;background:var(--paper);display:none;flex-direction:column}
@@ -328,7 +328,7 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
 .admin-page .sub{color:var(--ink-soft);font-size:.92rem;margin-bottom:24px}
 .kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px;margin-bottom:24px}
 .kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow-sm)}
-.kpi .n{font-family:var(--font-display);font-weight:800;font-size:1.8rem;color:var(--primary)}
+.kpi .n{font-family:var(--font-display);font-weight:700;font-size:1.8rem;color:var(--primary)}
 .kpi .l{color:var(--ink-soft);font-size:.86rem}
 .quick{display:flex;gap:10px;flex-wrap:wrap}
 .form{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;display:grid;gap:14px;margin-bottom:22px;box-shadow:var(--shadow-sm)}
@@ -370,7 +370,7 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
 .steps::before{content:"";position:absolute;top:26px;left:7%;right:7%;height:2px;background:linear-gradient(90deg,var(--primary),var(--c-blue),var(--c-amber),var(--c-violet));opacity:.35}
 .step{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow-sm);transition:.25s}
 .step:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
-.step .sn{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;color:#fff;font-family:var(--font-display);font-weight:800;font-size:1.2rem;margin-bottom:14px;background:var(--grad);box-shadow:0 8px 18px color-mix(in srgb,var(--primary) 28%,transparent)}
+.step .sn{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;color:#fff;font-family:var(--font-display);font-weight:700;font-size:1.2rem;margin-bottom:14px;background:var(--grad);box-shadow:0 8px 18px color-mix(in srgb,var(--primary) 28%,transparent)}
 .step:nth-child(2) .sn{background:linear-gradient(135deg,var(--c-blue),#5BD3E6);box-shadow:0 8px 18px color-mix(in srgb,var(--c-blue) 28%,transparent)}
 .step:nth-child(3) .sn{background:linear-gradient(135deg,var(--c-amber),#F8C173);box-shadow:0 8px 18px color-mix(in srgb,var(--c-amber) 28%,transparent)}
 .step:nth-child(4) .sn{background:linear-gradient(135deg,var(--c-violet),#93B4F6);box-shadow:0 8px 18px color-mix(in srgb,var(--c-violet) 28%,transparent)}
