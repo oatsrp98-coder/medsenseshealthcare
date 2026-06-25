@@ -21,7 +21,7 @@
     "company": "Med Senses Healthcare",
     "companyTh": "ห้างหุ้นส่วนจำกัด เมด เซ็นส์ เฮลธ์แคร์",
     "tagline": "เครื่องมือแพทย์มาตรฐานสากล เพื่อทุกชีวิตที่ไว้วางใจ",
-    "about": "ผู้นำเข้าและจัดจำหน่ายเครื่องมือแพทย์ครบวงจรสำหรับโรงพยาบาลและสถานพยาบาลทั่วประเทศ ด้วยทีมวิศวกรชีวการแพทย์ที่พร้อมดูแลตั้งแต่การติดตั้ง อบรมการใช้งาน ไปจนถึงบริการหลังการขายตลอดอายุการใช้งาน",
+    "about": "นำเข้าและจัดจำหน่ายเครื่องมือแพทย์คุณภาพสูงครบวงจรสำหรับโรงพยาบาลและสถานพยาบาลทั่วประเทศ ทุกผลิตภัณฑ์ผ่านการขึ้นทะเบียน อย. ภายใต้ระบบคุณภาพมาตรฐาน ISO 13485 พร้อมทีมวิศวกรชีวการแพทย์ดูแลครบทุกขั้นตอน ตั้งแต่ติดตั้ง สอบเทียบ อบรมการใช้งาน ไปจนถึงบริการหลังการขายและอะไหล่แท้จากศูนย์บริการในไทยตลอดอายุการใช้งาน",
     "phone": "055-000-000",
     "email": "sales@medsenses.co.th",
     "line": "@medsenses",
@@ -143,6 +143,7 @@ header.site.scrolled::after{background:color-mix(in srgb,var(--surface) 88%,tran
 .badge-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
 .tbadge{display:inline-flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow-sm);border-radius:999px;padding:6px 14px;font-size:.8rem;font-weight:600;color:var(--ink-soft)}
 .tbadge .d{width:7px;height:7px;border-radius:50%;background:var(--grad)}
+.tbadge .ck{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;background:var(--grad);color:#fff;font-size:.62rem;font-weight:700;line-height:1}
 .hero h1{font-size:clamp(2.2rem,5vw,3.6rem);font-weight:700;line-height:1.14;color:var(--primary-deep)}
 .hero h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero p.lead{margin:22px 0 34px;font-size:1.12rem;color:var(--ink-soft);max-width:34rem}
@@ -466,9 +467,9 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
   <div class="wrap hero-grid">
     <div class="reveal">
       <div class="badge-row">
-        <span class="tbadge"><span class="d"></span>ขึ้นทะเบียน อย.</span>
-        <span class="tbadge"><span class="d"></span>มาตรฐาน ISO 13485</span>
-        <span class="tbadge"><span class="d"></span>รับประกันศูนย์ไทย</span>
+        <span class="tbadge"><span class="ck">✓</span>ขึ้นทะเบียน อย.</span>
+        <span class="tbadge"><span class="ck">✓</span>มาตรฐาน ISO 13485</span>
+        <span class="tbadge"><span class="ck">✓</span>รับประกันศูนย์ไทย</span>
       </div>
       <h1 id="hero-title">เครื่องมือแพทย์มาตรฐานสากล<br>เพื่อทุกชีวิต<em>ที่ไว้วางใจ</em></h1>
       <p class="lead" id="hero-about"></p>
@@ -841,7 +842,7 @@ const svgIcon = (k,s=24)=>`<svg width="${s}" height="${s}" viewBox="0 0 24 24">$
 
 function applySettings(){
   document.title = (settings.company||'Med Senses Healthcare').replace(/\s*Co\.,?\s*Ltd\.?$/i,'') + ' — เครื่องมือแพทย์ครบวงจร';
-  document.getElementById('hero-about').textContent = settings.tagline ? settings.tagline+' — '+(settings.about||'') : (settings.about||'');
+  document.getElementById('hero-about').textContent = settings.about || settings.tagline || '';
   document.getElementById('about-company').textContent = settings.companyTh || settings.company || '';
   document.getElementById('about-text').textContent = settings.about || '';
   document.getElementById('c-phone').textContent = settings.phone||'-';
