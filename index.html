@@ -197,8 +197,11 @@ header.site.scrolled::after{background:color-mix(in srgb,var(--surface) 88%,tran
 .cat-card:nth-child(4n+3) .ic{background:color-mix(in srgb,var(--c-amber) 15%,#fff);color:var(--c-amber)}
 .cat-card:nth-child(4n) .ic{background:color-mix(in srgb,var(--c-violet) 12%,#fff);color:var(--c-violet)}
 .cat-card:hover .ic{background:var(--grad);color:#fff}
-.cat-card b{font-family:var(--font-display);color:var(--primary-deep);display:block;font-size:1.02rem}
+.cat-card b{font-family:var(--font-display);color:var(--primary-deep);display:block;font-size:1.02rem;margin-bottom:4px}
 .cat-card span{font-size:.86rem;color:var(--ink-soft)}
+.cat-card .cat-meta{display:flex;flex-direction:column;gap:1px}
+.cat-card .cat-count{font-size:.86rem;color:var(--ink-soft)}
+.cat-card .cat-price{font-family:var(--font-mono);font-size:.74rem;color:var(--primary);font-weight:600}
 .cat-card .arrow{position:absolute;top:24px;right:24px;color:var(--accent);opacity:0;transform:translateX(-6px);transition:.25s}
 .cat-card:hover .arrow{opacity:1;transform:none}
 
@@ -331,6 +334,22 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
 .kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow-sm)}
 .kpi .n{font-family:var(--font-display);font-weight:700;font-size:1.8rem;color:var(--primary)}
 .kpi .l{color:var(--ink-soft);font-size:.86rem}
+.dash-cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:22px}
+.dash-panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow-sm)}
+.dash-panel h4{font-family:var(--font-display);color:var(--primary-deep);margin-bottom:14px;font-size:1rem}
+.dbar{margin-bottom:13px}.dbar:last-child{margin-bottom:0}
+.dbar-top{display:flex;justify-content:space-between;font-size:.85rem;font-weight:600;margin-bottom:5px;color:var(--ink)}
+.dbar-top span:last-child{color:var(--ink-soft);font-weight:500;font-family:var(--font-mono);font-size:.74rem}
+.dbar-track{height:8px;border-radius:99px;background:var(--mint);overflow:hidden}
+.dbar-fill{height:100%;border-radius:99px;background:var(--grad);transition:width .9s cubic-bezier(.2,.7,.3,1)}
+.drow{display:flex;align-items:center;gap:12px;padding:10px 0;border-top:1px solid var(--line)}
+.drow:first-child{border-top:none;padding-top:0}
+.drank{width:26px;height:26px;flex:0 0 auto;border-radius:50%;background:var(--mint);color:var(--primary);font-family:var(--font-display);font-weight:700;font-size:.82rem;display:grid;place-items:center}
+.dinfo{flex:1;min-width:0}
+.dinfo b{display:block;font-size:.88rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dinfo span{font-size:.74rem;color:var(--ink-soft)}
+.dprice{font-family:var(--font-display);font-weight:700;color:var(--primary-deep);font-size:.9rem;white-space:nowrap}
+@media (max-width:880px){.dash-cols{grid-template-columns:1fr}}
 .quick{display:flex;gap:10px;flex-wrap:wrap}
 .form{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;display:grid;gap:14px;margin-bottom:22px;box-shadow:var(--shadow-sm)}
 .form h4{font-family:var(--font-display);color:var(--primary-deep)}
@@ -635,12 +654,17 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
 
       <section class="admin-page active" id="page-dash">
         <h2>ภาพรวม</h2>
-        <div class="sub">สรุปข้อมูลเว็บไซต์ของคุณ</div>
-        <div class="kpi-grid">
-          <div class="kpi"><div class="n" id="kpi-products">0</div><div class="l">รายการสินค้า</div></div>
-          <div class="kpi"><div class="n" id="kpi-cats">0</div><div class="l">หมวดหมู่</div></div>
-          <div class="kpi"><div class="n" id="kpi-featured">0</div><div class="l">สินค้าแนะนำ</div></div>
-          <div class="kpi"><div class="n" id="kpi-services">0</div><div class="l">บริการ</div></div>
+        <div class="sub">สรุปข้อมูลแคตตาล็อกและเว็บไซต์ของคุณ</div>
+        <div class="kpi-grid" id="dash-kpi"></div>
+        <div class="dash-cols">
+          <div class="dash-panel">
+            <h4>สินค้าตามหมวดหมู่</h4>
+            <div id="dash-cats"></div>
+          </div>
+          <div class="dash-panel">
+            <h4>สินค้าราคาสูงสุด 5 อันดับ</h4>
+            <div id="dash-top"></div>
+          </div>
         </div>
         <div class="note">💡 แก้ไขข้อมูลในแท็บต่าง ๆ ได้เลย ระบบจะ <b>บันทึกร่างอัตโนมัติในเครื่องนี้</b> เมื่อแก้เสร็จและต้องการให้เว็บจริงอัปเดต กดปุ่ม <b>“เผยแพร่ (ดาวน์โหลดไฟล์)”</b> มุมขวาบน แล้วนำไฟล์ไป deploy ทับของเดิม</div>
         <div class="quick">
@@ -827,8 +851,25 @@ const ICONS={
   service:'<path d="M14 6a4 4 0 0 0-5.5 5.2L4 15.7 8.3 20l4.5-4.5A4 4 0 0 0 18 10l-2.5 2.5L13 10l2.5-2.5A4 4 0 0 0 14 6Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/>',
   doc:'<path d="M7 3h7l4 4v14H7zM14 3v4h4" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/><path d="M10 13h6M10 17h6" stroke="currentColor" stroke-width="2"/>',
   check:'<circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" fill="none"/><path d="M8 12.5l2.5 2.5L16 9" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>',
-  phone:'<path d="M6 3h4l1.5 5-2 1.5a12 12 0 0 0 5 5l1.5-2 5 1.5v4a2 2 0 0 1-2 2A16 16 0 0 1 4 5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/>'
+  phone:'<path d="M6 3h4l1.5 5-2 1.5a12 12 0 0 0 5 5l1.5-2 5 1.5v4a2 2 0 0 1-2 2A16 16 0 0 1 4 5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/>',
+  pulse:'<path d="M3 12h3.5l2-6 4 12 2.5-6H21" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>',
+  wind:'<path d="M3 8h10a3 3 0 1 0-3-3M3 12h14a3 3 0 1 1-3 3M3 16h8" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>',
+  rescue:'<path d="M12 3l7 3v5c0 4.2-3 7.4-7 9-4-1.6-7-4.8-7-9V6z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/><path d="M12 8.5v5M9.5 11h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>',
+  lamp:'<circle cx="12" cy="8" r="4.2" stroke="currentColor" stroke-width="2" fill="none"/><path d="M12 12.2V17M9 20h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>',
+  drop:'<path d="M12 3.5s6 6.6 6 10.5a6 6 0 0 1-12 0c0-3.9 6-10.5 6-10.5z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/>',
+  bed:'<path d="M3 8v11M3 13h18v6M21 13v-1.5a3 3 0 0 0-3-3h-6V13" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>',
+  box:'<path d="M3.5 7.5 12 3l8.5 4.5v9L12 21l-8.5-4.5z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/><path d="M3.5 7.5 12 12l8.5-4.5M12 12v9" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/>'
 };
+function catIcon(c){
+  const s=c||'';
+  if(/หายใจ|ventilat|respir|ออกซิเจน|oxygen/i.test(s)) return 'wind';
+  if(/ติดตาม|มอนิเตอร|monitor|สัญญาณชีพ|หัวใจ|ecg|cardiac/i.test(s)) return 'pulse';
+  if(/ช่วยชีวิต|ฉุกเฉิน|cpr|aed|กระตุก|defib|rescue/i.test(s)) return 'rescue';
+  if(/ผ่าตัด|surgi|ห้องผ่า|โคมไฟ/i.test(s)) return 'lamp';
+  if(/สารน้ำ|infus|ปั๊ม|pump|หลอดเลือด/i.test(s)) return 'drop';
+  if(/หอผู้ป่วย|เตียง|ward|ห้องพัก/i.test(s)) return 'bed';
+  return 'box';
+}
 const svgIcon = (k,s=24)=>`<svg width="${s}" height="${s}" viewBox="0 0 24 24">${ICONS[k]||ICONS.check}</svg>`;
 
 function applySettings(){
@@ -872,8 +913,12 @@ function renderServices(){
 function renderCategories(){
   const cats=[...new Set(products.map(p=>p.category).filter(Boolean))];
   document.getElementById('cat-grid').innerHTML = cats.map(c=>{
-    const n=products.filter(p=>p.category===c).length;
-    return `<div class="cat-card" onclick="gotoCat('${esc(c)}')"><span class="arrow">→</span><div class="ic">${svgIcon('check',24)}</div><b>${esc(c)}</b><span>${n} รายการ</span></div>`;
+    const items=products.filter(p=>p.category===c);
+    const n=items.length;
+    const prices=items.filter(p=>p.price>0).map(p=>p.price);
+    const min=prices.length?Math.min(...prices):0;
+    const priceLabel=min>0?'เริ่มต้น ฿'+Number(min).toLocaleString('th-TH'):'';
+    return `<div class="cat-card" onclick="gotoCat('${esc(c)}')"><span class="arrow">→</span><div class="ic">${svgIcon(catIcon(c),24)}</div><b>${esc(c)}</b><span class="cat-meta"><span class="cat-count">${n} รายการ</span>${priceLabel?`<span class="cat-price">${priceLabel}</span>`:''}</span></div>`;
   }).join('') || '<div class="empty">ยังไม่มีหมวดหมู่</div>';
 }
 function gotoCat(c){ setCat(c); document.getElementById('catalog').scrollIntoView({behavior:'smooth'}); }
@@ -929,11 +974,37 @@ function adminTab(p){
   document.querySelectorAll('.admin-page').forEach(s=>s.classList.toggle('active', s.id==='page-'+p));
   document.querySelector('.admin-main').scrollTop=0;
 }
+function catalogStats(){
+  const priced=products.filter(p=>p.price>0);
+  const total=priced.reduce((s,p)=>s+p.price,0);
+  const cats=[...new Set(products.map(p=>p.category).filter(Boolean))];
+  const catRows=cats.map(c=>{
+    const items=products.filter(p=>p.category===c);
+    return {c, n:items.length};
+  }).sort((a,b)=>b.n-a.n);
+  const top=priced.slice().sort((a,b)=>b.price-a.price).slice(0,5);
+  return {
+    count:products.length,
+    catCount:cats.length,
+    brandCount:new Set(products.map(p=>p.brand).filter(Boolean)).size,
+    featured:products.filter(p=>p.featured).length,
+    services:(settings.services||[]).length,
+    total, avg:priced.length?Math.round(total/priced.length):0,
+    catRows, top
+  };
+}
+function renderDashboard(){
+  const s=catalogStats(), fmt=n=>Number(n).toLocaleString('th-TH');
+  document.getElementById('dash-kpi').innerHTML=[
+    ['รายการสินค้า',fmt(s.count)],['หมวดหมู่',fmt(s.catCount)],['แบรนด์',fmt(s.brandCount)],
+    ['สินค้าแนะนำ',fmt(s.featured)],['มูลค่าแคตตาล็อกรวม','฿'+fmt(s.total)],['ราคาเฉลี่ย','฿'+fmt(s.avg)]
+  ].map(([l,v])=>`<div class="kpi"><div class="n">${v}</div><div class="l">${l}</div></div>`).join('');
+  const max=Math.max(1,...s.catRows.map(r=>r.n));
+  document.getElementById('dash-cats').innerHTML=s.catRows.map(r=>`<div class="dbar"><div class="dbar-top"><span>${esc(r.c)}</span><span>${r.n} รายการ</span></div><div class="dbar-track"><div class="dbar-fill" style="width:${Math.round(r.n/max*100)}%"></div></div></div>`).join('')||'<div class="empty">ยังไม่มีสินค้า</div>';
+  document.getElementById('dash-top').innerHTML=s.top.map((p,i)=>`<div class="drow"><span class="drank">${i+1}</span><div class="dinfo"><b>${esc(p.name)}</b><span>${esc(p.category||'')}</span></div><span class="dprice">${baht(p.price)}</span></div>`).join('')||'<div class="empty">ยังไม่มีข้อมูลราคา</div>';
+}
 function renderAdmin(){
-  document.getElementById('kpi-products').textContent=products.length;
-  document.getElementById('kpi-cats').textContent=new Set(products.map(p=>p.category).filter(Boolean)).size;
-  document.getElementById('kpi-featured').textContent=products.filter(p=>p.featured).length;
-  document.getElementById('kpi-services').textContent=(settings.services||[]).length;
+  renderDashboard();
   document.getElementById('count').textContent=products.length;
   document.getElementById('admin-list').innerHTML=products.map(p=>`<div class="admin-item"><div class="mini"><img src="${imgSrc(p)}" alt=""></div><div class="t"><b>${esc(p.name)}</b><span>${esc(p.model||'-')} · ${esc(p.category||'')}${p.featured?' · ★':''}</span></div><button class="btn btn-ghost btn-sm" onclick="editProduct('${p.id}')">แก้ไข</button><button class="btn btn-danger btn-sm" onclick="deleteProduct('${p.id}')">ลบ</button></div>`).join('')||'<div class="empty">ยังไม่มีสินค้า</div>';
   renderServiceAdmin();
