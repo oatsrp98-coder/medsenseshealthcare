@@ -61,7 +61,10 @@
       "specs": ["อัตราการไหล 0.1–1,200 มล./ชม.", "ระบบเตือน Occlusion / Air-in-line / ใกล้หมด", "ใช้ได้กับชุดให้สารน้ำมาตรฐานทั่วไป", "แบตเตอรี่สำรองใช้งาน 6 ชั่วโมง"], "image": null },
     { "id": "p6", "name": "โคมไฟผ่าตัดชนิดแอลอีดี แบบติดเพดาน", "model": "SL-160 LED", "category": "ครุภัณฑ์ห้องผ่าตัด", "brand": "SurgiLight", "price": 480000, "featured": false,
       "desc": "โคมไฟผ่าตัด LED ความเข้มแสงสูง ปรับโฟกัสและขนาดลำแสงได้ ค่าความถูกต้องของสีสูงเหมาะสำหรับงานศัลยกรรมทุกประเภท",
-      "specs": ["ความเข้มแสงสูงสุด 160,000 ลักซ์", "ค่าความถูกต้องของสี Ra ≥ 96", "ปรับอุณหภูมิสี 3,500–5,000 K", "อายุการใช้งานหลอด LED มากกว่า 50,000 ชม."], "image": null }
+      "specs": ["ความเข้มแสงสูงสุด 160,000 ลักซ์", "ค่าความถูกต้องของสี Ra ≥ 96", "ปรับอุณหภูมิสี 3,500–5,000 K", "อายุการใช้งานหลอด LED มากกว่า 50,000 ชม."], "image": null },
+    { "id": "p7", "name": "เครื่องติดตามสัญญาณหัวใจทารกในครรภ์", "model": "F12", "category": "ห้องคลอด", "brand": "Edan", "price": 385000, "featured": true,
+      "desc": "เครื่อง Fetal Monitor ระดับพรีเมียมจาก Edan รุ่น F12 แสดงผล Cardiotocography (CTG) แบบ Real-time สำหรับติดตามอัตราการเต้นหัวใจทารก (FHR) และการหดตัวของมดลูก (TOCO) พร้อมรองรับการตรวจทารกแฝดและวิเคราะห์ STAN คลิก 'ดูรายละเอียด' เพื่อเปิดโปรแกรมจำลองการใช้งาน",
+      "specs": ["จอสี 12.1 นิ้ว ความละเอียดสูง", "ติดตาม FHR1 / FHR2 พร้อมกัน (รองรับทารกแฝด)", "วัด TOCO, SpO2, MHR และอุณหภูมิมารดา", "พิมพ์ CTG ความเร็ว 1/3 ซม./นาที ผ่านกระดาษ 210 มม.", "เชื่อมต่อ Central Fetal Monitoring ผ่าน LAN/Wi-Fi"], "image": null, "simulator": "edan-f12" }
   ]
 }
 </script>
@@ -413,6 +416,152 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
   .pdf-item .price{font-family:var(--font-display);font-weight:700;color:var(--primary-deep);font-size:11.5pt;margin-top:5px}
 }
 
+/* ═══════ Edan F12 Fetal Monitor — v3 Realistic ═══════ */
+#fm-sim{position:fixed;inset:0;z-index:85;display:none;align-items:center;justify-content:center;padding:8px;background:rgba(0,0,0,.94)}
+#fm-sim.open{display:flex}
+/* Device chassis */
+.fm-panel{background:#1c1e1c;border-radius:14px;width:100%;max-width:1160px;height:min(96vh,710px);overflow:hidden;display:flex;flex-direction:column;box-shadow:0 0 0 3px #2a2c2a,0 0 0 5px #141614,0 50px 140px rgba(0,0,0,.95);border:1px solid #383a38}
+/* Header */
+.fm-hdr{display:flex;align-items:center;gap:10px;padding:0 16px;height:48px;background:linear-gradient(180deg,#1a1c1a,#0f110f);border-bottom:2px solid #080a08;flex:0 0 auto}
+.fm-brand{font-family:var(--font-display);color:#fff;font-weight:800;font-size:1.08rem;letter-spacing:.12em}
+.fm-model-badge{font-family:var(--font-mono);color:#00cc55;font-size:.7rem;background:#071a0e;border:1px solid #0d3a1a;padding:2px 9px;border-radius:4px;letter-spacing:.18em}
+.fm-rec-dot{display:inline-flex;align-items:center;gap:5px;font-family:var(--font-mono);font-size:.62rem;color:#ff4444;font-weight:700;letter-spacing:.1em}
+.fm-rec-dot::before{content:"";width:8px;height:8px;border-radius:50%;background:#ff4444;animation:fm-rec .85s ease-in-out infinite alternate}
+@keyframes fm-rec{from{opacity:1}to{opacity:.15}}
+.fm-alarm-banner{font-family:var(--font-mono);font-size:.72rem;color:#ff5050;background:#200808;border:1.5px solid #6a1010;padding:4px 13px;border-radius:6px;display:none;animation:fm-ab .5s ease infinite alternate;letter-spacing:.06em}
+.fm-alarm-banner.show{display:block}
+@keyframes fm-ab{from{opacity:1;border-color:#f03030}to{opacity:.3;border-color:#380808}}
+.fm-clock-disp{font-family:var(--font-mono);font-size:.9rem;color:#7a9a7a;letter-spacing:.2em;margin-left:auto}
+.fm-close-btn{background:#252825;border:1px solid #3c3e3c;color:#889a88;width:32px;height:32px;border-radius:6px;font-size:.95rem;display:grid;place-items:center;flex:0 0 auto;cursor:pointer;transition:.15s}
+.fm-close-btn:hover{background:#cc2222;color:#fff;border-color:#cc2222}
+/* Patient bar */
+.fm-pt-bar{display:flex;flex-wrap:wrap;gap:3px 14px;align-items:center;padding:4px 16px;background:#0d0f0d;border-bottom:1px solid #1c1e1c;font-size:.67rem;color:#617a62;flex:0 0 auto}
+.fm-pt-bar b{color:#aecaae;font-weight:600}
+.fm-pt-sep{color:#2a3a2a;font-size:.6rem}
+.fm-rec-time{margin-left:auto;font-family:var(--font-mono);font-size:.64rem;color:#30aa55;letter-spacing:.14em}
+/* Body */
+.fm-body{flex:1;min-height:0;display:flex;overflow:hidden}
+/* CTG paper section */
+.fm-ctg{flex:1;min-width:0;display:flex;flex-direction:column;background:#f4f0e2;overflow:hidden}
+.fm-ctg-zone{display:flex;position:relative;overflow:hidden}
+.fm-ctg-zone.fhr1z{flex:5;border-bottom:2px solid #c8a070}
+.fm-ctg-zone.tocoz{flex:2;border-bottom:none}
+.fm-axis{width:36px;flex:0 0 auto;background:#ede9da;border-right:1.5px solid #c0a878;display:flex;flex-direction:column;justify-content:space-between;padding:2px 3px 2px 0;font-family:var(--font-mono);font-size:.46rem;color:#8a6a44;text-align:right;line-height:1}
+.fm-axis .fm-ax-major{font-weight:700;font-size:.52rem;color:#6a4a28}
+.fm-cv-outer{flex:1;min-width:0;position:relative;overflow:hidden}
+.fm-cv-outer canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+/* Digital param panel */
+.fm-digi{width:180px;flex:0 0 auto;display:flex;flex-direction:column;background:#0a0c0a;border-left:2px solid #141814}
+.fm-drow{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:5px 8px;border-bottom:1px solid #161a16;position:relative;text-align:center;overflow:hidden}
+.fm-drow:last-child{border-bottom:none;flex:0 0 auto;padding:8px}
+/* LED-style numeric display */
+.fm-num{font-family:var(--font-display);font-weight:800;font-size:2.55rem;line-height:1;letter-spacing:-.03em}
+.fm-pname{font-family:var(--font-mono);font-size:.56rem;letter-spacing:.1em;margin-top:2px;opacity:.7}
+.fm-trend{position:absolute;top:5px;right:9px;font-size:.78rem;opacity:.8}
+/* Per-parameter colours with subtle glow */
+.fm-drow.d-fhr1{background:#050e07}.fm-drow.d-fhr1 .fm-num{color:#22ee66;text-shadow:0 0 24px rgba(34,238,102,.4)}.fm-drow.d-fhr1 .fm-pname,.fm-drow.d-fhr1 .fm-trend{color:#22ee66}
+.fm-drow.d-fhr2{background:#070900}.fm-drow.d-fhr2 .fm-num{color:#ffcc00;text-shadow:0 0 22px rgba(255,200,0,.35)}.fm-drow.d-fhr2 .fm-pname,.fm-drow.d-fhr2 .fm-trend{color:#ffcc00}
+.fm-drow.d-toco{background:#05080e}.fm-drow.d-toco .fm-num{color:#28c8f8;text-shadow:0 0 22px rgba(40,200,248,.3)}.fm-drow.d-toco .fm-pname{color:#28c8f8}
+.fm-drow.d-mhr{background:#0c0505}.fm-drow.d-mhr .fm-num{color:#ff6868;text-shadow:0 0 20px rgba(255,90,90,.3)}.fm-drow.d-mhr .fm-pname{color:#ff6868}
+.fm-drow.d-spo2{background:#04080c}.fm-drow.d-spo2 .fm-num{color:#20e0f8;text-shadow:0 0 20px rgba(32,220,248,.3)}.fm-drow.d-spo2 .fm-pname{color:#20e0f8}
+.fm-drow.d-temp{background:#080700}.fm-drow.d-temp .fm-num{color:#e8d025;text-shadow:0 0 18px rgba(230,208,38,.3)}.fm-drow.d-temp .fm-pname{color:#e8d025}
+.fm-drow.d-btn{background:#0a0c0a;flex:0 0 auto;border-bottom:none}
+/* Footer */
+.fm-ftr{display:flex;gap:8px;align-items:center;padding:8px 14px;background:linear-gradient(180deg,#111311,#0c0e0c);border-top:2px solid #080a08;flex:0 0 auto;flex-wrap:wrap}
+.fm-speed-info{font-family:var(--font-mono);font-size:.58rem;color:#283a28;margin-left:auto;letter-spacing:.06em}
+/* Responsive */
+@media(max-width:720px){.fm-digi{width:136px}.fm-num{font-size:1.9rem}.fm-axis{width:28px}}
+@media(max-width:500px){.fm-digi{width:110px}.fm-num{font-size:1.55rem}.fm-pt-sep{display:none}.fm-speed-info{display:none}}
+@media(max-width:380px){.fm-digi{display:none}}
+
+/* ═══════ MFM-CNS → HOSxP Integration Workflow ═══════ */
+#flow-sim{position:fixed;inset:0;z-index:95;display:none;align-items:center;justify-content:center;padding:10px;background:rgba(0,6,3,.86);backdrop-filter:blur(3px)}
+#flow-sim.open{display:flex}
+.wf-panel{background:#050c08;border:1.5px solid #0c2613;border-radius:14px;width:100%;max-width:860px;height:min(94vh,720px);display:flex;flex-direction:column;overflow:hidden;box-shadow:0 40px 120px rgba(0,0,0,.8)}
+.wf-hdr{display:flex;align-items:center;gap:12px;padding:0 14px;height:48px;background:#020604;border-bottom:1px solid #0c2010;flex:0 0 auto}
+.wf-title{font-family:var(--font-display);color:#0ec44c;font-weight:700;font-size:.92rem}
+.wf-pipe{display:flex;align-items:flex-start;justify-content:center;padding:16px 10px;background:#040b07;border-bottom:1px solid #0c2010;flex:0 0 auto}
+.wf-node{display:flex;flex-direction:column;align-items:center;gap:3px;width:118px;text-align:center;opacity:.45;transition:.3s}
+.wf-node.active,.wf-node.done{opacity:1}
+.wf-ic{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-size:1.45rem;background:#0c1c12;border:1.5px solid #143a20;transition:.3s}
+.wf-node.active .wf-ic{border-color:#0ec44c;box-shadow:0 0 20px rgba(14,196,76,.4);animation:pulse 1s infinite}
+.wf-node.done .wf-ic{background:#0ec44c;border-color:#0ec44c}
+.wf-node b{font-family:var(--font-display);color:#cde6d6;font-size:.84rem}
+.wf-node>span{font-size:.61rem;color:#4a6a55}
+.wf-st{font-family:var(--font-mono);font-size:.55rem;letter-spacing:.05em;color:#3a5a48;font-style:normal;margin-top:1px}
+.wf-node.active .wf-st{color:#0ec44c}
+.wf-node.done .wf-st{color:#7be0a0}
+.wf-conn{flex:0 0 40px;height:3px;background:#15301d;position:relative;border-radius:2px;align-self:flex-start;margin-top:22px;overflow:hidden}
+.wf-conn i{position:absolute;top:50%;left:-10px;width:8px;height:8px;border-radius:50%;background:#0ec44c;transform:translateY(-50%);opacity:0}
+.wf-conn.flow{background:rgba(14,196,76,.22)}
+.wf-conn.flow i{animation:wf-dot .85s linear infinite}
+@keyframes wf-dot{0%{left:-10px;opacity:0}15%{opacity:1}85%{opacity:1}100%{left:100%;opacity:0}}
+.wf-stage{flex:1;min-height:0;overflow-y:auto;padding:16px;background:#060d09}
+.wf-card{background:#0b140e;border:1px solid #12301c;border-radius:12px;overflow:hidden}
+.wf-card-h{display:flex;align-items:center;gap:9px;padding:11px 14px;background:#081109;border-bottom:1px solid #12301c;font-family:var(--font-display);color:#cde6d6;font-size:.9rem;font-weight:600}
+.wf-chip{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.07em;padding:3px 8px;border-radius:5px;font-weight:700}
+.wf-chip.green{background:#0e2a18;color:#2ee06a}.wf-chip.blue{background:#0a2230;color:#36c6f0}
+.wf-chip.amber{background:#2a2008;color:#f0c030}.wf-chip.teal{background:#0a2826;color:#20d6c0}
+.wf-pt{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;background:#0a160e;border-bottom:1px solid #102a18}
+.wf-pt b{color:#e6f6ec;font-size:.92rem;display:block}
+.wf-pt span{color:#6a8a76;font-size:.7rem;font-family:var(--font-mono)}
+.wf-pt-bed{font-family:var(--font-mono);font-size:.72rem;color:#2ee06a;background:#0e2a18;padding:5px 10px;border-radius:6px;white-space:nowrap}
+.wf-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#0e2418}
+.wf-metric{background:#0b140e;padding:10px 13px}
+.wf-metric span{display:block;font-size:.64rem;color:#5a7a66;font-family:var(--font-mono);letter-spacing:.03em}
+.wf-metric b{color:#dff2e6;font-family:var(--font-display);font-size:1.1rem}
+.wf-interp{padding:11px 14px;font-size:.83rem;font-weight:600}
+.wf-interp.ok{background:#0c2416;color:#3ae077}.wf-interp.warn{background:#2a1d06;color:#f0b830}
+.wf-cns{padding:14px}
+.wf-cns-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.wf-bed{background:#081109;border:1px solid #112a18;border-radius:8px;padding:9px;text-align:center;opacity:.5}
+.wf-bed.on{opacity:1;border-color:#0ec44c;background:#0c2014;box-shadow:0 0 14px rgba(14,196,76,.2)}
+.wf-bed b{display:block;color:#cde6d6;font-size:.76rem;font-family:var(--font-mono)}
+.wf-bed span{font-size:.62rem;color:#6a8a76;display:block}
+.wf-bed i{font-style:normal;font-family:var(--font-mono);font-size:.64rem;color:#2ee06a}
+.wf-cns p{color:#7a9a86;font-size:.79rem;line-height:1.6}
+.wf-pdf{background:#fff;color:#1a2a20;border-radius:8px;margin:14px;padding:20px;box-shadow:0 8px 30px rgba(0,0,0,.4)}
+.wf-pdf-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;border-bottom:2px solid #0B8A2E;padding-bottom:10px;margin-bottom:12px}
+.wf-pdf-logo{font-family:var(--font-display);font-weight:800;color:#0B8A2E;font-size:1.1rem;letter-spacing:.03em}
+.wf-pdf-sub{font-size:.71rem;color:#6a7a70;font-family:var(--font-mono)}
+.wf-pdf-hosp{font-size:.79rem;color:#2a3a30;text-align:right;max-width:46%;font-weight:600;line-height:1.4}
+.wf-pdf-pt{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px;margin-bottom:14px}
+.wf-pdf-pt div{font-size:.78rem}
+.wf-pdf-pt span{color:#8a9a90;display:block;font-size:.65rem}
+.wf-pdf-pt b{color:#1a2a20}
+.wf-pdf-ctg{width:100%;height:120px;display:block;border:1px solid #e0d0cc;border-radius:6px;margin-bottom:14px;background:#fff}
+.wf-pdf-find b{color:#0B8A2E;font-size:.83rem}
+.wf-pdf-find ul{list-style:none;margin-top:6px}
+.wf-pdf-find li{font-size:.79rem;padding:4px 0;border-bottom:1px dashed #eadfdc;color:#2a3a30}
+.wf-pdf-sign{margin-top:16px;font-size:.77rem;color:#2a3a30;text-align:right}
+.wf-pdf-sign span{color:#8a9a90;font-size:.65rem}
+.wf-console{font-family:var(--font-mono);font-size:.73rem;line-height:1.85;padding:14px;color:#7be0a0;background:#020604;max-height:280px;overflow:auto}
+.wf-log-line{opacity:0;animation:wf-logln .35s ease forwards;white-space:pre-wrap}
+@keyframes wf-logln{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
+.wf-hosxp{margin:14px;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.4);color:#15301f}
+.wf-hx-top{background:linear-gradient(90deg,#0c6b4f,#0e8a64);color:#fff;padding:10px 14px;font-weight:700;font-size:.88rem;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.wf-hx-top span{font-weight:400;font-size:.73rem;opacity:.9}
+.wf-hx-pt{display:flex;align-items:center;gap:12px;padding:12px 14px;background:#eef6f1;border-bottom:1px solid #d6e6dc}
+.wf-hx-av{width:40px;height:40px;border-radius:50%;background:#0e8a64;color:#fff;display:grid;place-items:center;font-weight:700;font-size:1.1rem;flex:0 0 auto}
+.wf-hx-pt b{display:block;color:#15301f;font-size:.88rem}
+.wf-hx-pt>div>span{font-size:.71rem;color:#5a7a66}
+.wf-hx-vn{margin-left:auto;font-family:var(--font-mono);font-size:.66rem;color:#7a8a80;text-align:right}
+.wf-hx-tabs{display:flex;gap:4px;padding:8px 12px 0;background:#fff;border-bottom:1px solid #d6e6dc}
+.wf-hx-tabs span{padding:7px 13px;font-size:.75rem;color:#6a7a70;border-radius:6px 6px 0 0}
+.wf-hx-tabs span.on{background:#0e8a64;color:#fff;font-weight:600}
+.wf-hx-tbl{width:100%;border-collapse:collapse;font-size:.75rem}
+.wf-hx-tbl th{background:#f2f7f4;color:#4a6a56;text-align:left;padding:8px 12px;font-weight:600;border-bottom:1px solid #d6e6dc}
+.wf-hx-tbl td{padding:9px 12px;border-bottom:1px solid #eef3f0;color:#2a3a30}
+.wf-hx-new{animation:wf-hl 1.6s ease}
+@keyframes wf-hl{0%{background:#bdf0d2}100%{background:#fdf6e3}}
+.wf-hx-new{background:#fdf6e3}
+.wf-hx-pdf{color:#0B8A2E;font-weight:600;white-space:nowrap}
+.wf-hx-ok{color:#0e8a64;font-weight:700;font-size:.71rem;white-space:nowrap}
+.wf-hx-done{padding:11px 14px;background:#e8f8ee;color:#0c6b4f;font-size:.81rem;font-weight:600;border-top:1px solid #d6e6dc}
+.wf-ftr{display:flex;gap:8px;align-items:center;padding:10px 14px;background:#020604;border-top:1px solid #0c2010;flex:0 0 auto;flex-wrap:wrap}
+@media(max-width:620px){.wf-node{width:80px}.wf-ic{width:38px;height:38px;font-size:1.1rem}.wf-conn{flex-basis:16px}
+  .wf-metrics,.wf-cns-grid,.wf-pdf-pt{grid-template-columns:1fr 1fr}.wf-title{font-size:.76rem}.wf-node b{font-size:.74rem}}
+
 /* ───── Responsive ───── */
 @media (max-width:980px){ .admin-page{max-width:none} }
 @media (max-width:880px){
@@ -599,6 +748,134 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
 <div class="modal" id="modal" role="dialog" aria-modal="true">
   <div class="backdrop" onclick="closeModal()"></div>
   <div class="panel"><button class="close" onclick="closeModal()" aria-label="ปิด">✕</button><div class="detail" id="detail"></div></div>
+</div>
+
+<!-- ════════ Edan F12 Fetal Monitor Simulator ════════ -->
+<div id="fm-sim" role="dialog" aria-modal="true" aria-label="Edan F12 Fetal Monitor Simulator">
+  <div class="fm-panel">
+    <div class="fm-hdr">
+      <span class="fm-brand">EDAN</span>
+      <span class="fm-model-badge">F12</span>
+      <span class="fm-rec-dot" id="fm-rec-badge">REC</span>
+      <div class="fm-alarm-banner" id="fm-alarm">⚠ ALARM</div>
+      <span class="fm-clock-disp" id="fm-clock">--:--:--</span>
+      <button class="fm-close-btn" onclick="closeFM()" aria-label="ปิด">✕</button>
+    </div>
+    <div class="fm-pt-bar">
+      <span>HN <b>00 12 345</b></span>
+      <span class="fm-pt-sep">│</span>
+      <span><b>นางสาว สมหญิง ใจดี</b></span>
+      <span class="fm-pt-sep">│</span>
+      <span>อายุ <b>28</b> ปี</span>
+      <span class="fm-pt-sep">│</span>
+      <span>GA <b>38⁺² สัปดาห์</b></span>
+      <span class="fm-pt-sep">│</span>
+      <span>G2 P1 A0</span>
+      <span class="fm-pt-sep">│</span>
+      <span>เตียง <b>LR-03</b></span>
+      <span class="fm-pt-sep">│</span>
+      <span>พญ. วิภาวดี รักษาดี</span>
+      <span class="fm-rec-time" id="fm-rectime">REC 00:00:00</span>
+    </div>
+    <div class="fm-body">
+      <div class="fm-ctg">
+        <div class="fm-ctg-zone fhr1z">
+          <div class="fm-axis">
+            <span class="fm-ax-major">210</span>
+            <span>200</span><span>190</span>
+            <span class="fm-ax-major">180</span>
+            <span>170</span><span>160</span>
+            <span class="fm-ax-major">150</span>
+            <span>140</span><span>130</span>
+            <span class="fm-ax-major">120</span>
+            <span>110</span><span>100</span>
+            <span class="fm-ax-major">90</span>
+            <span>80</span><span>70</span>
+            <span class="fm-ax-major">60</span>
+            <span>50</span>
+          </div>
+          <div class="fm-cv-outer">
+            <canvas id="fm-cv1"></canvas>
+          </div>
+        </div>
+        <div class="fm-ctg-zone tocoz">
+          <div class="fm-axis">
+            <span class="fm-ax-major">100</span>
+            <span>75</span>
+            <span class="fm-ax-major">50</span>
+            <span>25</span>
+            <span class="fm-ax-major">0</span>
+          </div>
+          <div class="fm-cv-outer">
+            <canvas id="fm-cv3"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="fm-digi">
+        <div class="fm-drow d-fhr1">
+          <span class="fm-trend" id="fm-trend1">→</span>
+          <div class="fm-num" id="fm-v1">---</div>
+          <div class="fm-pname">FHR1  bpm</div>
+        </div>
+        <div class="fm-drow d-fhr2">
+          <span class="fm-trend" id="fm-trend2">→</span>
+          <div class="fm-num" id="fm-v2">---</div>
+          <div class="fm-pname">FHR2  bpm</div>
+        </div>
+        <div class="fm-drow d-toco">
+          <div class="fm-num" id="fm-v3">--</div>
+          <div class="fm-pname">TOCO  ua</div>
+        </div>
+        <div class="fm-drow d-mhr">
+          <div class="fm-num" id="fm-v4">--</div>
+          <div class="fm-pname">MHR  bpm</div>
+        </div>
+        <div class="fm-drow d-spo2">
+          <div class="fm-num" id="fm-v5">--</div>
+          <div class="fm-pname">SpO₂  %</div>
+        </div>
+        <div class="fm-drow d-temp">
+          <div class="fm-num" id="fm-v6">--.-</div>
+          <div class="fm-pname">TEMP  °C</div>
+        </div>
+        <div class="fm-drow d-btn">
+          <a class="btn btn-primary btn-block btn-sm" href="#contact" onclick="closeFM()" style="width:100%;border-radius:9px;font-size:.72rem;justify-content:center">ขอใบเสนอราคา</a>
+        </div>
+      </div>
+    </div>
+    <div class="fm-ftr">
+      <button class="btn btn-primary btn-sm" id="fm-playbtn" onclick="FM.toggle()">▶ เริ่มจำลอง</button>
+      <button class="btn btn-ghost btn-sm" onclick="FM.testAlarm()">🔔 Alarm</button>
+      <button class="btn btn-ghost btn-sm" onclick="FM.reset()">↺ รีเซ็ต</button>
+      <button class="btn btn-primary btn-sm" onclick="openWorkflow()">📤 ส่งเข้า MFM-CNS → HOSxP</button>
+      <span class="fm-speed-info">CTG 3 cm/min · Edan F12 Simulator</span>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ MFM-CNS → HOSxP Integration Workflow ════════ -->
+<div id="flow-sim" role="dialog" aria-modal="true" aria-label="MFM-CNS to HOSxP integration">
+  <div class="wf-panel">
+    <div class="wf-hdr">
+      <span class="wf-title">การเชื่อมต่อข้อมูล · EDAN F12 → MFM-CNS → HOSxP</span>
+      <button class="fm-close-btn" onclick="closeWorkflow()" aria-label="ปิด" style="margin-left:auto">✕</button>
+    </div>
+    <div class="wf-pipe" id="wf-pipe">
+      <div class="wf-node" data-node="0"><div class="wf-ic">🩺</div><b>EDAN F12</b><span>Fetal Monitor</span><i class="wf-st">รอ</i></div>
+      <div class="wf-conn" data-conn="0"><i></i></div>
+      <div class="wf-node" data-node="1"><div class="wf-ic">🖥️</div><b>MFM-CNS</b><span>Central Station</span><i class="wf-st">รอ</i></div>
+      <div class="wf-conn" data-conn="1"><i></i></div>
+      <div class="wf-node" data-node="2"><div class="wf-ic">🗄️</div><b>Hospital DB</b><span>HIS Database</span><i class="wf-st">รอ</i></div>
+      <div class="wf-conn" data-conn="2"><i></i></div>
+      <div class="wf-node" data-node="3"><div class="wf-ic">📋</div><b>HOSxP</b><span>เวชระเบียน</span><i class="wf-st">รอ</i></div>
+    </div>
+    <div class="wf-stage" id="wf-stage"></div>
+    <div class="wf-ftr">
+      <button class="btn btn-primary btn-sm" id="wf-runbtn" onclick="WF.run()">▶ เริ่มส่งข้อมูล</button>
+      <button class="btn btn-ghost btn-sm" onclick="WF.reset()">↺ เริ่มใหม่</button>
+      <span class="fm-speed-info" id="wf-status">พร้อมส่งข้อมูล CTG เข้าสู่ระบบกลาง MFM-CNS</span>
+    </div>
+  </div>
 </div>
 
 <!-- ════════ ล็อกอินแอดมิน ════════ -->
@@ -906,6 +1183,7 @@ function renderCatalog(){
 }
 function openProduct(id){
   const p=products.find(x=>x.id===id); if(!p) return;
+  if(p.simulator==='edan-f12'){ openFM(); return; }
   document.getElementById('detail').innerHTML=`<div class="photo"><img src="${imgSrc(p)}" alt="${esc(p.name)}"></div><div class="info"><span class="cat">${esc(p.category||'')}</span><h3>${esc(p.name)}</h3><div class="model">MODEL ${esc(p.model||'-')} · ${esc(p.brand||'')}</div><p>${esc(p.desc||'')}</p><ul>${(p.specs||[]).map(s=>`<li>${esc(s)}</li>`).join('')}</ul><div class="price">${baht(p.price)}</div><a class="btn btn-primary" href="#contact" onclick="closeModal()">ขอใบเสนอราคา</a></div>`;
   document.getElementById('modal').classList.add('open'); document.body.style.overflow='hidden';
 }
@@ -1020,6 +1298,8 @@ function saveWebsite(){
   clone.querySelector('#admin').classList.remove('open');
   clone.querySelector('#login-screen').classList.remove('open');
   clone.querySelector('#modal').classList.remove('open');
+  clone.querySelector('#fm-sim').classList.remove('open');
+  clone.querySelector('#flow-sim').classList.remove('open');
   clone.querySelector('#pdf-root').innerHTML='';
   clone.querySelectorAll('.nav-links').forEach(n=>n.classList.remove('open'));
   clone.querySelectorAll('.reveal').forEach(n=>n.classList.add('in'));
@@ -1047,7 +1327,10 @@ const set=(id,v)=>document.getElementById(id).value=(v??'');
 function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove('show'),2600); }
 function refresh(){ renderChips(); renderCatalog(); heroMonitor(); renderStats(); renderServices(); renderCategories(); }
 
-document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeModal(); } });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){
+  if(document.getElementById('flow-sim').classList.contains('open')) closeWorkflow();
+  else { closeModal(); closeFM(); }
+} });
 document.getElementById('nav-links').addEventListener('click',e=>{ if(e.target.tagName==='A') document.getElementById('nav-links').classList.remove('open'); });
 addEventListener('scroll',()=>{ document.getElementById('site-header').classList.toggle('scrolled', scrollY>10); const tt=document.getElementById('to-top'); if(tt) tt.classList.toggle('show', scrollY>500); });
 
@@ -1061,6 +1344,480 @@ function setupReveal(){
   },{threshold:.15});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 }
+
+/* ════════ Edan F12 Fetal Monitor Simulator ════════ */
+function openFM(){
+  document.getElementById('fm-sim').classList.add('open');
+  document.body.style.overflow='hidden';
+  setTimeout(()=>{ FM.init(); setTimeout(()=>FM.start(),450); },80);
+}
+function closeFM(){
+  document.getElementById('fm-sim').classList.remove('open');
+  document.body.style.overflow='';
+  FM.stop();
+}
+function openWorkflow(){ document.getElementById('flow-sim').classList.add('open'); WF.reset(); }
+function closeWorkflow(){ document.getElementById('flow-sim').classList.remove('open'); WF.stop(); }
+
+const FM=(()=>{
+  let running=false,lastTs=0,animId=null,simT=0,dataAcc=0;
+  let ctx1=null,ctx3=null,bufLen=700,dpr=1;
+  let buf1=[],buf2=[],buf3=[];
+  let mhr=78,spo2=98,temp=36.8;
+  let nextAccel=30,nextDecel=180,nextCont=45;
+  let accel1=null,accel2=null,decel1=null,contractions=[];
+  let alarmActive=false,alarmTo=null;
+  let statAccel=0,statDecel=0,statCont=0;
+  let recStartTime=null,recElapsed=0;
+  let ou1=0,ou2=0,tocoBase=10;
+  const RATE=2.5;
+
+  function randn(){
+    let u,v;do{u=Math.random();v=Math.random();}while(u===0);
+    return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);
+  }
+
+  function ouStep(x,mu,theta,sigma,dt){
+    return x+theta*(mu-x)*dt+sigma*Math.sqrt(Math.max(0,dt))*randn();
+  }
+
+  function ltvFHR1(t){
+    return 7.5*Math.sin(0.05*6.283*t)+4*Math.sin(0.09*6.283*t+1.2)+
+           3*Math.sin(0.16*6.283*t+2.5)+2*Math.sin(0.07*6.283*t+3.8);
+  }
+
+  function ltvFHR2(t){
+    return 6*Math.sin(0.046*6.283*t+1.5)+3.5*Math.sin(0.085*6.283*t+0.8)+
+           2.5*Math.sin(0.14*6.283*t+3.1)+2*Math.sin(0.065*6.283*t+4.2);
+  }
+
+  function stepFHR1(t,dt){
+    ou1=ouStep(ou1,0,3.5,2.8,dt);
+    let v=140+ltvFHR1(t)+ou1;
+    if(accel1){const d=t-accel1.pt,s=accel1.s;v+=accel1.m*Math.exp(-(d*d)/(2*s*s));}
+    if(decel1){const d=t-decel1.pt,s=decel1.s;v-=decel1.m*Math.exp(-(d*d)/(2*s*s));}
+    return Math.max(50,Math.min(210,v));
+  }
+
+  function stepFHR2(t,dt){
+    ou2=ouStep(ou2,0,3.2,2.5,dt);
+    let v=138+ltvFHR2(t)+ou2;
+    if(accel2){const d=t-accel2.pt,s=accel2.s;v+=accel2.m*Math.exp(-(d*d)/(2*s*s));}
+    return Math.max(50,Math.min(210,v));
+  }
+
+  function stepTOCO(t,dt){
+    tocoBase=ouStep(tocoBase,10,1.0,0.8,dt);
+    let v=tocoBase;
+    for(const c of contractions){const d=t-c.pt,s=c.s;v+=c.m*Math.exp(-(d*d)/(2*s*s));}
+    return Math.max(0,Math.min(100,v));
+  }
+
+  function updateEvents(t){
+    if(!accel1&&t>=nextAccel){
+      const dur=22+Math.random()*26;
+      accel1={pt:t+dur/2,s:dur/2.8,m:22+Math.random()*26,et:t+dur};
+      if(Math.random()<0.4)accel2={pt:t+dur/2+6,s:dur/2.6,m:14+Math.random()*14,et:t+dur+6};
+      statAccel++;nextAccel=t+dur+90+Math.random()*130;
+    }
+    if(accel1&&t>accel1.et)accel1=null;
+    if(accel2&&t>accel2.et)accel2=null;
+    if(!decel1&&t>=nextDecel){
+      const dur=22+Math.random()*30;
+      decel1={pt:t+dur/2,s:dur/2.5,m:16+Math.random()*24,et:t+dur};
+      statDecel++;nextDecel=t+dur+160+Math.random()*200;
+    }
+    if(decel1&&t>decel1.et)decel1=null;
+    if(t>=nextCont){
+      const dur=62+Math.random()*34;
+      contractions.push({pt:t+dur/2,s:dur/3.2,m:44+Math.random()*40,et:t+dur});
+      statCont++;nextCont=t+dur+100+Math.random()*120;
+    }
+    contractions=contractions.filter(c=>t<=c.et+5);
+    mhr=78+4*Math.sin(0.006*6.283*t);
+    if(contractions.some(c=>t>=c.pt-c.s&&t<=c.pt+c.s))mhr+=5;
+    spo2=Math.max(95,Math.min(100,Math.round(98+Math.sin(0.011*6.283*t))));
+    const v1=buf1.length?buf1[buf1.length-1]:140;
+    if(!alarmActive&&(v1<108||v1>168)){
+      showAlarm(v1<108?'⚠ FHR1 BRADYCARDIA — '+Math.round(v1)+' bpm':'⚠ FHR1 TACHYCARDIA — '+Math.round(v1)+' bpm');
+    }
+  }
+
+  function showAlarm(msg){
+    alarmActive=true;
+    const el=document.getElementById('fm-alarm');
+    if(el){el.textContent=msg;el.classList.add('show');}
+    clearTimeout(alarmTo);
+    alarmTo=setTimeout(()=>{alarmActive=false;const e=document.getElementById('fm-alarm');if(e)e.classList.remove('show');},7000);
+  }
+
+  function drawCTGPaper(ctx,W,H){
+    // Cream paper base
+    ctx.fillStyle='#FFFEF5';ctx.fillRect(0,0,W,H);
+    // Minor pink grid lines
+    ctx.strokeStyle='rgba(210,140,140,0.3)';ctx.lineWidth=0.5*dpr;
+    const mY=H/32,mX=RATE*10;
+    for(let y=0;y<=H;y+=mY){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+    for(let x=0;x<=W;x+=mX){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+    // Major red grid lines
+    ctx.strokeStyle='rgba(185,75,75,0.5)';ctx.lineWidth=1*dpr;
+    for(let y=0;y<=H;y+=mY*4){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+    for(let x=0;x<=W;x+=mX*3){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+  }
+
+  function drawFHRCanvas(){
+    if(!ctx1)return;
+    const W=ctx1.canvas.width/dpr,H=ctx1.canvas.height/dpr;
+    drawCTGPaper(ctx1,W,H);
+    if(buf1.length<2)return;
+    const step=W/bufLen,startI=Math.max(0,bufLen-buf1.length);
+    // FHR2 — amber behind
+    if(buf2.length>=2){
+      ctx1.strokeStyle='rgba(195,130,0,0.7)';ctx1.lineWidth=1.5*dpr;ctx1.lineJoin='round';
+      ctx1.beginPath();let s2=false;
+      for(let i=0;i<buf2.length;i++){
+        const x=(startI+i)*step,y=Math.max(1,Math.min(H-1,H-((buf2[i]-50)/160)*H));
+        if(!s2){ctx1.moveTo(x,y);s2=true;}else ctx1.lineTo(x,y);
+      }
+      ctx1.stroke();
+    }
+    // FHR1 — dark green on top
+    ctx1.strokeStyle='#1a6830';ctx1.lineWidth=2*dpr;ctx1.lineJoin='round';
+    ctx1.beginPath();let s1=false;
+    for(let i=0;i<buf1.length;i++){
+      const x=(startI+i)*step,y=Math.max(1,Math.min(H-1,H-((buf1[i]-50)/160)*H));
+      if(!s1){ctx1.moveTo(x,y);s1=true;}else ctx1.lineTo(x,y);
+    }
+    ctx1.stroke();
+    if(buf1.length>=bufLen){
+      ctx1.strokeStyle='rgba(0,0,0,0.1)';ctx1.lineWidth=1*dpr;
+      ctx1.beginPath();ctx1.moveTo(W-1,0);ctx1.lineTo(W-1,H);ctx1.stroke();
+    }
+  }
+
+  function drawTOCOCanvas(){
+    if(!ctx3)return;
+    const W=ctx3.canvas.width/dpr,H=ctx3.canvas.height/dpr;
+    drawCTGPaper(ctx3,W,H);
+    if(buf3.length<2)return;
+    const step=W/bufLen,startI=Math.max(0,bufLen-buf3.length);
+    // TOCO fill
+    ctx3.fillStyle='rgba(14,100,180,0.12)';
+    ctx3.beginPath();let s3=false;
+    for(let i=0;i<buf3.length;i++){
+      const x=(startI+i)*step,y=Math.max(1,Math.min(H-1,H-(buf3[i]/100)*H));
+      if(!s3){ctx3.moveTo(x,H);ctx3.lineTo(x,y);s3=true;}else ctx3.lineTo(x,y);
+    }
+    ctx3.lineTo((startI+buf3.length-1)*step,H);ctx3.closePath();ctx3.fill();
+    // TOCO stroke
+    ctx3.strokeStyle='#1060a0';ctx3.lineWidth=2*dpr;ctx3.lineJoin='round';
+    ctx3.beginPath();s3=false;
+    for(let i=0;i<buf3.length;i++){
+      const x=(startI+i)*step,y=Math.max(1,Math.min(H-1,H-(buf3[i]/100)*H));
+      if(!s3){ctx3.moveTo(x,y);s3=true;}else ctx3.lineTo(x,y);
+    }
+    ctx3.stroke();
+  }
+
+  function updParams(v1,v2,v3){
+    const se=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
+    se('fm-v1',Math.round(v1));se('fm-v2',Math.round(v2));se('fm-v3',Math.round(v3));
+    se('fm-v4',Math.round(mhr));se('fm-v5',spo2);se('fm-v6',temp.toFixed(1));
+    if(buf1.length>5){
+      const d=buf1[buf1.length-1]-buf1[buf1.length-5];
+      const el=document.getElementById('fm-trend1');if(el)el.textContent=d>1.5?'↑':d<-1.5?'↓':'→';
+    }
+    if(buf2.length>5){
+      const d=buf2[buf2.length-1]-buf2[buf2.length-5];
+      const el=document.getElementById('fm-trend2');if(el)el.textContent=d>1.5?'↑':d<-1.5?'↓':'→';
+    }
+  }
+
+  function updRecTime(){
+    if(!running||!recStartTime)return;
+    recElapsed=Math.floor((Date.now()-recStartTime)/1000);
+    const h=Math.floor(recElapsed/3600),m=Math.floor((recElapsed%3600)/60),s=recElapsed%60;
+    const el=document.getElementById('fm-rectime');
+    if(el)el.textContent='REC '+[h,m,s].map(n=>String(n).padStart(2,'0')).join(':');
+  }
+
+  function tick(ts){
+    if(!running){animId=null;return;}
+    const dt=Math.min(0.1,(ts-lastTs)/1000);
+    lastTs=ts;simT+=dt;
+    updateEvents(simT);
+    dataAcc+=RATE*dt;
+    const n=Math.floor(dataAcc);dataAcc-=n;
+    const stepDt=1/RATE;
+    for(let i=0;i<n;i++){
+      const t=simT-(n-i)*stepDt;
+      buf1.push(stepFHR1(t,stepDt));buf2.push(stepFHR2(t,stepDt));buf3.push(stepTOCO(t,stepDt));
+    }
+    if(buf1.length>bufLen){buf1=buf1.slice(-bufLen);buf2=buf2.slice(-bufLen);buf3=buf3.slice(-bufLen);}
+    drawFHRCanvas();drawTOCOCanvas();
+    if(buf1.length)updParams(buf1[buf1.length-1],buf2[buf2.length-1],buf3[buf3.length-1]);
+    updRecTime();
+    const now=new Date(),clk=document.getElementById('fm-clock');
+    if(clk)clk.textContent=[now.getHours(),now.getMinutes(),now.getSeconds()].map(n=>String(n).padStart(2,'0')).join(':');
+    animId=requestAnimationFrame(tick);
+  }
+
+  function initCanvases(){
+    const c1=document.getElementById('fm-cv1'),c3=document.getElementById('fm-cv3');
+    if(!c1||!c3)return false;
+    dpr=window.devicePixelRatio||1;
+    [c1,c3].forEach(c=>{
+      const w=c.parentElement.offsetWidth||700,h=c.parentElement.offsetHeight||200;
+      c.width=Math.round(w*dpr);c.height=Math.round(h*dpr);
+      c.style.width=w+'px';c.style.height=h+'px';
+    });
+    ctx1=c1.getContext('2d');ctx3=c3.getContext('2d');
+    bufLen=Math.round(c1.parentElement.offsetWidth||700);
+    return true;
+  }
+
+  function prefill(){
+    ou1=0;ou2=0;tocoBase=10;
+    const dt=1/RATE;
+    for(let i=0;i<bufLen;i++){
+      const t=-(bufLen-i)*dt;
+      buf1.push(stepFHR1(t,dt));buf2.push(stepFHR2(t,dt));buf3.push(stepTOCO(t,dt));
+    }
+  }
+
+  return {
+    init(){
+      if(animId){cancelAnimationFrame(animId);animId=null;}
+      running=false;simT=0;dataAcc=0;
+      buf1=[];buf2=[];buf3=[];contractions=[];
+      accel1=null;accel2=null;decel1=null;
+      nextAccel=30;nextDecel=180;nextCont=45;
+      alarmActive=false;statAccel=0;statDecel=0;statCont=0;
+      recStartTime=null;recElapsed=0;ou1=0;ou2=0;tocoBase=10;
+      const alarmEl=document.getElementById('fm-alarm');if(alarmEl)alarmEl.classList.remove('show');
+      const rtEl=document.getElementById('fm-rectime');if(rtEl)rtEl.textContent='REC 00:00:00';
+      setTimeout(()=>{
+        if(!initCanvases())return;
+        prefill();
+        drawFHRCanvas();drawTOCOCanvas();
+        updParams(buf1[buf1.length-1]||140,buf2[buf2.length-1]||138,buf3[buf3.length-1]||10);
+        const now=new Date(),clk=document.getElementById('fm-clock');
+        if(clk)clk.textContent=[now.getHours(),now.getMinutes(),now.getSeconds()].map(n=>String(n).padStart(2,'0')).join(':');
+        const btn=document.getElementById('fm-playbtn');if(btn)btn.textContent='▶ เริ่มจำลอง';
+      },80);
+    },
+    start(){
+      if(running)return;running=true;lastTs=performance.now();
+      recStartTime=Date.now()-recElapsed*1000;
+      const btn=document.getElementById('fm-playbtn');if(btn)btn.textContent='⏸ หยุดชั่วคราว';
+      animId=requestAnimationFrame(tick);
+    },
+    stop(){
+      running=false;if(animId){cancelAnimationFrame(animId);animId=null;}
+      const btn=document.getElementById('fm-playbtn');if(btn)btn.textContent='▶ เริ่มจำลอง';
+    },
+    toggle(){if(running)this.stop();else this.start();},
+    reset(){this.stop();this.init();},
+    testAlarm(){showAlarm('⚠ ALARM TEST — FHR: 88 bpm BRADYCARDIA');},
+    getSession(){
+      const data=buf1.length?buf1:[140];
+      let sum=0,mn=data[0],mx=data[0];
+      for(const v of data){sum+=v;if(v<mn)mn=v;if(v>mx)mx=v;}
+      const baseline=Math.round(sum/data.length);
+      const variability=Math.max(3,Math.min(25,Math.round((mx-mn)/4)));
+      const dur=Math.max(30,Math.round(simT||(bufLen/RATE)));
+      let category='Category I',interp='ปกติ (Reassuring) — ไม่พบภาวะที่ต้องเฝ้าระวัง';
+      if(baseline<110){category='Category II';interp='Bradycardia — ควรประเมินซ้ำและเฝ้าระวัง';}
+      else if(baseline>160){category='Category II';interp='Tachycardia — ควรประเมินซ้ำและเฝ้าระวัง';}
+      else if(statDecel>=3||variability<5){category='Category II';interp='น่าสงสัย (Suspicious) — ควรเฝ้าระวังต่อเนื่อง';}
+      else if(statAccel>0){category='Category I';interp='ปกติ (Reassuring) — พบ acceleration และ variability ดี';}
+      return {durationSec:dur,baseline,variability,accel:statAccel,decel:statDecel,cont:statCont,
+        fhrMin:Math.round(mn),fhrMax:Math.round(mx),category,interp,buf1:buf1.slice(),buf3:buf3.slice()};
+    }
+  };
+})();
+
+/* ════════ MFM-CNS → HOSxP Integration Workflow ════════ */
+const FM_PATIENT={hn:'00 12 345',name:'นางสาว สมหญิง ใจดี',age:28,ga:'38⁺² สัปดาห์',gp:'G2 P1 A0',bed:'LR-03',doctor:'พญ. วิภาวดี รักษาดี'};
+
+const WF=(()=>{
+  let session=null,running=false,timers=[],docId='';
+  const metric=(l,v)=>`<div class="wf-metric"><span>${l}</span><b>${v}</b></div>`;
+  function fmt(s){const m=Math.floor(s/60),ss=s%60;return m+' นาที '+String(ss).padStart(2,'0')+' วินาที';}
+  function clk(i){const t=new Date(Date.now()+i*850);return [t.getHours(),t.getMinutes(),t.getSeconds()].map(n=>String(n).padStart(2,'0')).join(':');}
+  function clearTimers(){timers.forEach(clearTimeout);timers=[];}
+  function status(t){const e=document.getElementById('wf-status');if(e)e.textContent=t;}
+  function setNode(i,st){
+    const n=document.querySelector('.wf-node[data-node="'+i+'"]');if(!n)return;
+    n.classList.remove('active','done');if(st!=='wait')n.classList.add(st);
+    const s=n.querySelector('.wf-st');if(s)s.textContent=st==='done'?'สำเร็จ':st==='active'?'กำลังทำงาน':'รอ';
+  }
+  function setConn(i,on){const c=document.querySelector('.wf-conn[data-conn="'+i+'"]');if(c)c.classList.toggle('flow',!!on);}
+
+  function drawLine(ctx,data,minV,maxV,y0,y1,w,color){
+    if(!data||data.length<2)return;
+    const h=y1-y0,step=w/data.length;
+    ctx.strokeStyle=color;ctx.lineWidth=1.3;ctx.lineJoin='round';ctx.beginPath();
+    for(let i=0;i<data.length;i++){
+      const x=i*step,y=Math.max(y0,Math.min(y1,y0+h-((data[i]-minV)/(maxV-minV))*h));
+      i?ctx.lineTo(x,y):ctx.moveTo(x,y);
+    }
+    ctx.stroke();
+  }
+  function drawThumb(){
+    const cv=document.getElementById('wf-ctg-thumb');if(!cv||!session)return;
+    const w=cv.clientWidth||500;cv.width=w;cv.height=120;
+    const ctx=cv.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,w,120);
+    ctx.strokeStyle='#f4d2cb';ctx.lineWidth=.5;
+    for(let x=0;x<w;x+=14){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,120);ctx.stroke();}
+    for(let y=0;y<120;y+=14){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke();}
+    ctx.strokeStyle='#e6c2bb';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(0,84);ctx.lineTo(w,84);ctx.stroke();
+    drawLine(ctx,session.buf1,50,210,4,80,w,'#127a30');
+    drawLine(ctx,session.buf3,0,100,88,118,w,'#0e6e8e');
+    ctx.fillStyle='#127a30';ctx.font='9px monospace';ctx.fillText('FHR bpm',4,11);
+    ctx.fillStyle='#0e6e8e';ctx.fillText('TOCO',4,97);
+  }
+
+  function stageSummary(){
+    const s=session;
+    return `<div class="wf-card">
+      <div class="wf-card-h"><span class="wf-chip green">EDAN F12</span> สรุปผลการบันทึก CTG (Cardiotocography)</div>
+      <div class="wf-pt"><div><b>${FM_PATIENT.name}</b><span>HN ${FM_PATIENT.hn} · ${FM_PATIENT.gp} · GA ${FM_PATIENT.ga}</span></div><div class="wf-pt-bed">เตียง ${FM_PATIENT.bed}</div></div>
+      <div class="wf-metrics">
+        ${metric('ระยะเวลาบันทึก',fmt(s.durationSec))}${metric('Baseline FHR',s.baseline+' bpm')}${metric('Variability',s.variability+' bpm')}
+        ${metric('Accelerations',s.accel+' ครั้ง')}${metric('Decelerations',s.decel+' ครั้ง')}${metric('Contractions',s.cont+' ครั้ง')}
+      </div>
+      <div class="wf-interp ${s.category==='Category I'?'ok':'warn'}">การแปลผล: ${s.interp} · ${s.category}</div>
+    </div>`;
+  }
+  function stageCNS(){
+    const beds=['LR-01','LR-02','LR-03','LR-04','LR-05','LR-06'];
+    return `<div class="wf-card">
+      <div class="wf-card-h"><span class="wf-chip blue">MFM-CNS</span> Central Monitoring Station — รับสัญญาณจากเตียง</div>
+      <div class="wf-cns"><div class="wf-cns-grid">
+        ${beds.map((b,i)=>`<div class="wf-bed ${i===2?'on':''}"><b>${b}${i===2?' ←':''}</b><span>${i===2?FM_PATIENT.name.split(' ').slice(-1)[0]:'ว่าง'}</span><i>${i===2?session.baseline+' bpm':'idle'}</i></div>`).join('')}
+      </div><p>สถานีกลาง (Central Nursing Station) รับและแสดงสัญญาณ CTG จากทุกเตียงแบบเรียลไทม์ ขณะนี้เตียง <b>LR-03</b> เชื่อมต่อกับเครื่อง EDAN F12 และส่งข้อมูลเข้าระบบเรียบร้อย</p></div>
+    </div>`;
+  }
+  function stagePDF(){
+    const s=session,now=new Date();
+    const d=now.toLocaleDateString('th-TH',{year:'numeric',month:'long',day:'numeric'});
+    const tm=now.toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'});
+    return `<div class="wf-card">
+      <div class="wf-card-h"><span class="wf-chip blue">MFM-CNS</span> รายงาน CTG (ไฟล์ PDF)
+        <button class="btn btn-ghost btn-sm" style="margin-left:auto" onclick="WF.printReport()">🖨️ พิมพ์ / บันทึก PDF</button></div>
+      <div class="wf-pdf" id="wf-pdf-doc">
+        <div class="wf-pdf-head"><div><div class="wf-pdf-logo">EDAN MFM-CNS</div><div class="wf-pdf-sub">Cardiotocography Report · CTG / NST</div></div>
+          <div class="wf-pdf-hosp">${esc(settings.companyTh||settings.company||'โรงพยาบาล')}</div></div>
+        <div class="wf-pdf-pt">
+          <div><span>ผู้ป่วย</span><b>${esc(FM_PATIENT.name)}</b></div>
+          <div><span>HN</span><b>${FM_PATIENT.hn}</b></div>
+          <div><span>อายุ / ประวัติครรภ์</span><b>${FM_PATIENT.age} ปี · ${FM_PATIENT.gp} · GA ${FM_PATIENT.ga}</b></div>
+          <div><span>วันที่ / เวลา</span><b>${d} ${tm} น.</b></div>
+        </div>
+        <canvas id="wf-ctg-thumb" class="wf-pdf-ctg"></canvas>
+        <div class="wf-pdf-find"><b>ผลการตรวจ (Findings)</b><ul>
+          <li>Baseline FHR: <b>${s.baseline} bpm</b> (ช่วงปกติ 110–160 bpm)</li>
+          <li>Variability: <b>${s.variability} bpm</b></li>
+          <li>Accelerations: <b>${s.accel}</b> · Decelerations: <b>${s.decel}</b></li>
+          <li>Uterine contractions: <b>${s.cont}</b> ครั้ง · ระยะเวลาบันทึก ${fmt(s.durationSec)}</li>
+          <li>การแปลผล: <b>${s.interp} (${s.category})</b></li>
+        </ul></div>
+        <div class="wf-pdf-sign">ตรวจและรับรองโดย ${esc(FM_PATIENT.doctor)}<br><span>เอกสารสร้างอัตโนมัติโดยระบบ EDAN MFM-CNS · ${docId||'—'}</span></div>
+      </div>
+    </div>`;
+  }
+  function stageDB(){
+    docId='DOC-'+new Date().toISOString().slice(0,10).replace(/-/g,'')+'-'+String(Math.floor(Math.random()*9000)+1000);
+    const hn=FM_PATIENT.hn.replace(/ /g,'');
+    const lines=[
+      'CNS  &gt; Connecting HIS Gateway 10.0.0.5:7100 (MLLP) ...',
+      'CNS  &gt; Channel established · HL7 v2.5.1',
+      'CNS  &gt; TX ORU^R01  HN='+hn+'  OBR|1|CTG-REPORT',
+      'CNS  &gt; Attaching CTG_'+hn+'.pdf ('+(120+Math.floor(Math.random()*90))+' KB)',
+      'HIS  &gt; ACK|AA · Message accepted',
+      'DB   &gt; INSERT INTO patient_document (hn,type,doc) ...',
+      'DB   &gt; '+docId+' created · linked to current visit',
+      'OK   &gt; เอกสารพร้อมแสดงในโปรแกรม HOSxP'
+    ];
+    return `<div class="wf-card">
+      <div class="wf-card-h"><span class="wf-chip amber">Hospital DB</span> ส่งข้อมูลเข้าฐานข้อมูลโรงพยาบาล (HL7 / MLLP)</div>
+      <div class="wf-console">${lines.map((l,i)=>'<div class="wf-log-line" style="animation-delay:'+(i*0.16)+'s">['+clk(i)+'] '+l+'</div>').join('')}</div>
+    </div>`;
+  }
+  function stageHOSxP(){
+    const now=new Date();
+    const d=now.toLocaleDateString('th-TH');
+    const tm=now.toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'});
+    const vn='VN'+now.getFullYear()+String(now.getMonth()+1).padStart(2,'0')+String(now.getDate()).padStart(2,'0')+'-0457';
+    return `<div class="wf-card">
+      <div class="wf-card-h"><span class="wf-chip teal">HOSxP</span> ระบบเวชระเบียน — บันทึกลงประวัติผู้ป่วย</div>
+      <div class="wf-hosxp">
+        <div class="wf-hx-top">HOSxP · ระบบสารสนเทศโรงพยาบาล <span>แฟ้มเวชระเบียนผู้ป่วย</span></div>
+        <div class="wf-hx-pt"><div class="wf-hx-av">${esc(FM_PATIENT.name.replace(/^นางสาว |^นาง |^นาย /,'').slice(0,1))}</div>
+          <div><b>${esc(FM_PATIENT.name)}</b><span>HN ${FM_PATIENT.hn} · อายุ ${FM_PATIENT.age} ปี · ${FM_PATIENT.gp}</span></div>
+          <div class="wf-hx-vn">${vn}<br>${d}</div></div>
+        <div class="wf-hx-tabs"><span class="on">เอกสาร / ผลตรวจ</span><span>การวินิจฉัย</span><span>ประวัติการรักษา</span></div>
+        <table class="wf-hx-tbl"><thead><tr><th>วันที่ / เวลา</th><th>รายการ</th><th>แหล่งข้อมูล</th><th>ไฟล์</th><th>สถานะ</th></tr></thead>
+          <tbody>
+            <tr class="wf-hx-new"><td>${d} ${tm}</td><td>รายงาน CTG / NST</td><td>EDAN F12 · MFM-CNS</td><td><span class="wf-hx-pdf">📄 PDF</span></td><td><span class="wf-hx-ok">✓ บันทึกแล้ว</span></td></tr>
+            <tr><td>${d}</td><td>ผลตรวจ Lab (CBC)</td><td>LIS</td><td><span class="wf-hx-pdf">📄 PDF</span></td><td><span class="wf-hx-ok">✓</span></td></tr>
+            <tr><td>${d}</td><td>Ultrasound OB</td><td>PACS</td><td><span class="wf-hx-pdf">📄 PDF</span></td><td><span class="wf-hx-ok">✓</span></td></tr>
+          </tbody></table>
+        <div class="wf-hx-done">✓ บันทึกรายงาน CTG (${docId||'DOC'}) ลงในประวัติผู้ป่วย ${esc(FM_PATIENT.name)} เรียบร้อยแล้ว</div>
+      </div>
+    </div>`;
+  }
+
+  const STAGES=[stageSummary,stageCNS,stagePDF,stageDB,stageHOSxP];
+  function showStage(n){
+    const el=document.getElementById('wf-stage');if(!el)return;
+    el.innerHTML=STAGES[n]();
+    if(n===2)setTimeout(drawThumb,30);
+  }
+
+  return {
+    reset(){
+      clearTimers();running=false;
+      [0,1,2,3].forEach(i=>setNode(i,'wait'));[0,1,2].forEach(i=>setConn(i,false));
+      session=FM.getSession();showStage(0);
+      const b=document.getElementById('wf-runbtn');if(b){b.textContent='▶ เริ่มส่งข้อมูล';b.disabled=false;}
+      status('พร้อมส่งข้อมูล CTG เข้าสู่ระบบกลาง MFM-CNS');
+    },
+    stop(){clearTimers();running=false;},
+    run(){
+      if(running)return;
+      session=FM.getSession();running=true;
+      const b=document.getElementById('wf-runbtn');if(b){b.textContent='⏳ กำลังส่ง...';b.disabled=true;}
+      [0,1,2,3].forEach(i=>setNode(i,'wait'));[0,1,2].forEach(i=>setConn(i,false));
+      const seq=[
+        ()=>{setNode(0,'active');showStage(0);status('EDAN F12 — สรุปผลการบันทึก CTG');},
+        ()=>{setNode(0,'done');setConn(0,true);status('กำลังส่งสัญญาณเข้าสถานีกลาง MFM-CNS ...');},
+        ()=>{setConn(0,false);setNode(1,'active');showStage(1);status('MFM-CNS รับสัญญาณจากเตียง LR-03');},
+        ()=>{setNode(1,'done');showStage(2);status('MFM-CNS สร้างรายงาน PDF อัตโนมัติ');},
+        ()=>{setConn(1,true);status('กำลังส่งไฟล์ PDF เข้าฐานข้อมูลโรงพยาบาล ...');},
+        ()=>{setConn(1,false);setNode(2,'active');showStage(3);status('ส่งเข้าฐานข้อมูล HIS (HL7 / MLLP)');},
+        ()=>{setNode(2,'done');setConn(2,true);status('ฐานข้อมูลรับเอกสารและเชื่อมกับ visit ผู้ป่วย');},
+        ()=>{setConn(2,false);setNode(3,'active');showStage(4);status('แสดงและบันทึกในเวชระเบียน HOSxP');},
+        ()=>{setNode(3,'done');status('เสร็จสมบูรณ์ — บันทึกลงประวัติผู้ป่วยแล้ว');
+          running=false;const bb=document.getElementById('wf-runbtn');if(bb){bb.textContent='✓ ส่งสำเร็จ';bb.disabled=false;}
+          toast('บันทึกรายงาน CTG ลงเวชระเบียน HOSxP เรียบร้อย');}
+      ];
+      const delays=[200,900,900,1100,800,1000,1000,1300,1400];
+      let d=0;seq.forEach((fn,i)=>{d+=delays[i];timers.push(setTimeout(fn,d));});
+    },
+    printReport(){
+      const doc=document.getElementById('wf-pdf-doc');if(!doc)return;
+      const clone=doc.cloneNode(true);
+      const cv=doc.querySelector('canvas'),cimg=clone.querySelector('canvas');
+      if(cv&&cimg){const img=new Image();img.src=cv.toDataURL('image/png');img.style.cssText='width:100%;display:block;border:1px solid #ccc;border-radius:6px;margin-bottom:14px';cimg.replaceWith(img);}
+      const w=window.open('','_blank','width=820,height=1040');
+      if(!w){toast('โปรดอนุญาต popup เพื่อพิมพ์รายงาน');return;}
+      w.document.write('<!DOCTYPE html><html lang="th"><head><meta charset="utf-8"><title>CTG Report '+FM_PATIENT.hn+'</title><style>body{font-family:system-ui,\"Sarabun\",sans-serif;padding:26px;color:#13201A;max-width:760px;margin:0 auto}*{box-sizing:border-box}ul{padding-left:0}</style></head><body>'+clone.outerHTML+'</body></html>');
+      w.document.close();setTimeout(()=>{w.focus();w.print();},450);
+    }
+  };
+})();
 
 loadData();
 applyTheme(settings.theme);
