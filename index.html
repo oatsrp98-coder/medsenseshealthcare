@@ -29,6 +29,7 @@
     "lineUrl": "https://line.me/R/ti/p/@medsenses",
     "address": "190 หมู่ 4 ตำบลป่าสัก อำเภอเมือง จังหวัดลำพูน 51000",
     "taxId": "0513564001170",
+    "mapUrl": "",
     "adminPass": "medsenses",
     "theme": { "primary": "#0E9E6E", "primaryDeep": "#0C3B2E", "accent": "#14C28A", "secondary": "#0EA5BC" },
     "stats": [
@@ -325,6 +326,8 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
 .admin-top{background:linear-gradient(135deg,var(--primary-deep),color-mix(in srgb,var(--primary-deep) 80%,var(--secondary)));color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 22px;height:62px;flex:0 0 auto}
 .admin-top .brand{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:600}
 .admin-top .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent)}
+.admin-top .save-status{font-family:var(--font-mono);font-size:.74rem;font-weight:500;color:rgba(255,255,255,.72);margin-left:14px;white-space:nowrap}
+@media (max-width:880px){.admin-top .save-status{display:none}}
 .admin-top .right{display:flex;gap:10px;align-items:center}
 .admin-body{flex:1;display:flex;min-height:0}
 .admin-nav{width:236px;background:var(--surface);border-right:1px solid var(--line);padding:18px 12px;flex:0 0 auto;overflow:auto}
@@ -508,7 +511,7 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
 <!-- หมวดหมู่ -->
 <section id="categories">
   <div class="wrap">
-    <div class="section-head reveal"><span class="eyebrow">Categories</span><h2>หมวดหมู่สินค้า</h2><p>เลือกชมเครื่องมือแพทย์ตามกลุ่มการใช้งาน ครอบคลุมทุกแผนกของโรงพยาบาล</p></div>
+    <div class="section-head reveal"><span class="eyebrow" id="sh-cat-e">Categories</span><h2 id="sh-cat-t">หมวดหมู่สินค้า</h2><p id="sh-cat-s">เลือกชมเครื่องมือแพทย์ตามกลุ่มการใช้งาน ครอบคลุมทุกแผนกของโรงพยาบาล</p></div>
     <div class="cat-grid reveal" id="cat-grid"></div>
   </div>
 </section>
@@ -516,7 +519,7 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
 <!-- แคตตาล็อก -->
 <section id="catalog" style="background:var(--mint)">
   <div class="wrap">
-    <div class="section-head reveal"><span class="eyebrow">Product Catalog</span><h2>แคตตาล็อกสินค้าออนไลน์</h2></div>
+    <div class="section-head reveal"><span class="eyebrow" id="sh-cat2-e">Product Catalog</span><h2 id="sh-cat2-t">แคตตาล็อกสินค้าออนไลน์</h2><p id="sh-cat2-s" hidden></p></div>
     <div class="catalog-tools reveal">
       <div class="search-box">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" style="color:var(--primary)"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -531,7 +534,7 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
 <!-- บริการ -->
 <section id="services">
   <div class="wrap">
-    <div class="section-head reveal"><span class="eyebrow">Our Services</span><h2>บริการของเรา</h2><p>ดูแลครบวงจรตั้งแต่ก่อนการขายจนตลอดอายุการใช้งาน</p></div>
+    <div class="section-head reveal"><span class="eyebrow" id="sh-svc-e">Our Services</span><h2 id="sh-svc-t">บริการของเรา</h2><p id="sh-svc-s">ดูแลครบวงจรตั้งแต่ก่อนการขายจนตลอดอายุการใช้งาน</p></div>
     <div class="svc-grid reveal" id="svc-grid"></div>
   </div>
 </section>
@@ -539,8 +542,8 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
 <!-- ขั้นตอนการสั่งซื้อ -->
 <section id="steps">
   <div class="wrap">
-    <div class="section-head reveal"><span class="eyebrow">How to Order</span><h2>ขั้นตอนการสั่งซื้อ</h2><p>กระบวนการชัดเจน โปร่งใส รองรับงานจัดซื้อจัดจ้างของหน่วยงาน</p></div>
-    <div class="steps reveal">
+    <div class="section-head reveal"><span class="eyebrow" id="sh-step-e">How to Order</span><h2 id="sh-step-t">ขั้นตอนการสั่งซื้อ</h2><p id="sh-step-s">กระบวนการชัดเจน โปร่งใส รองรับงานจัดซื้อจัดจ้างของหน่วยงาน</p></div>
+    <div class="steps reveal" id="order-steps">
       <div class="step"><div class="sn">1</div><b>ติดต่อสอบถาม</b><p>แจ้งความต้องการผ่านโทรศัพท์ LINE หรืออีเมล ทีมงานตอบกลับรวดเร็ว</p></div>
       <div class="step"><div class="sn">2</div><b>รับใบเสนอราคา</b><p>จัดทำสเปกและใบเสนอราคา พร้อมเอกสารประกอบการจัดซื้อครบถ้วน</p></div>
       <div class="step"><div class="sn">3</div><b>ส่งมอบและติดตั้ง</b><p>ติดตั้ง สอบเทียบ และอบรมการใช้งานถึงหน้างานโดยวิศวกร</p></div>
@@ -553,7 +556,7 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
 <section id="about" style="background:var(--mint)">
   <div class="wrap about-grid">
     <div class="reveal">
-      <span class="eyebrow">About Us</span>
+      <span class="eyebrow" id="sh-about-e">About Us</span>
       <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);margin:10px 0 18px;color:var(--ink);font-family:var(--font-display);font-weight:700" id="about-company"></h2>
       <p id="about-text"></p>
     </div>
@@ -570,12 +573,13 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
   <div class="wrap">
     <div class="contact reveal"><div class="contact-inner">
       <div>
-        <span class="eyebrow">Contact</span>
-        <h2>ติดต่อฝ่ายขาย<br>และขอใบเสนอราคา</h2>
-        <p style="margin-top:16px;color:#BFD8C2;font-size:.98rem">ยินดีให้คำปรึกษาการจัดซื้อจัดจ้าง พร้อมจัดทำสเปกและเอกสารประกอบครบถ้วน</p>
+        <span class="eyebrow" id="sh-ct-e">Contact</span>
+        <h2 id="sh-ct-t">ติดต่อฝ่ายขาย<br>และขอใบเสนอราคา</h2>
+        <p id="sh-ct-s" style="margin-top:16px;color:#BFD8C2;font-size:.98rem">ยินดีให้คำปรึกษาการจัดซื้อจัดจ้าง พร้อมจัดทำสเปกและเอกสารประกอบครบถ้วน</p>
         <div class="social-row">
           <a class="sbtn" id="sl-facebook" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21.9v-7.4h2.5l.4-2.9h-2.9V9.7c0-.84.23-1.42 1.44-1.42h1.54V5.7c-.27-.04-1.18-.12-2.24-.12-2.22 0-3.74 1.36-3.74 3.85v2.15H8v2.9h2.5v7.4a10 10 0 0 0 3 0Z"/></svg> Facebook Page</a>
           <a class="sbtn" id="sl-line" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3.2C6.7 3.2 2.4 6.7 2.4 11c0 3.9 3.4 7.1 8 7.7.3.1.7.2.8.5.1.2.1.6 0 .9l-.1.8c0 .2-.2 1 .9.5 1.1-.4 5.7-3.4 7.8-5.8 1.4-1.6 2.1-3.2 2.1-4.9.1-4-4.5-7.5-9.9-7.5ZM7.6 13.1H5.8c-.3 0-.5-.2-.5-.5V9c0-.3.2-.5.5-.5s.5.2.5.5v3.1h1.3c.3 0 .5.2.5.5s-.2.5-.5.5Zm1.9-.5c0 .3-.2.5-.5.5s-.5-.2-.5-.5V9c0-.3.2-.5.5-.5s.5.2.5.5v3.6Zm4.4 0c0 .2-.1.4-.3.5h-.2c-.2 0-.3-.1-.4-.2l-1.9-2.5v2.2c0 .3-.2.5-.5.5s-.5-.2-.5-.5V9c0-.2.1-.4.3-.5h.2c.2 0 .3.1.4.2l1.9 2.6V9c0-.3.2-.5.5-.5s.5.2.5.5v3.6Zm3.2-2.3c.3 0 .5.2.5.5s-.2.5-.5.5h-1.3v.8h1.3c.3 0 .5.2.5.5s-.2.5-.5.5h-1.8c-.3 0-.5-.2-.5-.5V9c0-.3.2-.5.5-.5h1.8c.3 0 .5.2.5.5s-.2.5-.5.5h-1.3v.8h1.3Z"/></svg> เพิ่มเพื่อน LINE</a>
+          <a class="sbtn" id="sl-map" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg> ดูแผนที่</a>
         </div>
       </div>
       <ul class="contact-list">
@@ -645,7 +649,7 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
 <!-- ════════ ระบบแอดมิน ════════ -->
 <div class="admin-overlay" id="admin">
   <div class="admin-top">
-    <div class="brand"><span class="dot"></span><span class="txt">ระบบจัดการเว็บไซต์ · Med Senses</span></div>
+    <div class="brand"><span class="dot"></span><span class="txt">ระบบจัดการเว็บไซต์ · Med Senses</span><span class="save-status" id="save-status"></span></div>
     <div class="right">
       <button class="btn btn-primary btn-sm" onclick="saveWebsite()">💾 เผยแพร่ (ดาวน์โหลดไฟล์)</button>
       <button class="btn btn-ghost btn-sm" style="background:transparent;color:#fff;border-color:rgba(255,255,255,.4);box-shadow:none" onclick="logout()">ออกจากระบบ</button>
@@ -657,6 +661,7 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
       <button data-page="products" onclick="adminTab('products')"><span class="ic">▤</span> สินค้า</button>
       <button data-page="services" onclick="adminTab('services')"><span class="ic">✦</span> บริการ</button>
       <button data-page="company" onclick="adminTab('company')"><span class="ic">⌂</span> ข้อมูลบริษัท</button>
+      <button data-page="content" onclick="adminTab('content')"><span class="ic">✎</span> เนื้อหา/ข้อความ</button>
       <button data-page="theme" onclick="adminTab('theme')"><span class="ic">◑</span> ธีมสี</button>
       <button data-page="publish" onclick="adminTab('publish')"><span class="ic">⇪</span> เผยแพร่/สำรอง</button>
     </nav>
@@ -752,6 +757,7 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
             <div class="field"><label>ที่อยู่</label><input id="s-address"></div>
           </div>
           <div class="field"><label>เลขประจำตัวผู้เสียภาษี</label><input id="s-taxId"></div>
+          <div class="field"><label>ลิงก์แผนที่ Google Maps</label><input id="s-mapUrl" placeholder="วางลิงก์จาก Google Maps (เว้นว่าง = ค้นหาจากที่อยู่อัตโนมัติ)"><div class="hint">เปิด Google Maps → ปักหมุดร้าน → แชร์ → คัดลอกลิงก์ มาวาง</div></div>
           <div class="two">
             <div class="field"><label>ลิงก์ Facebook Page</label><input id="s-facebook" placeholder="https://www.facebook.com/เพจของคุณ"></div>
             <div class="field"><label>ลิงก์ LINE (เพิ่มเพื่อน)</label><input id="s-lineUrl" placeholder="https://line.me/R/ti/p/@id"></div>
@@ -767,6 +773,36 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
             <button type="button" class="btn btn-ghost btn-sm" onclick="addStatRow()">＋ เพิ่มรายการ</button>
             <button class="btn btn-primary btn-sm" type="submit">บันทึกสถิติ</button>
           </div>
+        </form>
+      </section>
+
+      <section class="admin-page" id="page-content">
+        <h2>เนื้อหา/ข้อความบนเว็บ</h2>
+        <div class="sub">แก้ไขหัวข้อและข้อความทุกส่วนของหน้าเว็บได้ที่นี่</div>
+        <form class="form" onsubmit="return saveContent(event)">
+          <h4>ส่วนหัว (Hero)</h4>
+          <div class="field"><label>ป้ายเล็กด้านบน</label><input id="c-heroEyebrow"></div>
+          <div class="field"><label>หัวเรื่องใหญ่</label><textarea id="c-heroTitle"></textarea><div class="hint">ใช้ &lt;br&gt; ขึ้นบรรทัดใหม่ และ &lt;em&gt;ข้อความ&lt;/em&gt; เพื่อเน้นสีเขียว</div></div>
+          <h4>หมวดหมู่สินค้า</h4>
+          <div class="two"><div class="field"><label>ป้ายเล็ก</label><input id="c-cat-e"></div><div class="field"><label>หัวข้อ</label><input id="c-cat-t"></div></div>
+          <div class="field"><label>คำอธิบาย</label><input id="c-cat-s"></div>
+          <h4>แคตตาล็อก</h4>
+          <div class="two"><div class="field"><label>ป้ายเล็ก</label><input id="c-cat2-e"></div><div class="field"><label>หัวข้อ</label><input id="c-cat2-t"></div></div>
+          <div class="field"><label>คำอธิบาย (เว้นว่างได้)</label><input id="c-cat2-s"></div>
+          <h4>บริการ</h4>
+          <div class="two"><div class="field"><label>ป้ายเล็ก</label><input id="c-svc-e"></div><div class="field"><label>หัวข้อ</label><input id="c-svc-t"></div></div>
+          <div class="field"><label>คำอธิบาย</label><input id="c-svc-s"></div>
+          <h4>ขั้นตอนการสั่งซื้อ</h4>
+          <div class="two"><div class="field"><label>ป้ายเล็ก</label><input id="c-step-e"></div><div class="field"><label>หัวข้อ</label><input id="c-step-t"></div></div>
+          <div class="field"><label>คำอธิบาย</label><input id="c-step-s"></div>
+          <div id="steps-editor"></div>
+          <div class="form-actions" style="justify-content:flex-start"><button type="button" class="btn btn-ghost btn-sm" onclick="addOrderStepRow()">＋ เพิ่มขั้นตอน</button></div>
+          <h4>เกี่ยวกับเรา</h4>
+          <div class="field"><label>ป้ายเล็ก</label><input id="c-about-e"><div class="hint">หัวข้อใช้ “ชื่อบริษัท (ไทย)” และเนื้อหาใช้ “เกี่ยวกับบริษัท” — แก้ได้ที่แท็บข้อมูลบริษัท</div></div>
+          <h4>ติดต่อ</h4>
+          <div class="two"><div class="field"><label>ป้ายเล็ก</label><input id="c-ct-e"></div><div class="field"><label>หัวข้อ (ใช้ &lt;br&gt; ได้)</label><input id="c-ct-t"></div></div>
+          <div class="field"><label>คำอธิบาย</label><input id="c-ct-s"></div>
+          <div class="form-actions"><button class="btn btn-primary btn-sm" type="submit">บันทึกเนื้อหา</button></div>
         </form>
       </section>
 
@@ -817,6 +853,23 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
 <script>
 const DEFAULT = JSON.parse(document.getElementById('site-data').textContent);
 const DEFAULT_THEME = { primary:'#0E9E6E', primaryDeep:'#0C3B2E', accent:'#14C28A', secondary:'#0EA5BC' };
+const DEFAULT_CONTENT = {
+  heroTitle:'เครื่องมือแพทย์ครบวงจร<br>สำหรับ<em>ทุกสถานพยาบาล</em>',
+  heroEyebrow:'Med Senses Healthcare',
+  cat:{e:'Categories', t:'หมวดหมู่สินค้า', s:'เลือกชมเครื่องมือแพทย์ตามกลุ่มการใช้งาน ครอบคลุมทุกแผนกของโรงพยาบาล'},
+  cat2:{e:'Product Catalog', t:'แคตตาล็อกสินค้าออนไลน์', s:''},
+  svc:{e:'Our Services', t:'บริการของเรา', s:'ดูแลครบวงจรตั้งแต่ก่อนการขายจนตลอดอายุการใช้งาน'},
+  step:{e:'How to Order', t:'ขั้นตอนการสั่งซื้อ', s:'กระบวนการชัดเจน โปร่งใส รองรับงานจัดซื้อจัดจ้างของหน่วยงาน'},
+  about:{e:'About Us'},
+  ct:{e:'Contact', t:'ติดต่อฝ่ายขาย<br>และขอใบเสนอราคา', s:'ยินดีให้คำปรึกษาการจัดซื้อจัดจ้าง พร้อมจัดทำสเปกและเอกสารประกอบครบถ้วน'}
+};
+const DEFAULT_ORDER_STEPS = [
+  {t:'ติดต่อสอบถาม', d:'แจ้งความต้องการผ่านโทรศัพท์ LINE หรืออีเมล ทีมงานตอบกลับรวดเร็ว'},
+  {t:'รับใบเสนอราคา', d:'จัดทำสเปกและใบเสนอราคา พร้อมเอกสารประกอบการจัดซื้อครบถ้วน'},
+  {t:'ส่งมอบและติดตั้ง', d:'ติดตั้ง สอบเทียบ และอบรมการใช้งานถึงหน้างานโดยวิศวกร'},
+  {t:'ดูแลหลังการขาย', d:'รับประกันพร้อมบริการซ่อมบำรุงตลอดอายุการใช้งาน'}
+];
+function mergeContent(c){ c=c||{}; const out=JSON.parse(JSON.stringify(DEFAULT_CONTENT)); for(const k in out){ if(typeof out[k]==='object'&&out[k]){ out[k]=Object.assign({}, out[k], c[k]||{}); } else if(c[k]!=null){ out[k]=c[k]; } } return out; }
 let products, settings, activeCat='ทั้งหมด', pendingImage=null;
 
 function loadData(){
@@ -825,8 +878,11 @@ function loadData(){
   products = d.products || [];
   settings = Object.assign({}, DEFAULT.settings, d.settings||{});
   settings.theme = Object.assign({}, DEFAULT_THEME, settings.theme||{});
+  settings.content = mergeContent(settings.content);
+  settings.orderSteps = (Array.isArray(settings.orderSteps)&&settings.orderSteps.length)?settings.orderSteps:JSON.parse(JSON.stringify(DEFAULT_ORDER_STEPS));
 }
-function persistDraft(){ try{ localStorage.setItem('medsenses-draft', currentJSON()); }catch(e){} }
+function persistDraft(){ try{ localStorage.setItem('medsenses-draft', currentJSON()); localStorage.setItem('medsenses-saved-at', String(Date.now())); }catch(e){} updateSaveStatus(); }
+function updateSaveStatus(){ const el=document.getElementById('save-status'); if(!el) return; let t=0; try{ t=+localStorage.getItem('medsenses-saved-at')||0; }catch(e){} if(!t){ el.textContent='ยังไม่มีการบันทึก'; return; } const d=new Date(t), p=x=>String(x).padStart(2,'0'); const today=new Date(); const day=(d.toDateString()===today.toDateString())?'วันนี้':p(d.getDate())+'/'+p(d.getMonth()+1); el.textContent='● บันทึกล่าสุด '+day+' '+p(d.getHours())+':'+p(d.getMinutes()); }
 
 const baht = n => (!n || n<=0) ? 'สอบถามราคา' : '฿'+Number(n).toLocaleString('th-TH');
 const esc = s => String(s ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -896,7 +952,8 @@ function applySettings(){
   document.getElementById('foot-company').textContent = '© '+new Date().getFullYear()+' '+(settings.companyTh||settings.company||'');
   const fb=(settings.facebook||'').trim();
   const ln=(settings.lineUrl||'').trim() || (settings.line?'https://line.me/R/ti/p/'+encodeURIComponent(settings.line):'');
-  [['sl-facebook',fb],['fl-facebook',fb],['sl-line',ln],['fl-line',ln],['float-line',ln]].forEach(([id,url])=>{ const a=document.getElementById(id); if(a){ a.href=url||'#'; a.style.display=url?'':'none'; } });
+  const mp=(settings.mapUrl||'').trim() || (settings.address?'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(settings.address):'');
+  [['sl-facebook',fb],['fl-facebook',fb],['sl-line',ln],['fl-line',ln],['float-line',ln],['sl-map',mp]].forEach(([id,url])=>{ const a=document.getElementById(id); if(a){ a.href=url||'#'; a.style.display=url?'':'none'; } });
   const fa=document.getElementById('foot-about'); if(fa) fa.textContent=settings.about||'';
   const fp=document.getElementById('f-phone'); if(fp) fp.textContent='โทร '+(settings.phone||'-');
   const fe=document.getElementById('f-email'); if(fe) fe.textContent=settings.email||'-';
@@ -920,6 +977,23 @@ function countUp(el){
 function renderServices(){
   document.getElementById('svc-grid').innerHTML = (settings.services||[]).map((s,i)=>
     `<div class="svc"><span class="num">${i+1}</span><div class="ic">${svgIcon(s.icon)}</div><b>${esc(s.title)}</b><p>${esc(s.desc)}</p></div>`).join('');
+}
+function setTxt(id,v,html){ const el=document.getElementById(id); if(!el) return; if(html) el.innerHTML=v||''; else el.textContent=v||''; }
+function setSub(id,v){ const el=document.getElementById(id); if(!el) return; el.textContent=v||''; el.hidden=!(v&&v.trim()); }
+function renderContent(){
+  const c=settings.content||DEFAULT_CONTENT;
+  setTxt('hero-title', c.heroTitle, true);
+  const eb=document.querySelector('.hero .eyebrow'); if(eb) eb.textContent=c.heroEyebrow||'';
+  setTxt('sh-cat-e',c.cat.e); setTxt('sh-cat-t',c.cat.t,true); setSub('sh-cat-s',c.cat.s);
+  setTxt('sh-cat2-e',c.cat2.e); setTxt('sh-cat2-t',c.cat2.t,true); setSub('sh-cat2-s',c.cat2.s);
+  setTxt('sh-svc-e',c.svc.e); setTxt('sh-svc-t',c.svc.t,true); setSub('sh-svc-s',c.svc.s);
+  setTxt('sh-step-e',c.step.e); setTxt('sh-step-t',c.step.t,true); setSub('sh-step-s',c.step.s);
+  setTxt('sh-about-e',c.about.e);
+  setTxt('sh-ct-e',c.ct.e); setTxt('sh-ct-t',c.ct.t,true); setTxt('sh-ct-s',c.ct.s,true);
+}
+function renderOrderSteps(){
+  const el=document.getElementById('order-steps'); if(!el) return;
+  el.innerHTML=(settings.orderSteps||[]).map((s,i)=>`<div class="step"><div class="sn">${i+1}</div><b>${esc(s.t)}</b><p>${esc(s.d)}</p></div>`).join('');
 }
 function renderCategories(){
   const cats=[...new Set(products.map(p=>p.category).filter(Boolean))];
@@ -969,7 +1043,7 @@ function doLogin(){
   if(v===(settings.adminPass||'medsenses')){ closeLogin(); openAdmin(); }
   else document.getElementById('login-err').textContent='รหัสผ่านไม่ถูกต้อง';
 }
-function openAdmin(){ document.getElementById('admin').classList.add('open'); document.body.style.overflow='hidden'; renderAdmin(); fillSettings(); renderThemeEditor(); renderStatsEditor(); adminTab('dash'); }
+function openAdmin(){ document.getElementById('admin').classList.add('open'); document.body.style.overflow='hidden'; renderAdmin(); fillSettings(); fillContent(); renderThemeEditor(); renderStatsEditor(); updateSaveStatus(); adminTab('dash'); }
 function logout(){ document.getElementById('admin').classList.remove('open'); document.body.style.overflow=''; location.hash=''; }
 function adminTab(p){
   document.querySelectorAll('.admin-nav button').forEach(b=>b.classList.toggle('active', b.dataset.page===p));
@@ -1066,8 +1140,8 @@ function editService(i){
 function deleteService(i){ if(!confirm('ลบบริการนี้?')) return; settings.services.splice(i,1); renderServices(); renderServiceAdmin(); renderAdmin(); persistDraft(); toast('ลบบริการแล้ว'); }
 function resetServiceForm(){ document.getElementById('service-form').reset(); set('sv-index',''); document.getElementById('svc-form-title').textContent='＋ เพิ่มบริการ'; }
 
-function fillSettings(){ for(const k of ['company','companyTh','tagline','about','phone','email','line','address','taxId','facebook','lineUrl','adminPass']) set('s-'+k, settings[k]||''); }
-function saveSettings(e){ e.preventDefault(); for(const k of ['company','companyTh','tagline','about','phone','email','line','address','taxId','facebook','lineUrl','adminPass']) settings[k]=val('s-'+k); applySettings(); persistDraft(); toast('บันทึกข้อมูลบริษัทแล้ว'); return false; }
+function fillSettings(){ for(const k of ['company','companyTh','tagline','about','phone','email','line','address','taxId','mapUrl','facebook','lineUrl','adminPass']) set('s-'+k, settings[k]||''); }
+function saveSettings(e){ e.preventDefault(); for(const k of ['company','companyTh','tagline','about','phone','email','line','address','taxId','mapUrl','facebook','lineUrl','adminPass']) settings[k]=val('s-'+k); applySettings(); persistDraft(); toast('บันทึกข้อมูลบริษัทแล้ว'); return false; }
 
 function renderThemeEditor(){
   document.getElementById('preset-grid').innerHTML=PRESETS.map((p,i)=>`<div class="preset" onclick="usePreset(${i})"><div class="swatches"><span class="sw" style="background:${p.primary}"></span><span class="sw" style="background:${p.primaryDeep}"></span><span class="sw" style="background:${p.accent}"></span><span class="sw" style="background:${p.secondary}"></span></div><b>${esc(p.name)}</b></div>`).join('');
@@ -1088,6 +1162,38 @@ function collectStats(){ settings.stats=(settings.stats||[]).map((s,i)=>{ const 
 function addStatRow(){ collectStats(); (settings.stats=settings.stats||[]).push({n:'0',l:''}); renderStatsEditor(); }
 function delStatRow(i){ collectStats(); settings.stats.splice(i,1); renderStatsEditor(); }
 function saveStats(e){ e.preventDefault(); collectStats(); settings.stats=settings.stats.filter(s=>s.n||s.l); renderStats(); heroMonitor(); renderStatsEditor(); persistDraft(); document.querySelectorAll('#stats-grid .n[data-num]').forEach(countUp); toast('บันทึกสถิติแล้ว'); return false; }
+
+/* ── ตัวแก้เนื้อหา/ข้อความบนเว็บ ── */
+function fillContent(){
+  const c=settings.content;
+  set('c-heroEyebrow',c.heroEyebrow); set('c-heroTitle',c.heroTitle);
+  set('c-cat-e',c.cat.e); set('c-cat-t',c.cat.t); set('c-cat-s',c.cat.s);
+  set('c-cat2-e',c.cat2.e); set('c-cat2-t',c.cat2.t); set('c-cat2-s',c.cat2.s);
+  set('c-svc-e',c.svc.e); set('c-svc-t',c.svc.t); set('c-svc-s',c.svc.s);
+  set('c-step-e',c.step.e); set('c-step-t',c.step.t); set('c-step-s',c.step.s);
+  set('c-about-e',c.about.e);
+  set('c-ct-e',c.ct.e); set('c-ct-t',c.ct.t); set('c-ct-s',c.ct.s);
+  renderOrderStepsEditor();
+}
+function saveContent(e){ e.preventDefault();
+  const c=settings.content;
+  c.heroEyebrow=val('c-heroEyebrow'); c.heroTitle=val('c-heroTitle');
+  c.cat={e:val('c-cat-e'),t:val('c-cat-t'),s:val('c-cat-s')};
+  c.cat2={e:val('c-cat2-e'),t:val('c-cat2-t'),s:val('c-cat2-s')};
+  c.svc={e:val('c-svc-e'),t:val('c-svc-t'),s:val('c-svc-s')};
+  c.step={e:val('c-step-e'),t:val('c-step-t'),s:val('c-step-s')};
+  c.about={e:val('c-about-e')};
+  c.ct={e:val('c-ct-e'),t:val('c-ct-t'),s:val('c-ct-s')};
+  collectOrderSteps(); settings.orderSteps=settings.orderSteps.filter(s=>s.t||s.d);
+  renderContent(); renderOrderSteps(); renderOrderStepsEditor(); persistDraft(); toast('บันทึกเนื้อหาแล้ว'); return false;
+}
+function renderOrderStepsEditor(){
+  const box=document.getElementById('steps-editor'); if(!box) return;
+  box.innerHTML=(settings.orderSteps||[]).map((s,i)=>`<div class="two" style="margin-bottom:8px"><div class="field"><input value="${esc(s.t)}" id="os-t-${i}" placeholder="หัวข้อขั้นตอน"></div><div class="field" style="display:flex;gap:8px"><input value="${esc(s.d)}" id="os-d-${i}" placeholder="คำอธิบาย" style="flex:1"><button type="button" class="btn btn-danger btn-sm" onclick="delOrderStepRow(${i})">ลบ</button></div></div>`).join('')||'<div class="note">ยังไม่มีขั้นตอน กด “เพิ่มขั้นตอน”</div>';
+}
+function collectOrderSteps(){ settings.orderSteps=(settings.orderSteps||[]).map((s,i)=>{ const t=document.getElementById('os-t-'+i), d=document.getElementById('os-d-'+i); return {t:t?t.value.trim():s.t, d:d?d.value.trim():s.d}; }); }
+function addOrderStepRow(){ collectOrderSteps(); (settings.orderSteps=settings.orderSteps||[]).push({t:'',d:''}); renderOrderStepsEditor(); }
+function delOrderStepRow(i){ collectOrderSteps(); settings.orderSteps.splice(i,1); renderOrderStepsEditor(); }
 
 function currentJSON(){ return JSON.stringify({settings,products},null,2); }
 function saveWebsite(){
@@ -1121,7 +1227,7 @@ function makePDF(){
 const val=id=>document.getElementById(id).value.trim();
 const set=(id,v)=>document.getElementById(id).value=(v??'');
 function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove('show'),2600); }
-function refresh(){ renderChips(); renderCatalog(); heroMonitor(); renderStats(); renderServices(); renderCategories(); }
+function refresh(){ renderChips(); renderCatalog(); heroMonitor(); renderStats(); renderServices(); renderCategories(); renderContent(); renderOrderSteps(); }
 
 document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeModal(); } });
 document.getElementById('nav-links').addEventListener('click',e=>{ if(e.target.tagName==='A') document.getElementById('nav-links').classList.remove('open'); });
