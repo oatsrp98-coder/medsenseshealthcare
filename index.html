@@ -12,7 +12,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230E9E6E'/%3E%3Cpath d='M32 17v30M17 32h30' stroke='white' stroke-width='9' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;600;700&family=Sarabun:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;600;700&family=Outfit:wght@500;600;700&family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <!-- ════════ ข้อมูลเว็บไซต์ (แก้ผ่านระบบแอดมินได้) ════════ -->
 <script id="site-data" type="application/json">
@@ -70,8 +70,8 @@
 <style>
 :root{
   --primary:#0E9E6E; --primary-deep:#0C3B2E; --accent:#14C28A;
-  --paper:#FAFCFB; --surface:#FFFFFF; --mint:#EAF6F0; --line:#E6EEEA;
-  --ink:#13241D; --ink-soft:#5E6E66; --danger:#DC4A3D;
+  --paper:#0B1310; --surface:#15231D; --mint:#1A2B23; --line:#2A3B33;
+  --ink:#EDF4F0; --ink-soft:#9DB1A8; --danger:#F07266;
   --radius:16px; --radius-lg:24px;
   --shadow-sm:0 1px 3px rgba(14,62,46,.05);
   --shadow:0 10px 30px rgba(14,62,46,.07);
@@ -79,7 +79,7 @@
   --secondary:#0EA5BC;
   --c-blue:#0EA5BC; --c-amber:#F2A33C; --c-violet:#5B8DEF;
   --grad:linear-gradient(135deg,#10A86E,#0EA5BC);
-  --font-display:'Kanit',sans-serif; --font-body:'Sarabun',sans-serif; --font-mono:'IBM Plex Mono',monospace;
+  --font-display:'Kanit',sans-serif; --font-body:'Sarabun',sans-serif; --font-mono:'Outfit',sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -96,7 +96,7 @@ h1,h2,h3,.display{font-family:var(--font-display);letter-spacing:-.02em}
 section{padding:104px 0;scroll-margin-top:80px}
 .section-head{margin:0 auto 56px;max-width:44rem;text-align:center}
 .section-head .eyebrow{justify-content:center}
-.section-head h2{font-size:clamp(1.9rem,3.8vw,2.7rem);font-weight:700;margin-top:16px;color:var(--primary-deep);line-height:1.16}
+.section-head h2{font-size:clamp(1.9rem,3.8vw,2.7rem);font-weight:700;margin-top:16px;color:var(--ink);line-height:1.16}
 .section-head p{color:var(--ink-soft);margin-top:14px;font-size:1.06rem}
 
 /* ปุ่ม */
@@ -121,6 +121,7 @@ header.site::after{content:"";position:absolute;inset:0;background:color-mix(in 
 header.site.scrolled::after{background:color-mix(in srgb,var(--surface) 88%,transparent);border-bottom-color:var(--line);box-shadow:var(--shadow-sm)}
 .logo{display:flex;align-items:center;gap:10px;flex:0 0 auto}
 .logo img{height:42px;width:auto}
+.logo img,.f-logo,.login-card img{filter:brightness(0) invert(1)}
 .nav-links{display:flex;gap:26px;align-items:center;font-weight:600;font-size:.95rem}
 .nav-links a{color:var(--ink-soft);position:relative;padding:6px 0;transition:.2s}
 .nav-links a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--grad);transition:.25s}
@@ -136,7 +137,7 @@ header.site.scrolled::after{background:color-mix(in srgb,var(--surface) 88%,tran
 .hero::after{content:none}
 .hero-inner{max-width:50rem;margin:0 auto}
 .hero .eyebrow{justify-content:center;margin-bottom:18px}
-.hero h1{font-size:clamp(2.4rem,5.6vw,4rem);font-weight:700;line-height:1.1;color:var(--primary-deep)}
+.hero h1{font-size:clamp(2.4rem,5.6vw,4rem);font-weight:700;line-height:1.1;color:var(--ink)}
 .hero h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero p.lead{margin:24px auto 36px;font-size:1.16rem;color:var(--ink-soft);max-width:40rem}
 .hero-actions{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
@@ -148,14 +149,14 @@ header.site.scrolled::after{background:color-mix(in srgb,var(--surface) 88%,tran
 .hero-showcase .hcard:hover .hthumb img{transform:scale(1.06)}
 .hcard .hbody{padding:16px 18px}
 .hcard .hcat{font-family:var(--font-mono);font-size:.64rem;letter-spacing:.1em;color:var(--secondary);text-transform:uppercase}
-.hcard b{display:block;font-family:var(--font-display);color:var(--primary-deep);font-size:1rem;margin:5px 0 9px;line-height:1.35}
+.hcard b{display:block;font-family:var(--font-display);color:var(--ink);font-size:1rem;margin:5px 0 9px;line-height:1.35}
 .hcard .hprice{font-family:var(--font-display);font-weight:700;color:var(--primary)}
 
 /* แดชบอร์ดข้อมูลในฮีโร่ */
 .dash{background:linear-gradient(165deg,#ffffff,color-mix(in srgb,var(--mint) 60%,#fff));border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);padding:24px;position:relative;overflow:hidden}
 .dash::before{content:"";position:absolute;right:-26%;bottom:-46%;width:78%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--secondary) 16%,transparent),transparent 70%)}
 .dash-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;position:relative}
-.dash-head b{font-family:var(--font-display);color:var(--primary-deep);font-size:1.02rem}
+.dash-head b{font-family:var(--font-display);color:var(--ink);font-size:1.02rem}
 .dash-head .live{display:inline-flex;gap:7px;align-items:center;font-family:var(--font-mono);font-size:.64rem;letter-spacing:.14em;color:var(--secondary);font-weight:600}
 .dash-head .live::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 1.6s ease-in-out infinite}
 @keyframes pulse{50%{opacity:.25}}
@@ -199,11 +200,11 @@ header.site.scrolled::after{background:color-mix(in srgb,var(--surface) 88%,tran
 .cat-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:transparent}
 .cat-card:hover::before{opacity:.07}
 .cat-card .ic{width:52px;height:52px;border-radius:14px;background:var(--mint);display:grid;place-items:center;color:var(--primary);margin-bottom:16px;transition:.25s}
-.cat-card:nth-child(4n+2) .ic{background:color-mix(in srgb,var(--c-blue) 12%,#fff);color:var(--c-blue)}
-.cat-card:nth-child(4n+3) .ic{background:color-mix(in srgb,var(--c-amber) 15%,#fff);color:var(--c-amber)}
-.cat-card:nth-child(4n) .ic{background:color-mix(in srgb,var(--c-violet) 12%,#fff);color:var(--c-violet)}
+.cat-card:nth-child(4n+2) .ic{background:color-mix(in srgb,var(--c-blue) 20%,var(--surface));color:var(--c-blue)}
+.cat-card:nth-child(4n+3) .ic{background:color-mix(in srgb,var(--c-amber) 22%,var(--surface));color:var(--c-amber)}
+.cat-card:nth-child(4n) .ic{background:color-mix(in srgb,var(--c-violet) 20%,var(--surface));color:var(--c-violet)}
 .cat-card:hover .ic{background:var(--grad);color:#fff}
-.cat-card b{font-family:var(--font-display);color:var(--primary-deep);display:block;font-size:1.02rem;margin-bottom:4px}
+.cat-card b{font-family:var(--font-display);color:var(--ink);display:block;font-size:1.02rem;margin-bottom:4px}
 .cat-card span{font-size:.86rem;color:var(--ink-soft)}
 .cat-card .cat-meta{display:flex;flex-direction:column;gap:1px}
 .cat-card .cat-count{font-size:.86rem;color:var(--ink-soft)}
@@ -231,7 +232,7 @@ header.site.scrolled::after{background:color-mix(in srgb,var(--surface) 88%,tran
 .card h3{font-size:1.04rem;font-weight:600;line-height:1.45}
 .card .model-strip{font-family:var(--font-mono);font-size:.76rem;color:var(--primary);background:var(--mint);border-radius:7px;padding:4px 11px;align-self:flex-start}
 .card .foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;padding-top:6px}
-.card .price{font-family:var(--font-display);font-weight:700;color:var(--primary-deep)}
+.card .price{font-family:var(--font-display);font-weight:700;color:var(--ink)}
 .card .more{font-size:.8rem;font-weight:600;color:var(--primary);display:inline-flex;align-items:center;gap:4px;opacity:0;transform:translateX(-6px);transition:.25s}
 .card:hover .more{opacity:1;transform:none}
 .empty{padding:54px;text-align:center;color:var(--ink-soft);border:1.5px dashed var(--line);border-radius:var(--radius);grid-column:1/-1}
@@ -248,7 +249,7 @@ header.site.scrolled::after{background:color-mix(in srgb,var(--surface) 88%,tran
 .svc:nth-child(4n+2){border-top-color:var(--c-blue)}
 .svc:nth-child(4n+3){border-top-color:var(--c-amber)}
 .svc:nth-child(4n){border-top-color:var(--c-violet)}
-.svc b{font-family:var(--font-display);display:block;color:var(--primary-deep);margin-bottom:7px;font-size:1.05rem}
+.svc b{font-family:var(--font-display);display:block;color:var(--ink);margin-bottom:7px;font-size:1.05rem}
 .svc p{font-size:.92rem;color:var(--ink-soft)}
 
 /* ───── เกี่ยวกับเรา ───── */
@@ -258,7 +259,7 @@ header.site.scrolled::after{background:color-mix(in srgb,var(--surface) 88%,tran
 .value{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;display:flex;gap:14px;align-items:flex-start;box-shadow:var(--shadow-sm);transition:.2s}
 .value:hover{transform:translateX(4px);border-color:var(--accent)}
 .value .vic{width:40px;height:40px;flex:0 0 auto;border-radius:11px;background:var(--mint);display:grid;place-items:center;color:var(--primary)}
-.value b{font-family:var(--font-display);display:block;margin-bottom:2px;color:var(--primary-deep)}
+.value b{font-family:var(--font-display);display:block;margin-bottom:2px;color:var(--ink)}
 .value span{font-size:.9rem;color:var(--ink-soft)}
 
 /* ───── ติดต่อ ───── */
@@ -281,7 +282,7 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
 .footer-grid{display:grid;grid-template-columns:1.2fr .7fr 1fr;gap:36px;padding-bottom:30px}
 .f-logo{height:40px;width:auto;margin-bottom:14px}
 .f-about{font-size:.88rem;line-height:1.7;margin-bottom:16px;max-width:30rem}
-.f-col>b{display:block;font-family:var(--font-display);color:var(--primary-deep);margin-bottom:12px}
+.f-col>b{display:block;font-family:var(--font-display);color:var(--ink);margin-bottom:12px}
 .f-col a,.f-col .fi{display:block;margin-bottom:9px;color:var(--ink-soft);font-size:.9rem;transition:.15s}
 .f-col a:hover{color:var(--primary);transform:translateX(3px)}
 .footer-bar{border-top:1px solid var(--line);padding:16px 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:.84rem;align-items:center}
@@ -300,13 +301,13 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
 .detail .photo img{width:100%;height:100%;object-fit:cover}
 .detail .info{padding:38px 36px}
 .detail .info .cat{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.12em;color:var(--accent);text-transform:uppercase}
-.detail h3{font-size:1.4rem;margin:8px 0 2px;color:var(--primary-deep)}
+.detail h3{font-size:1.4rem;margin:8px 0 2px;color:var(--ink)}
 .detail .model{font-family:var(--font-mono);font-size:.85rem;color:var(--primary);margin-bottom:18px}
 .detail p{color:var(--ink-soft);font-size:.95rem;margin-bottom:20px}
 .detail ul{list-style:none;margin-bottom:22px}
 .detail li{padding:9px 0;border-top:1px dashed var(--line);font-size:.92rem;display:flex;gap:10px}
 .detail li::before{content:"▸";color:var(--accent)}
-.detail .price{font-family:var(--font-display);font-size:1.35rem;font-weight:700;color:var(--primary-deep);margin-bottom:20px}
+.detail .price{font-family:var(--font-display);font-size:1.35rem;font-weight:700;color:var(--ink);margin-bottom:20px}
 
 /* ───── ระบบแอดมิน ───── */
 .admin-overlay{position:fixed;inset:0;z-index:100;background:var(--paper);display:none;flex-direction:column}
@@ -315,7 +316,7 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
 .login-screen.open{display:flex}
 .login-card{background:var(--surface);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);padding:40px 34px;max-width:390px;width:100%;text-align:center}
 .login-card img{height:48px;width:auto;margin:0 auto 20px}
-.login-card h3{color:var(--primary-deep);margin-bottom:6px}
+.login-card h3{color:var(--ink);margin-bottom:6px}
 .login-card p{color:var(--ink-soft);font-size:.9rem;margin-bottom:22px}
 .login-card input{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:13px 16px;font-size:1rem;text-align:center;margin-bottom:12px}
 .login-card input:focus{outline:none;border-color:var(--accent)}
@@ -334,7 +335,7 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
 .admin-main{flex:1;overflow:auto;padding:30px;min-width:0}
 .admin-page{display:none;max-width:780px}
 .admin-page.active{display:block}
-.admin-page h2{font-family:var(--font-display);color:var(--primary-deep);margin-bottom:4px}
+.admin-page h2{font-family:var(--font-display);color:var(--ink);margin-bottom:4px}
 .admin-page .sub{color:var(--ink-soft);font-size:.92rem;margin-bottom:24px}
 .kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px;margin-bottom:24px}
 .kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow-sm)}
@@ -342,7 +343,7 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
 .kpi .l{color:var(--ink-soft);font-size:.86rem}
 .dash-cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:22px}
 .dash-panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow-sm)}
-.dash-panel h4{font-family:var(--font-display);color:var(--primary-deep);margin-bottom:14px;font-size:1rem}
+.dash-panel h4{font-family:var(--font-display);color:var(--ink);margin-bottom:14px;font-size:1rem}
 .dbar{margin-bottom:13px}.dbar:last-child{margin-bottom:0}
 .dbar-top{display:flex;justify-content:space-between;font-size:.85rem;font-weight:600;margin-bottom:5px;color:var(--ink)}
 .dbar-top span:last-child{color:var(--ink-soft);font-weight:500;font-family:var(--font-mono);font-size:.74rem}
@@ -354,13 +355,13 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
 .dinfo{flex:1;min-width:0}
 .dinfo b{display:block;font-size:.88rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .dinfo span{font-size:.74rem;color:var(--ink-soft)}
-.dprice{font-family:var(--font-display);font-weight:700;color:var(--primary-deep);font-size:.9rem;white-space:nowrap}
+.dprice{font-family:var(--font-display);font-weight:700;color:var(--ink);font-size:.9rem;white-space:nowrap}
 @media (max-width:880px){.dash-cols{grid-template-columns:1fr}}
 .quick{display:flex;gap:10px;flex-wrap:wrap}
 .form{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;display:grid;gap:14px;margin-bottom:22px;box-shadow:var(--shadow-sm)}
-.form h4{font-family:var(--font-display);color:var(--primary-deep)}
+.form h4{font-family:var(--font-display);color:var(--ink)}
 .field label{display:block;font-weight:600;font-size:.86rem;margin-bottom:5px}
-.field input,.field textarea,.field select{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:11px 14px;font-size:.93rem;background:#fff;color:var(--ink)}
+.field input,.field textarea,.field select{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:11px 14px;font-size:.93rem;background:var(--paper);color:var(--ink)}
 .field textarea{min-height:84px;resize:vertical}
 .field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--accent)}
 .field .hint{font-size:.78rem;color:var(--ink-soft);margin-top:4px}
@@ -377,7 +378,7 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
 .admin-item .t b{display:block;font-size:.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .admin-item .t span{font-family:var(--font-mono);font-size:.72rem;color:var(--primary)}
 .note{font-size:.84rem;color:var(--ink-soft);background:var(--mint);border-radius:12px;padding:14px 16px;line-height:1.65;margin-bottom:18px}
-.note b{color:var(--primary-deep)}
+.note b{color:var(--ink)}
 .preset-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-bottom:20px}
 .preset{border:1.5px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.15s;background:var(--surface)}
 .preset:hover{border-color:var(--accent);transform:translateY(-2px)}
@@ -400,7 +401,7 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
 .step:nth-child(2) .sn{background:linear-gradient(135deg,var(--c-blue),#5BD3E6);box-shadow:0 8px 18px color-mix(in srgb,var(--c-blue) 28%,transparent)}
 .step:nth-child(3) .sn{background:linear-gradient(135deg,var(--c-amber),#F8C173);box-shadow:0 8px 18px color-mix(in srgb,var(--c-amber) 28%,transparent)}
 .step:nth-child(4) .sn{background:linear-gradient(135deg,var(--c-violet),#93B4F6);box-shadow:0 8px 18px color-mix(in srgb,var(--c-violet) 28%,transparent)}
-.step b{font-family:var(--font-display);color:var(--primary-deep);display:block;margin-bottom:6px;font-size:1.02rem}
+.step b{font-family:var(--font-display);color:var(--ink);display:block;margin-bottom:6px;font-size:1.02rem}
 .step p{font-size:.9rem;color:var(--ink-soft)}
 @media (max-width:880px){.steps{grid-template-columns:1fr 1fr}.steps::before{display:none}}
 @media (max-width:480px){.steps{grid-template-columns:1fr}}
@@ -418,14 +419,16 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
 #pdf-root{display:none}
 @media print{
   @page{size:A4;margin:14mm}
+  :root{--ink:#13241D;--ink-soft:#52615A;--surface:#fff;--mint:#EAF6F0;--line:#DBE7E0}
   body{background:#fff}
+  #pdf-root,#pdf-root *{--ink:#13241D}
   header.site,.hero,section,.stats,.contact,footer.site,.modal,.admin-overlay,.login-screen,.toast{display:none !important}
   .reveal{opacity:1!important;transform:none!important}
   #pdf-root{display:block;font-family:var(--font-body);color:var(--ink)}
   .pdf-cover{height:92vh;display:flex;flex-direction:column;justify-content:center;border:3px solid var(--primary);border-radius:6px;padding:60px;page-break-after:always}
   .pdf-cover img{width:62mm;margin-bottom:9mm}
   .pdf-cover .mono{font-family:var(--font-mono);color:var(--primary);letter-spacing:.15em;font-size:11pt;margin-bottom:18px}
-  .pdf-cover h1{font-family:var(--font-display);font-size:30pt;color:var(--primary-deep);line-height:1.3;margin-bottom:8px}
+  .pdf-cover h1{font-family:var(--font-display);font-size:30pt;color:var(--ink);line-height:1.3;margin-bottom:8px}
   .pdf-cover h2{font-family:var(--font-display);font-size:15pt;font-weight:500;color:var(--ink-soft);margin-bottom:34px}
   .pdf-cover .meta{margin-top:auto;font-size:10.5pt;color:var(--ink-soft);border-top:1.5px solid var(--line);padding-top:16px;line-height:1.8}
   .pdf-item{display:grid;grid-template-columns:62mm 1fr;gap:8mm;padding:7mm 0;border-bottom:1px solid var(--line);page-break-inside:avoid}
@@ -437,7 +440,7 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
   .pdf-item p{font-size:9.5pt;color:var(--ink-soft);margin-bottom:5px}
   .pdf-item ul{list-style:none;font-size:9pt;color:var(--ink-soft)}
   .pdf-item li::before{content:"▸ ";color:var(--accent)}
-  .pdf-item .price{font-family:var(--font-display);font-weight:700;color:var(--primary-deep);font-size:11.5pt;margin-top:5px}
+  .pdf-item .price{font-family:var(--font-display);font-weight:700;color:var(--ink);font-size:11.5pt;margin-top:5px}
 }
 
 /* ───── Responsive ───── */
@@ -551,7 +554,7 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
   <div class="wrap about-grid">
     <div class="reveal">
       <span class="eyebrow">About Us</span>
-      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);margin:10px 0 18px;color:var(--primary-deep);font-family:var(--font-display);font-weight:700" id="about-company"></h2>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);margin:10px 0 18px;color:var(--ink);font-family:var(--font-display);font-weight:700" id="about-company"></h2>
       <p id="about-text"></p>
     </div>
     <div class="value-list reveal">
@@ -709,7 +712,7 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
             <button type="submit" class="btn btn-primary btn-sm" id="form-submit">บันทึกสินค้า</button>
           </div>
         </form>
-        <h4 style="font-family:var(--font-display);color:var(--primary-deep);margin-bottom:10px">รายการทั้งหมด (<span id="count">0</span>)</h4>
+        <h4 style="font-family:var(--font-display);color:var(--ink);margin-bottom:10px">รายการทั้งหมด (<span id="count">0</span>)</h4>
         <div class="admin-list" id="admin-list"></div>
       </section>
 
@@ -770,9 +773,9 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
       <section class="admin-page" id="page-theme">
         <h2>ธีมสีเว็บไซต์</h2>
         <div class="sub">เลือกชุดสีสำเร็จ หรือปรับเองทีละสี — ดูผลทันที</div>
-        <h4 style="font-family:var(--font-display);color:var(--primary-deep);margin-bottom:10px">ชุดสีสำเร็จรูป</h4>
+        <h4 style="font-family:var(--font-display);color:var(--ink);margin-bottom:10px">ชุดสีสำเร็จรูป</h4>
         <div class="preset-grid" id="preset-grid"></div>
-        <h4 style="font-family:var(--font-display);color:var(--primary-deep);margin:18px 0 10px">ปรับเอง</h4>
+        <h4 style="font-family:var(--font-display);color:var(--ink);margin:18px 0 10px">ปรับเอง</h4>
         <div class="color-row"><label>สีหลัก (ปุ่ม/หัวข้อ)</label><span class="hex" id="hex-primary"></span><input type="color" id="t-primary" oninput="liveTheme()"></div>
         <div class="color-row"><label>สีเข้ม (แถบ/พื้นเข้ม)</label><span class="hex" id="hex-primaryDeep"></span><input type="color" id="t-primaryDeep" oninput="liveTheme()"></div>
         <div class="color-row"><label>สีรอง (ไล่เฉด/ลูกเล่น)</label><span class="hex" id="hex-secondary"></span><input type="color" id="t-secondary" oninput="liveTheme()"></div>
@@ -840,10 +843,11 @@ const PRESETS = [
   {name:'ม่วงเทคโนโลยี', primary:'#5B3FA0', primaryDeep:'#1E1633', accent:'#9B7BE0', secondary:'#6E63D9'}
 ];
 function mix(hex, white){ const n=parseInt(hex.slice(1),16), r=n>>16, g=(n>>8)&255, b=n&255; const f=v=>Math.round(v+(255-v)*white); return '#'+[f(r),f(g),f(b)].map(x=>x.toString(16).padStart(2,'0')).join(''); }
+function mixDark(hex, k){ const n=parseInt(hex.slice(1),16), r=n>>16, g=(n>>8)&255, b=n&255; const d=[12,22,18]; const f=(v,i)=>Math.round(v*(1-k)+d[i]*k); return '#'+[f(r,0),f(g,1),f(b,2)].map(x=>x.toString(16).padStart(2,'0')).join(''); }
 function applyTheme(t){
   const r=document.documentElement.style;
   r.setProperty('--primary', t.primary); r.setProperty('--primary-deep', t.primaryDeep); r.setProperty('--accent', t.accent); r.setProperty('--secondary', t.secondary||'#0EA5BC');
-  r.setProperty('--mint', mix(t.accent,.90)); r.setProperty('--line', mix(t.accent,.82)); r.setProperty('--paper', mix(t.accent,.96));
+  r.setProperty('--mint', mixDark(t.accent,.84)); r.setProperty('--line', mixDark(t.accent,.74)); r.setProperty('--paper', '#0B1310');
 }
 
 function placeholder(model){
