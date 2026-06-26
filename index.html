@@ -70,12 +70,12 @@
 <style>
 :root{
   --primary:#0E9E6E; --primary-deep:#0C3B2E; --accent:#14C28A;
-  --paper:#F2FBF6; --surface:#FFFFFF; --mint:#DEF4E8; --line:#D6E8DD;
-  --ink:#0F2A20; --ink-soft:#566B61; --danger:#DC4A3D;
-  --radius:18px; --radius-lg:22px;
-  --shadow-sm:0 2px 8px rgba(14,62,46,.06);
-  --shadow:0 12px 30px rgba(14,62,46,.10);
-  --shadow-lg:0 24px 60px rgba(14,62,46,.15);
+  --paper:#FAFCFB; --surface:#FFFFFF; --mint:#EAF6F0; --line:#E6EEEA;
+  --ink:#13241D; --ink-soft:#5E6E66; --danger:#DC4A3D;
+  --radius:16px; --radius-lg:24px;
+  --shadow-sm:0 1px 3px rgba(14,62,46,.05);
+  --shadow:0 10px 30px rgba(14,62,46,.07);
+  --shadow-lg:0 24px 60px rgba(14,62,46,.12);
   --secondary:#0EA5BC;
   --c-blue:#0EA5BC; --c-amber:#F2A33C; --c-violet:#5B8DEF;
   --grad:linear-gradient(135deg,#10A86E,#0EA5BC);
@@ -93,10 +93,11 @@ h1,h2,h3,.display{font-family:var(--font-display);letter-spacing:-.02em}
 .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
 .eyebrow{font-family:var(--font-mono);font-size:.76rem;letter-spacing:.14em;color:var(--primary);text-transform:uppercase;display:inline-flex;align-items:center;gap:9px;font-weight:600}
 .eyebrow::before{content:"";width:26px;height:2px;background:var(--grad)}
-section{padding:96px 0;scroll-margin-top:80px}
-.section-head{margin-bottom:48px;max-width:46rem}
-.section-head h2{font-size:clamp(1.7rem,3.4vw,2.5rem);font-weight:700;margin-top:14px;color:var(--primary-deep);line-height:1.2}
-.section-head p{color:var(--ink-soft);margin-top:12px;font-size:1.05rem}
+section{padding:104px 0;scroll-margin-top:80px}
+.section-head{margin:0 auto 56px;max-width:44rem;text-align:center}
+.section-head .eyebrow{justify-content:center}
+.section-head h2{font-size:clamp(1.9rem,3.8vw,2.7rem);font-weight:700;margin-top:16px;color:var(--primary-deep);line-height:1.16}
+.section-head p{color:var(--ink-soft);margin-top:14px;font-size:1.06rem}
 
 /* ปุ่ม */
 .btn{display:inline-flex;align-items:center;gap:9px;border:none;border-radius:999px;padding:13px 26px;font-weight:600;font-size:.96rem;transition:.22s cubic-bezier(.3,.8,.4,1);white-space:nowrap}
@@ -128,22 +129,27 @@ header.site.scrolled::after{background:color-mix(in srgb,var(--surface) 88%,tran
 .menu-btn{display:none;background:none;border:none;font-size:1.6rem;color:var(--primary)}
 
 /* ───── ฮีโร่ ───── */
-.hero{position:relative;padding:96px 0 96px;overflow:hidden}
-.hero::before{content:"";position:absolute;inset:-20% -10% auto -10%;height:120%;z-index:-2;
-  background:radial-gradient(50% 50% at 16% 18%,color-mix(in srgb,var(--accent) 22%,transparent),transparent 70%),
-             radial-gradient(48% 48% at 90% 4%,color-mix(in srgb,var(--secondary) 20%,transparent),transparent 70%);}
-.hero::after{content:"";position:absolute;inset:0;z-index:-2;opacity:.5;
-  background-image:linear-gradient(color-mix(in srgb,var(--primary) 7%,transparent) 1px,transparent 1px),linear-gradient(90deg,color-mix(in srgb,var(--primary) 7%,transparent) 1px,transparent 1px);
-  background-size:48px 48px;mask-image:radial-gradient(70% 60% at 50% 30%,#000,transparent 80%)}
-.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:54px;align-items:center}
-.badge-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
-.tbadge{display:inline-flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow-sm);border-radius:999px;padding:6px 14px;font-size:.8rem;font-weight:600;color:var(--ink-soft)}
-.tbadge .d{width:7px;height:7px;border-radius:50%;background:var(--grad)}
-.tbadge .ck{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;background:var(--grad);color:#fff;font-size:.62rem;font-weight:700;line-height:1}
-.hero h1{font-size:clamp(2.2rem,5vw,3.6rem);font-weight:700;line-height:1.14;color:var(--primary-deep)}
+.hero{position:relative;padding:124px 0 96px;overflow:hidden;text-align:center}
+.hero::before{content:"";position:absolute;inset:-40% -10% auto -10%;height:100%;z-index:-2;
+  background:radial-gradient(55% 55% at 50% 0%,color-mix(in srgb,var(--accent) 15%,transparent),transparent 72%),
+             radial-gradient(40% 40% at 88% 8%,color-mix(in srgb,var(--secondary) 12%,transparent),transparent 70%)}
+.hero::after{content:none}
+.hero-inner{max-width:50rem;margin:0 auto}
+.hero .eyebrow{justify-content:center;margin-bottom:18px}
+.hero h1{font-size:clamp(2.4rem,5.6vw,4rem);font-weight:700;line-height:1.1;color:var(--primary-deep)}
 .hero h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero p.lead{margin:22px 0 34px;font-size:1.12rem;color:var(--ink-soft);max-width:34rem}
-.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.hero p.lead{margin:24px auto 36px;font-size:1.16rem;color:var(--ink-soft);max-width:40rem}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.hero-showcase{margin-top:68px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px;text-align:left}
+.hero-showcase .hcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow);cursor:pointer;transition:.28s cubic-bezier(.2,.7,.3,1)}
+.hero-showcase .hcard:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.hcard .hthumb{aspect-ratio:4/3;background:var(--mint);overflow:hidden}
+.hcard .hthumb img{width:100%;height:100%;object-fit:cover;transition:.5s cubic-bezier(.2,.7,.3,1)}
+.hero-showcase .hcard:hover .hthumb img{transform:scale(1.06)}
+.hcard .hbody{padding:16px 18px}
+.hcard .hcat{font-family:var(--font-mono);font-size:.64rem;letter-spacing:.1em;color:var(--secondary);text-transform:uppercase}
+.hcard b{display:block;font-family:var(--font-display);color:var(--primary-deep);font-size:1rem;margin:5px 0 9px;line-height:1.35}
+.hcard .hprice{font-family:var(--font-display);font-weight:700;color:var(--primary)}
 
 /* แดชบอร์ดข้อมูลในฮีโร่ */
 .dash{background:linear-gradient(165deg,#ffffff,color-mix(in srgb,var(--mint) 60%,#fff));border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);padding:24px;position:relative;overflow:hidden}
@@ -438,7 +444,9 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
 @media (max-width:980px){ .admin-page{max-width:none} }
 @media (max-width:880px){
   section{padding:60px 0}
-  .hero-grid,.about-grid,.contact-inner,.detail{grid-template-columns:1fr}
+  .hero{padding:84px 0 64px}
+  .about-grid,.contact-inner,.detail{grid-template-columns:1fr}
+  .hero-showcase{grid-template-columns:1fr;gap:16px;margin-top:44px}
   .detail .photo{min-height:230px}
   .stats-grid{grid-template-columns:repeat(2,1fr);gap:32px 24px}
   .nav-links{display:none;position:absolute;top:74px;left:0;right:0;background:var(--surface);flex-direction:column;padding:20px 24px;border-bottom:1px solid var(--line);gap:16px;align-items:flex-start;box-shadow:var(--shadow)}
@@ -479,17 +487,16 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
 
 <!-- ════════ หน้าหลัก ════════ -->
 <div class="hero" id="top">
-  <div class="wrap hero-grid">
-    <div class="reveal">
-      <h1 id="hero-title">เครื่องมือแพทย์ครบวงจร<br>สำหรับ<em>ทุกสถานพยาบาล</em></h1>
-      <p class="lead" id="hero-about"></p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#catalog">ดูแคตตาล็อกสินค้า →</a>
-        <button class="btn btn-ghost" onclick="makePDF()">⬇ ดาวน์โหลด PDF</button>
-      </div>
+  <div class="wrap hero-inner reveal">
+    <span class="eyebrow">Med Senses Healthcare</span>
+    <h1 id="hero-title">เครื่องมือแพทย์ครบวงจร<br>สำหรับ<em>ทุกสถานพยาบาล</em></h1>
+    <p class="lead" id="hero-about"></p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#catalog">ดูแคตตาล็อกสินค้า →</a>
+      <button class="btn btn-ghost" onclick="makePDF()">⬇ ดาวน์โหลดแคตตาล็อก PDF</button>
     </div>
-    <div class="reveal" id="hero-monitor"></div>
   </div>
+  <div class="wrap"><div class="reveal hero-showcase" id="hero-monitor"></div></div>
 </div>
 
 <!-- สถิติ -->
@@ -925,18 +932,9 @@ function gotoCat(c){ setCat(c); document.getElementById('catalog').scrollIntoVie
 
 function heroMonitor(){
   const el=document.getElementById('hero-monitor');
-  const cats=[...new Set(products.map(p=>p.category).filter(Boolean))];
-  const counts=cats.map(c=>({c,n:products.filter(p=>p.category===c).length})).sort((a,b)=>b.n-a.n).slice(0,4);
-  const max=Math.max(1,...counts.map(x=>x.n),1);
-  const stats=(settings.stats||[]).slice(0,4);
-  el.innerHTML=`<div class="dash">
-    <div class="dash-head"><b>ภาพรวมข้อมูลบริษัท</b><span class="live">COMPANY DATA</span></div>
-    <div class="dash-tiles">${stats.map((s,i)=>`<div class="tile ${i===0?'hl':''}"><div class="tv">${esc(s.n)}</div><div class="tl">${esc(s.l)}</div></div>`).join('')||'<div class="tile"><div class="tl">เพิ่มสถิติได้ในระบบแอดมิน</div></div>'}</div>
-    <div class="dash-bars"><span class="bt">สินค้าตามหมวดหมู่</span>
-      ${counts.map((x,i)=>`<div class="brow"><div class="bl"><span>${esc(x.c)}</span><span>${x.n} รายการ</span></div><div class="btrack"><div class="bfill bf${i%4}" data-w="${Math.round(x.n/max*100)}"></div></div></div>`).join('')||'<div class="note">ยังไม่มีสินค้า</div>'}
-    </div>
-  </div>`;
-  setTimeout(()=>el.querySelectorAll('.bfill').forEach(b=>b.style.width=b.dataset.w+'%'),250);
+  const feat=products.filter(p=>p.featured);
+  const list=(feat.length?feat:products).slice(0,3);
+  el.innerHTML=list.map(p=>`<article class="hcard" onclick="openProduct('${p.id}')"><div class="hthumb"><img src="${imgSrc(p)}" alt="${esc(p.name)}" loading="lazy"></div><div class="hbody"><span class="hcat">${esc(p.category||'')}</span><b>${esc(p.name)}</b><span class="hprice">${baht(p.price)}</span></div></article>`).join('');
 }
 
 const categories = ()=>['ทั้งหมด',...new Set(products.map(p=>p.category).filter(Boolean))];
