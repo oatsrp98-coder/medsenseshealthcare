@@ -406,10 +406,16 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
 .step:nth-child(4) .sn{background:linear-gradient(135deg,var(--c-violet),#93B4F6);box-shadow:0 8px 18px color-mix(in srgb,var(--c-violet) 28%,transparent)}
 .step b{font-family:var(--font-display);color:var(--ink);display:block;margin-bottom:6px;font-size:1.02rem}
 .step p{font-size:.9rem;color:var(--ink-soft)}
-.news-wrap{display:flex;flex-direction:column;align-items:center;gap:20px}
-.news-wrap .fb-page{max-width:100%;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow);min-height:80px}
-.news-wrap .fb-page blockquote{padding:26px;text-align:center}
-.news-wrap .fb-page a{color:var(--primary);font-weight:600}
+.news-grid{display:grid;grid-template-columns:1fr 500px;gap:48px;align-items:center;max-width:1060px;margin:0 auto}
+.news-side{text-align:left}
+.news-side .news-ic{width:54px;height:54px;border-radius:15px;background:var(--grad);color:#fff;display:grid;place-items:center;margin-bottom:18px;box-shadow:0 8px 18px color-mix(in srgb,var(--primary) 28%,transparent)}
+.news-side b{font-family:var(--font-display);font-size:1.5rem;color:var(--ink);display:block;margin-bottom:12px;line-height:1.25}
+.news-side p{color:var(--ink-soft);font-size:1.02rem;margin-bottom:24px;max-width:30rem}
+.news-feed{display:flex;justify-content:center;min-width:0}
+.news-feed .fb-page{max-width:100%;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow);min-height:80px}
+.news-feed .fb-page blockquote{padding:40px 26px;text-align:center}
+.news-feed .fb-page a{color:var(--primary);font-weight:600}
+@media (max-width:880px){.news-grid{grid-template-columns:1fr;gap:28px;max-width:520px}.news-side{text-align:center}.news-side .news-ic,.news-side p{margin-left:auto;margin-right:auto}}
 @media (max-width:880px){.steps{grid-template-columns:1fr 1fr}.steps::before{display:none}}
 @media (max-width:480px){.steps{grid-template-columns:1fr}}
 
@@ -547,12 +553,19 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
 <section id="steps">
   <div class="wrap">
     <div class="section-head reveal"><span class="eyebrow" id="sh-step-e">Latest News</span><h2 id="sh-step-t">ข่าวล่าสุด</h2><p id="sh-step-s">ติดตามข่าวสาร โปรโมชั่น และกิจกรรมล่าสุดจากเฟซบุ๊กเพจของเรา</p></div>
-    <div class="news-wrap reveal">
-      <div id="fb-root"></div>
-      <div class="fb-page" id="fb-feed" data-tabs="timeline" data-width="500" data-height="460" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false">
-        <blockquote class="fb-xfbml-parse-ignore"><a id="fb-fallback" href="#">ดูโพสต์ล่าสุดบนเฟซบุ๊ก</a></blockquote>
+    <div class="news-grid reveal">
+      <div class="news-side">
+        <div class="news-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21.9v-7.4h2.5l.4-2.9h-2.9V9.7c0-.84.23-1.42 1.44-1.42h1.54V5.7c-.27-.04-1.18-.12-2.24-.12-2.22 0-3.74 1.36-3.74 3.85v2.15H8v2.9h2.5v7.4a10 10 0 0 0 3 0Z"/></svg></div>
+        <b>ติดตามเราบนเฟซบุ๊ก</b>
+        <p>อัปเดตโพสต์ โปรโมชั่น และกิจกรรมล่าสุดของเรา พร้อมพูดคุยและสอบถามกับทีมงานได้โดยตรง</p>
+        <a class="btn btn-primary" id="news-more" target="_blank" rel="noopener">เปิดเพจ Facebook →</a>
       </div>
-      <a class="btn btn-ghost" id="news-more" target="_blank" rel="noopener">เปิดดูเพจ Facebook ทั้งหมด →</a>
+      <div class="news-feed">
+        <div id="fb-root"></div>
+        <div class="fb-page" id="fb-feed" data-tabs="timeline" data-width="500" data-height="500" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false">
+          <blockquote class="fb-xfbml-parse-ignore"><a id="fb-fallback" href="#">ดูโพสต์ล่าสุดบนเฟซบุ๊ก</a></blockquote>
+        </div>
+      </div>
     </div>
   </div>
 </section>
