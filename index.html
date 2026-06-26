@@ -406,6 +406,10 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
 .step:nth-child(4) .sn{background:linear-gradient(135deg,var(--c-violet),#93B4F6);box-shadow:0 8px 18px color-mix(in srgb,var(--c-violet) 28%,transparent)}
 .step b{font-family:var(--font-display);color:var(--ink);display:block;margin-bottom:6px;font-size:1.02rem}
 .step p{font-size:.9rem;color:var(--ink-soft)}
+.news-wrap{display:flex;flex-direction:column;align-items:center;gap:20px}
+.news-wrap .fb-page{max-width:100%;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow);min-height:80px}
+.news-wrap .fb-page blockquote{padding:26px;text-align:center}
+.news-wrap .fb-page a{color:var(--primary);font-weight:600}
 @media (max-width:880px){.steps{grid-template-columns:1fr 1fr}.steps::before{display:none}}
 @media (max-width:480px){.steps{grid-template-columns:1fr}}
 
@@ -542,12 +546,13 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
 <!-- ขั้นตอนการสั่งซื้อ -->
 <section id="steps">
   <div class="wrap">
-    <div class="section-head reveal"><span class="eyebrow" id="sh-step-e">How to Order</span><h2 id="sh-step-t">ขั้นตอนการสั่งซื้อ</h2><p id="sh-step-s">กระบวนการชัดเจน โปร่งใส รองรับงานจัดซื้อจัดจ้างของหน่วยงาน</p></div>
-    <div class="steps reveal" id="order-steps">
-      <div class="step"><div class="sn">1</div><b>ติดต่อสอบถาม</b><p>แจ้งความต้องการผ่านโทรศัพท์ LINE หรืออีเมล ทีมงานตอบกลับรวดเร็ว</p></div>
-      <div class="step"><div class="sn">2</div><b>รับใบเสนอราคา</b><p>จัดทำสเปกและใบเสนอราคา พร้อมเอกสารประกอบการจัดซื้อครบถ้วน</p></div>
-      <div class="step"><div class="sn">3</div><b>ส่งมอบและติดตั้ง</b><p>ติดตั้ง สอบเทียบ และอบรมการใช้งานถึงหน้างานโดยวิศวกร</p></div>
-      <div class="step"><div class="sn">4</div><b>ดูแลหลังการขาย</b><p>รับประกันพร้อมบริการซ่อมบำรุงตลอดอายุการใช้งาน</p></div>
+    <div class="section-head reveal"><span class="eyebrow" id="sh-step-e">Latest News</span><h2 id="sh-step-t">ข่าวล่าสุด</h2><p id="sh-step-s">ติดตามข่าวสาร โปรโมชั่น และกิจกรรมล่าสุดจากเฟซบุ๊กเพจของเรา</p></div>
+    <div class="news-wrap reveal">
+      <div id="fb-root"></div>
+      <div class="fb-page" id="fb-feed" data-tabs="timeline" data-width="500" data-height="640" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+        <blockquote class="fb-xfbml-parse-ignore"><a id="fb-fallback" href="#">ดูโพสต์ล่าสุดบนเฟซบุ๊ก</a></blockquote>
+      </div>
+      <a class="btn btn-ghost" id="news-more" target="_blank" rel="noopener">เปิดดูเพจ Facebook ทั้งหมด →</a>
     </div>
   </div>
 </section>
@@ -609,7 +614,7 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
         <a href="#top">หน้าหลัก</a>
         <a href="#catalog">สินค้า</a>
         <a href="#services">บริการ</a>
-        <a href="#steps">ขั้นตอนการสั่งซื้อ</a>
+        <a href="#steps">ข่าวล่าสุด</a>
         <a href="#contact">ติดต่อเรา</a>
       </div>
       <div class="f-col">
@@ -792,11 +797,10 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
           <h4>บริการ</h4>
           <div class="two"><div class="field"><label>ป้ายเล็ก</label><input id="c-svc-e"></div><div class="field"><label>หัวข้อ</label><input id="c-svc-t"></div></div>
           <div class="field"><label>คำอธิบาย</label><input id="c-svc-s"></div>
-          <h4>ขั้นตอนการสั่งซื้อ</h4>
+          <h4>ข่าวล่าสุด (ฟีด Facebook)</h4>
           <div class="two"><div class="field"><label>ป้ายเล็ก</label><input id="c-step-e"></div><div class="field"><label>หัวข้อ</label><input id="c-step-t"></div></div>
           <div class="field"><label>คำอธิบาย</label><input id="c-step-s"></div>
-          <div id="steps-editor"></div>
-          <div class="form-actions" style="justify-content:flex-start"><button type="button" class="btn btn-ghost btn-sm" onclick="addOrderStepRow()">＋ เพิ่มขั้นตอน</button></div>
+          <div class="hint">ฟีดข่าวดึงโพสต์จาก “ลิงก์ Facebook Page” (แท็บข้อมูลบริษัท) โดยอัตโนมัติ — แก้ลิงก์เพจที่นั่น</div>
           <h4>เกี่ยวกับเรา</h4>
           <div class="field"><label>ป้ายเล็ก</label><input id="c-about-e"><div class="hint">หัวข้อใช้ “ชื่อบริษัท (ไทย)” และเนื้อหาใช้ “เกี่ยวกับบริษัท” — แก้ได้ที่แท็บข้อมูลบริษัท</div></div>
           <h4>ติดต่อ</h4>
@@ -850,6 +854,7 @@ footer.site{padding:46px 0 0;border-top:1px solid var(--line);color:var(--ink-so
 <div class="toast" id="toast"></div>
 <div id="pdf-root"></div>
 
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/th_TH/sdk.js#xfbml=1&version=v19.0"></script>
 <script>
 const DEFAULT = JSON.parse(document.getElementById('site-data').textContent);
 const DEFAULT_THEME = { primary:'#0E9E6E', primaryDeep:'#0C3B2E', accent:'#14C28A', secondary:'#0EA5BC' };
@@ -859,7 +864,7 @@ const DEFAULT_CONTENT = {
   cat:{e:'Categories', t:'หมวดหมู่สินค้า', s:'เลือกชมเครื่องมือแพทย์ตามกลุ่มการใช้งาน ครอบคลุมทุกแผนกของโรงพยาบาล'},
   cat2:{e:'Product Catalog', t:'แคตตาล็อกสินค้าออนไลน์', s:''},
   svc:{e:'Our Services', t:'บริการของเรา', s:'ดูแลครบวงจรตั้งแต่ก่อนการขายจนตลอดอายุการใช้งาน'},
-  step:{e:'How to Order', t:'ขั้นตอนการสั่งซื้อ', s:'กระบวนการชัดเจน โปร่งใส รองรับงานจัดซื้อจัดจ้างของหน่วยงาน'},
+  step:{e:'Latest News', t:'ข่าวล่าสุด', s:'ติดตามข่าวสาร โปรโมชั่น และกิจกรรมล่าสุดจากเฟซบุ๊กเพจของเรา'},
   about:{e:'About Us'},
   ct:{e:'Contact', t:'ติดต่อฝ่ายขาย<br>และขอใบเสนอราคา', s:'ยินดีให้คำปรึกษาการจัดซื้อจัดจ้าง พร้อมจัดทำสเปกและเอกสารประกอบครบถ้วน'}
 };
@@ -954,6 +959,7 @@ function applySettings(){
   const ln=(settings.lineUrl||'').trim() || (settings.line?'https://line.me/R/ti/p/'+encodeURIComponent(settings.line):'');
   const mp=(settings.mapUrl||'').trim() || (settings.address?'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(settings.address):'');
   [['sl-facebook',fb],['fl-facebook',fb],['sl-line',ln],['fl-line',ln],['float-line',ln],['sl-map',mp]].forEach(([id,url])=>{ const a=document.getElementById(id); if(a){ a.href=url||'#'; a.style.display=url?'':'none'; } });
+  renderNews();
   const fa=document.getElementById('foot-about'); if(fa) fa.textContent=settings.about||'';
   const fp=document.getElementById('f-phone'); if(fp) fp.textContent='โทร '+(settings.phone||'-');
   const fe=document.getElementById('f-email'); if(fe) fe.textContent=settings.email||'-';
@@ -994,6 +1000,13 @@ function renderContent(){
 function renderOrderSteps(){
   const el=document.getElementById('order-steps'); if(!el) return;
   el.innerHTML=(settings.orderSteps||[]).map((s,i)=>`<div class="step"><div class="sn">${i+1}</div><b>${esc(s.t)}</b><p>${esc(s.d)}</p></div>`).join('');
+}
+function renderNews(){
+  const url=(settings.facebook||'').trim();
+  const feed=document.getElementById('fb-feed'); if(feed&&url) feed.setAttribute('data-href',url);
+  const fbk=document.getElementById('fb-fallback'); if(fbk) fbk.href=url||'#';
+  const more=document.getElementById('news-more'); if(more){ more.href=url||'#'; more.style.display=url?'':'none'; }
+  if(url&&window.FB&&FB.XFBML&&feed){ try{ FB.XFBML.parse(feed.parentNode); }catch(e){} }
 }
 function renderCategories(){
   const cats=[...new Set(products.map(p=>p.category).filter(Boolean))];
@@ -1173,7 +1186,6 @@ function fillContent(){
   set('c-step-e',c.step.e); set('c-step-t',c.step.t); set('c-step-s',c.step.s);
   set('c-about-e',c.about.e);
   set('c-ct-e',c.ct.e); set('c-ct-t',c.ct.t); set('c-ct-s',c.ct.s);
-  renderOrderStepsEditor();
 }
 function saveContent(e){ e.preventDefault();
   const c=settings.content;
@@ -1227,7 +1239,7 @@ function makePDF(){
 const val=id=>document.getElementById(id).value.trim();
 const set=(id,v)=>document.getElementById(id).value=(v??'');
 function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove('show'),2600); }
-function refresh(){ renderChips(); renderCatalog(); heroMonitor(); renderStats(); renderServices(); renderCategories(); renderContent(); renderOrderSteps(); }
+function refresh(){ renderChips(); renderCatalog(); heroMonitor(); renderStats(); renderServices(); renderCategories(); renderContent(); renderNews(); }
 
 document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeModal(); } });
 document.getElementById('nav-links').addEventListener('click',e=>{ if(e.target.tagName==='A') document.getElementById('nav-links').classList.remove('open'); });
